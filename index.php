@@ -56,32 +56,46 @@ $projects = scanProjectsDirectory();
 
       <!-- Action Navigation -->
       <div style="display:flex;align-items:center;gap:12px;">
-        <a href="explore.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.85rem;" title="Xem tất cả website đã đăng tải">
+        <a href="live-view.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.85rem;background:linear-gradient(135deg, #6366f1, #ec4899);box-shadow:0 0 20px rgba(99,102,241,0.4);" title="Trình xem live đa thiết bị tương tác">
+          <i class="fa-solid fa-play mr-1"></i> Xem Live Dự Án
+        </a>
+
+        <a href="explore.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;" title="Xem tất cả website đã đăng tải">
           <i class="fa-solid fa-compass mr-1"></i> Khám Phá Website
         </a>
 
-        <a href="admin/project-upload.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;" title="Tải lên thư mục dự án ZIP">
-          <i class="fa-solid fa-cloud-arrow-up mr-1" style="color:#38bdf8;"></i> Tải Lên Dự Án
+        <a href="admin/project-upload.php" class="btn-ceo-secondary hide-mobile" style="padding:8px 16px;font-size:0.85rem;" title="Tải lên thư mục dự án ZIP">
+          <i class="fa-solid fa-cloud-arrow-up mr-1" style="color:#38bdf8;"></i> Tải Lên
         </a>
 
         <button id="btn-theme-mode" class="btn-icon" title="Chuyển chế độ Sáng / Tối">
           <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
 
-        <button id="btn-clear-cache" class="btn-icon" title="Xóa Cache & Tối ưu CSS">
+        <button id="btn-clear-cache" class="btn-icon hide-mobile" title="Xóa Cache & Tối ưu CSS">
           <i class="fa-solid fa-arrows-rotate"></i>
         </button>
 
-        <?php if ($currentUser): ?>
+        <?php if ($currentUser && !empty($_SESSION['user_role']) && in_array($_SESSION['user_role'], ['ceo', 'cdo', 'admin', 'developer'])): ?>
           <a href="admin/index.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.88rem;">
             <i class="fa-solid fa-chart-pie mr-2"></i> Bảng Điều Khiển CEO
           </a>
           <a href="logout.php" class="btn-ceo-secondary" style="padding:8px 14px;font-size:0.85rem;" title="Đăng xuất">
             <i class="fa-solid fa-right-from-bracket"></i>
           </a>
+        <?php elseif ($currentUser): ?>
+          <a href="user/dashboard.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;">
+            <i class="fa-solid fa-user-circle mr-1" style="color:#34d399;"></i> <?= e($currentUser['full_name']) ?>
+          </a>
+          <a href="logout.php" class="btn-ceo-secondary" style="padding:8px 12px;font-size:0.85rem;" title="Đăng xuất">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </a>
         <?php else: ?>
-          <a href="login.php" class="btn-ceo-primary btn-ripple" style="padding:8px 20px;font-size:0.88rem;">
-            <i class="fa-solid fa-shield-halved mr-2"></i> Đăng Nhập CEO
+          <a href="user/login.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.88rem;" title="Đăng nhập thành viên">
+            <i class="fa-solid fa-user mr-1"></i> Thành Viên
+          </a>
+          <a href="login.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.88rem;">
+            <i class="fa-solid fa-shield-halved mr-1"></i> CEO Login
           </a>
         <?php endif; ?>
       </div>
@@ -273,26 +287,27 @@ $projects = scanProjectsDirectory();
             </div>
 
             <!-- Actions Row -->
+            <a href="live-view.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-primary btn-ripple" style="padding:10px;font-size:0.88rem;text-align:center;justify-content:center;margin-bottom:10px;background:linear-gradient(135deg, #6366f1, #8b5cf6);" title="Mô phỏng đa thiết bị và trải nghiệm trực tiếp">
+              <i class="fa-solid fa-play mr-2"></i> Xem Live Đa Thiết Bị
+            </a>
+
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-              <a href="theme-preview.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-secondary" style="padding:10px;font-size:0.85rem;text-align:center;" title="Mô phỏng đa thiết bị">
-                <i class="fa-solid fa-eye mr-1"></i> Xem Thử
+              <a href="customizer.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-secondary" style="padding:8px;font-size:0.82rem;text-align:center;" title="Tùy biến bảng màu và typography">
+                <i class="fa-solid fa-wand-magic-sparkles mr-1" style="color:var(--ceo-gold);"></i> Tùy Biến
               </a>
-              <a href="<?= e($t['preview_url']) ?>" target="_blank" class="btn-ceo-secondary" style="padding:10px;font-size:0.85rem;text-align:center;" title="Mở trang web trực tiếp trong tab mới">
+              <a href="<?= e($t['preview_url']) ?>" target="_blank" class="btn-ceo-secondary" style="padding:8px;font-size:0.82rem;text-align:center;" title="Mở trang web trực tiếp trong tab mới">
                 <i class="fa-solid fa-arrow-up-right-from-square mr-1" style="color:#38bdf8;"></i> Mở Web
               </a>
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-              <a href="customizer.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-secondary" style="padding:10px;font-size:0.85rem;text-align:center;" title="Tùy biến bảng màu và typography">
-                <i class="fa-solid fa-wand-magic-sparkles mr-1" style="color:var(--ceo-gold);"></i> Tùy Biến
-              </a>
+            <div>
               <?php if ($t['status'] === 'active'): ?>
-                <button class="btn-ceo-primary" style="padding:10px;font-size:0.85rem;background:#10b981;cursor:default;" disabled>
-                  <i class="fa-solid fa-circle-check mr-1"></i> Đang Chạy
+                <button class="btn-ceo-primary" style="width:100%;padding:8px;font-size:0.82rem;background:#10b981;cursor:default;justify-content:center;" disabled>
+                  <i class="fa-solid fa-circle-check mr-1"></i> Đang Chạy Chính
                 </button>
               <?php else: ?>
-                <button class="btn-ceo-primary btn-activate-theme" data-theme-id="<?= $t['id'] ?>" data-theme-name="<?= e($t['name']) ?>" style="padding:10px;font-size:0.85rem;">
-                  <i class="fa-solid fa-power-off mr-1"></i> Kích Hoạt
+                <button class="btn-ceo-secondary btn-activate-theme" data-theme-id="<?= $t['id'] ?>" data-theme-name="<?= e($t['name']) ?>" style="width:100%;padding:8px;font-size:0.82rem;justify-content:center;">
+                  <i class="fa-solid fa-power-off mr-1"></i> Kích Hoạt Lên Portal
                 </button>
               <?php endif; ?>
             </div>

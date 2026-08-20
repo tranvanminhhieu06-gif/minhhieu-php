@@ -224,8 +224,12 @@ $demoCredentials = [
 
       <!-- Action Navigation -->
       <div style="display:flex;align-items:center;gap:12px;">
-        <a href="admin/project-upload.php" class="btn-ceo-primary btn-ripple" style="padding:8px 16px;font-size:0.85rem;">
-          <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Tải Lên Dự Án
+        <a href="live-view.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.85rem;background:linear-gradient(135deg, #6366f1, #ec4899);box-shadow:0 0 20px rgba(99,102,241,0.4);" title="Trình xem live đa thiết bị tương tác">
+          <i class="fa-solid fa-play mr-1"></i> Xem Live Dự Án
+        </a>
+
+        <a href="admin/project-upload.php" class="btn-ceo-secondary hide-mobile" style="padding:8px 16px;font-size:0.85rem;">
+          <i class="fa-solid fa-cloud-arrow-up mr-1" style="color:#38bdf8;"></i> Tải Lên
         </a>
 
         <button id="btn-theme-mode" class="btn-icon" title="Chuyển chế độ Sáng / Tối">
@@ -238,11 +242,13 @@ $demoCredentials = [
           </a>
         <?php elseif ($currentUser): ?>
           <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(255,255,255,0.06);border-radius:9999px;border:1px solid var(--border-glass);">
-            <span style="font-size:0.82rem;color:var(--text-primary);font-weight:600;"><i class="fa-solid fa-user-check mr-1" style="color:#34d399;"></i> <?= e($currentUser['full_name']) ?></span>
+            <a href="user/dashboard.php" style="font-size:0.82rem;color:var(--text-primary);font-weight:600;text-decoration:none;">
+              <i class="fa-solid fa-user-circle mr-1" style="color:#34d399;"></i> <?= e($currentUser['full_name']) ?>
+            </a>
             <a href="logout.php" style="color:#f87171;font-size:0.78rem;margin-left:4px;" title="Đăng xuất"><i class="fa-solid fa-right-from-bracket"></i></a>
           </div>
         <?php else: ?>
-          <a href="user-login.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;">
+          <a href="user/login.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;">
             <i class="fa-solid fa-user mr-1"></i> Đăng Nhập
           </a>
         <?php endif; ?>
@@ -375,15 +381,15 @@ $demoCredentials = [
 
               <!-- Card Action Footer -->
               <div style="padding:0 22px 22px 22px;">
-                <!-- Main Direct Launch Button -->
-                <a href="<?= e($t['preview_url']) ?>" target="_blank" class="btn-ceo-primary btn-ripple" style="width:100%;padding:12px;font-size:0.92rem;margin-bottom:10px;text-align:center;box-shadow:0 4px 15px rgba(99,102,241,0.35);">
-                  <i class="fa-solid fa-rocket mr-2"></i> Mở Website Trực Tiếp (projects/)
+                <!-- Main Live View Button -->
+                <a href="live-view.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-primary btn-ripple" style="width:100%;padding:11px;font-size:0.92rem;margin-bottom:10px;text-align:center;justify-content:center;background:linear-gradient(135deg, #6366f1, #8b5cf6);box-shadow:0 4px 15px rgba(99,102,241,0.35);">
+                  <i class="fa-solid fa-play mr-2"></i> Xem Live Đa Thiết Bị
                 </a>
 
                 <!-- Secondary Actions -->
                 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-                  <a href="theme-preview.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-secondary" style="padding:8px;font-size:0.8rem;text-align:center;" title="Mô phỏng đa thiết bị (iMac, iPad, iPhone)">
-                    <i class="fa-solid fa-desktop mr-1"></i> Giả Lập
+                  <a href="<?= e($t['preview_url']) ?>" target="_blank" class="btn-ceo-secondary" style="padding:8px;font-size:0.8rem;text-align:center;" title="Mở trang web trực tiếp trong tab mới">
+                    <i class="fa-solid fa-arrow-up-right-from-square mr-1" style="color:#38bdf8;"></i> Mở Web
                   </a>
                   <button onclick="openQuickPreview('<?= e($t['preview_url']) ?>', '<?= e($t['name']) ?>')" class="btn-ceo-secondary" style="padding:8px;font-size:0.8rem;text-align:center;" title="Xem nhanh tại trang">
                     <i class="fa-solid fa-eye mr-1"></i> Xem Nhanh

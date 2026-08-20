@@ -316,15 +316,18 @@ function scanProjectsDirectory(): array {
     $projectsDir = getProjectsDirectory();
     $items = scandir($projectsDir);
     $projects = [];
-    $db = getDb();
-
-    $registeredThemes = $db->query("SELECT id, name, code_name, folder_path, status, preview_url FROM `themes`")->fetchAll();
     $registeredMap = [];
-    foreach ($registeredThemes as $rt) {
-        $normPath = str_replace('\\', '/', $rt['folder_path']);
-        $baseName = basename($normPath);
-        $registeredMap[$baseName] = $rt;
-        $registeredMap[$normPath] = $rt;
+    try {
+        $db = getDb();
+        $registeredThemes = $db->query("SELECT id, name, code_name, folder_path, status, preview_url FROM `themes`")->fetchAll();
+        foreach ($registeredThemes as $rt) {
+            $normPath = str_replace('\\', '/', $rt['folder_path']);
+            $baseName = basename($normPath);
+            $registeredMap[$baseName] = $rt;
+            $registeredMap[$normPath] = $rt;
+        }
+    } catch (Exception $e) {
+        // Fallback when DB is offline
     }
 
     foreach ($items as $item) {

@@ -205,10 +205,12 @@ $runner->test("9. Kiểm tra cơ chế trích xuất ZIP và Tải lên dự án
 // TEST 10: Syntax & Lint Integrity of all PHP files
 $runner->test("10. Kiểm tra cú pháp toàn bộ tệp PHP trong hệ thống (0 Lint/Syntax Errors)", function() {
     $files = [
-        'index.php', 'explore.php', 'login.php', 'user-login.php', 'logout.php', 'theme-preview.php', 'customizer.php', 'test_system.php',
+        'index.php', 'explore.php', 'live-view.php', 'login.php', 'logout.php', 'theme-preview.php', 'customizer.php', 'test_system.php',
+        'user/login.php', 'user/register.php', 'user/dashboard.php', 'user/index.php',
         'config/database.php', 'config/helper.php', 'config/auth_admin.php', 'config/auth_user.php',
         'database/init_database.php',
         'api/themes.php', 'api/customize.php', 'api/analytics.php', 'api/system.php', 'api/upload_project.php',
+        'api/toggle_favorite.php', 'api/rate_project.php',
         'admin/index.php', 'admin/themes.php', 'admin/theme-add.php', 'admin/theme-edit.php',
         'admin/components.php', 'admin/analytics.php', 'admin/users.php', 'admin/logs.php', 'admin/settings.php',
         'admin/projects.php', 'admin/project-upload.php'
@@ -234,6 +236,7 @@ $runner->test("11. Kiểm tra tài nguyên CSS, Animations và JS Script Engine"
         'assets/css/ceo-core.css',
         'assets/css/animations.css',
         'assets/css/preview.css',
+        'assets/css/live-view.css',
         'assets/js/ceo-app.js',
         'assets/js/customizer.js',
         'assets/js/preview-simulator.js'

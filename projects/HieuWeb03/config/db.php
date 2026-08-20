@@ -1,10 +1,10 @@
 <?php
 // config/db.php - Database connection with PDO and auto-setup fallback
-$db_host = '127.0.0.1';
-$db_port = '3306';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'hieumini_furniture_db';
+$db_host = getenv('DB_HOST') ?: '127.0.0.1';
+$db_port = getenv('DB_PORT') ?: '3306';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+$db_name = getenv('DB_NAME_WEB03') ?: (getenv('DB_NAME') ?: 'hieumini_furniture_db');
 
 try {
     // Connect to database with UTF-8mb4 charset and init command

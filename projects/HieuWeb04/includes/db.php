@@ -4,10 +4,10 @@
  * HieuMini Smart Home Appliances
  */
 
-$host = '127.0.0.1';
-$dbname = 'hieumini_tech_db';
-$username = 'root';
-$password = '';
+$host = getenv('DB_HOST') ?: '127.0.0.1';
+$dbname = getenv('DB_NAME_WEB04') ?: (getenv('DB_NAME') ?: 'hieumini_tech_db');
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";

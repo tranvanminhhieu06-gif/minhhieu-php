@@ -28,6 +28,10 @@ class Database {
                 // Auto-enable SSL for Cloud MySQL providers (Aiven, TiDB, Clever Cloud)
                 if (DB_SSL || str_contains(DB_HOST, 'aivencloud.com') || str_contains(DB_HOST, 'tidbcloud.com') || str_contains(DB_HOST, 'clever-cloud.com') || DB_PORT !== '3306') {
                     $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+                    $caFile = file_exists('/etc/ssl/certs/ca-certificates.crt') ? '/etc/ssl/certs/ca-certificates.crt' : (file_exists('C:/xampp/apache/bin/curl-ca-bundle.crt') ? 'C:/xampp/apache/bin/curl-ca-bundle.crt' : null);
+                    if ($caFile) {
+                        $options[PDO::MYSQL_ATTR_SSL_CA] = $caFile;
+                    }
                 }
 
                 self::$instance = new PDO($dsn, DB_USER, DB_PASS, $options);

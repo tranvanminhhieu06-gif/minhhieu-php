@@ -1,4 +1,4 @@
-﻿-- =========================================================
+-- =========================================================
 -- 👑 HIEU CEO - FULL CLOUD CONSOLIDATED DATABASE DUMP 👑
 -- =========================================================
 
@@ -230,12 +230,12 @@ INSERT INTO `theme_tokens` (`theme_id`, `token_key`, `token_value`, `token_type`
 (1, '--ceo-accent', '#06b6d4', 'color'),
 (1, '--ceo-bg-dark', '#0f172a', 'color'),
 (1, '--ceo-radius', '16px', 'radius'),
-(1, '--ceo-font', "'Outfit', sans-serif", 'typography'),
+(1, '--ceo-font', 'Outfit, sans-serif', 'typography'),
 (1, '--ceo-glass-blur', '20px', 'glass'),
 (1, '--ceo-glass-opacity', '0.65', 'glass'),
 (2, '--ceo-primary', '#0284c7', 'color'),
 (2, '--ceo-secondary', '#f59e0b', 'color'),
-(2, '--ceo-font', "'Plus Jakarta Sans', sans-serif", 'typography');
+(2, '--ceo-font', 'Plus Jakarta Sans, sans-serif', 'typography');
 
 -- 6. Insert UI Components
 INSERT INTO `ui_components` (`id`, `category`, `name`, `slug`, `description`, `html_code`, `css_code`, `js_code`, `preview_badge`, `tags`) VALUES

@@ -13,29 +13,37 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Enable Apache rewrite module
-RUN a2enmod rewrite headers
+# Enable Apache modules
+RUN a2enmod rewrite headers dir env
 
-# Copy application files
+# Copy Apache VirtualHost configuration
+RUN echo '<VirtualHost *:${PORT}>\n\
+    ServerAdmin webmaster@localhost\n\
+    DocumentRoot /var/www/html\n\
+    DirectoryIndex index.php index.html\n\
+\n\
+    <Directory /var/www/html>\n\
+        Options FollowSymLinks\n\
+        AllowOverride All\n\
+        Require all granted\n\
+    </Directory>\n\
+\n\
+    ErrorLog ${APACHE_LOG_DIR}/error.log\n\
+    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
+</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+
+# Copy project files
 COPY . /var/www/html/
 
 # Set ownership and permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Configure Apache Directory settings
-RUN echo '<Directory /var/www/html/>\n\
-    Options -Indexes +FollowSymLinks\n\
-    AllowOverride All\n\
-    Require all granted\n\
-</Directory>' > /etc/apache2/conf-available/hieu-override.conf \
-    && a2enconf hieu-override
-
 # Default Port configuration for Render Cloud
-ENV PORT=80
+ENV PORT=10000
 EXPOSE 80 10000
 
 # Start script adapting to Render $PORT dynamically
-CMD sed -i "s/Listen 80/Listen ${PORT:-80}/g" /etc/apache2/ports.conf && \
-    sed -i "s/:80/:${PORT:-80}/g" /etc/apache2/sites-available/000-default.conf && \
+CMD sed -i "s/Listen 80/Listen ${PORT:-10000}/g" /etc/apache2/ports.conf && \
+    sed -i "s/Listen 10000/Listen ${PORT:-10000}/g" /etc/apache2/ports.conf && \
     apache2-foreground

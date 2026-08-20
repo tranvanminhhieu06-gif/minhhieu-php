@@ -1,0 +1,16 @@
+# HIEU CEO - Master Apache Server Configuration
+DirectoryIndex index.php index.html
+DirectorySlash On
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+</IfModule>
+
+# Charset
+AddDefaultCharset UTF-8
+
+# Security & MIME Types
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>

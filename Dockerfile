@@ -14,22 +14,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules
-RUN a2enmod rewrite headers dir env
+RUN a2enmod rewrite headers
 
-# Copy custom Apache configuration
-COPY apache.conf /etc/apache2/sites-available/000-default.conf
-
-# Copy project files
+# Copy application files
 COPY . /var/www/html/
 
-# Set ownership and permissions
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html \
-    && chmod +x /var/www/html/start.sh
+    && chmod -R 755 /var/www/html
 
-# Default Port configuration for Render Cloud
-ENV PORT=10000
+# Configure Apache to listen on port 80 and port 10000 (Render default)
+RUN sed -i 's/80/10000/g' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf \
+    && echo "Listen 80" >> /etc/apache2/ports.conf
+
+# Allow .htaccess overrides and set DirectoryIndex
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf \
+    && echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
+
 EXPOSE 80 10000
 
-# Start via start.sh
-CMD ["/bin/bash", "/var/www/html/start.sh"]
+CMD ["apache2-foreground"]

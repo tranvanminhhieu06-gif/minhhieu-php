@@ -7,8 +7,13 @@
 require_once __DIR__ . '/../config/auth_user.php';
 
 if (isUserLoggedIn()) {
-    header('Location: ../live-view.php');
+    header('Location: ../index.php');
     exit;
+}
+
+$redirect = sanitize($_GET['redirect'] ?? ($_POST['redirect'] ?? '../index.php'));
+if (str_starts_with($redirect, 'http://') || str_starts_with($redirect, 'https://') || str_starts_with($redirect, '//')) {
+    $redirect = '../index.php';
 }
 
 $error = '';
@@ -31,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passwordConfirm = $_POST['password_confirm'] ?? '';
     $avatar = sanitize($_POST['avatar'] ?? 'assets/images/user-avatar.png');
     $csrfToken = $_POST['csrf_token'] ?? '';
+    $postRedirect = sanitize($_POST['redirect'] ?? $redirect);
 
     if (!verifyCsrfToken($csrfToken)) {
         $error = 'Phiên bảo mật đã hết hạn. Vui lòng tải lại trang (CSRF Token).';
@@ -45,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $regResult = registerMemberAccount($username, $email, $password, $fullName, $avatar);
         if ($regResult['success']) {
-            setFlash('success', "Chào mừng {$fullName}! Tài khoản của bạn đã được kích hoạt thành công.");
-            header('Location: ../live-view.php');
+            setFlash('success', "🎉 Chào mừng {$fullName}! Bạn đã đăng ký và tự động đăng nhập thành công.");
+            header("Location: {$postRedirect}");
             exit;
         } else {
             $error = $regResult['message'];
@@ -86,14 +92,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     <?php endif; ?>
 
+    <!-- Quick Demo Auto-Fill Box -->
+    <div style="background:rgba(0,0,0,0.4);border:1px dashed rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:0.8rem;color:var(--text-muted);"><i class="fa-solid fa-bolt text-warning mr-1"></i> Đăng ký trải nghiệm nhanh?</span>
+      <button type="button" class="btn-ripple" onclick="quickFillRegister()" style="background:rgba(99,102,241,0.2);border:1px solid #6366f1;color:#818cf8;padding:5px 12px;border-radius:8px;font-size:0.78rem;cursor:pointer;font-weight:700;transition:all 0.2s;">
+        ⚡ 1-Click Tự Điền Mẫu
+      </button>
+    </div>
+
     <form action="register.php" method="POST">
       <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
+      <input type="hidden" name="redirect" value="<?= e($redirect) ?>">
 
       <div style="margin-bottom:16px;">
         <label style="display:block;font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">
           <i class="fa-solid fa-id-card mr-1"></i> Họ và Tên của bạn
         </label>
-        <input type="text" name="full_name" class="glass-input" placeholder="Nguyễn Văn A" value="<?= e($_POST['full_name'] ?? '') ?>" required autofocus>
+        <input type="text" name="full_name" id="full_name" class="glass-input" placeholder="Nguyễn Văn A" value="<?= e($_POST['full_name'] ?? '') ?>" required autofocus>
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
@@ -101,13 +116,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label style="display:block;font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">
             <i class="fa-solid fa-user mr-1"></i> Tên tài khoản
           </label>
-          <input type="text" name="username" class="glass-input" placeholder="nguyenvana" value="<?= e($_POST['username'] ?? '') ?>" required>
+          <input type="text" name="username" id="username" class="glass-input" placeholder="nguyenvana" value="<?= e($_POST['username'] ?? '') ?>" required>
         </div>
         <div>
           <label style="display:block;font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">
             <i class="fa-solid fa-envelope mr-1"></i> Email
           </label>
-          <input type="email" name="email" class="glass-input" placeholder="user@gmail.com" value="<?= e($_POST['email'] ?? '') ?>" required>
+          <input type="email" name="email" id="email" class="glass-input" placeholder="user@gmail.com" value="<?= e($_POST['email'] ?? '') ?>" required>
         </div>
       </div>
 
@@ -116,13 +131,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label style="display:block;font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">
             <i class="fa-solid fa-lock mr-1"></i> Mật khẩu
           </label>
-          <input type="password" name="password" class="glass-input" placeholder="••••••••" required>
+          <input type="password" name="password" id="password" class="glass-input" placeholder="••••••••" required>
         </div>
         <div>
           <label style="display:block;font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">
             <i class="fa-solid fa-shield-check mr-1"></i> Nhập lại mật khẩu
           </label>
-          <input type="password" name="password_confirm" class="glass-input" placeholder="••••••••" required>
+          <input type="password" name="password_confirm" id="password_confirm" class="glass-input" placeholder="••••••••" required>
         </div>
       </div>
 
@@ -133,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label>
         <div style="display:flex;gap:12px;justify-content:center;">
           <label style="cursor:pointer;text-align:center;">
-            <input type="radio" name="avatar" value="assets/images/viewer-avatar.png" checked style="display:none;" onchange="updateAvatarStyle(this)">
+            <input type="radio" name="avatar" value="assets/images/user-avatar.png" checked style="display:none;" onchange="updateAvatarStyle(this)">
             <div class="avatar-option selected" style="width:48px;height:48px;border-radius:50%;background:rgba(99,102,241,0.2);border:2px solid #6366f1;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#818cf8;">
               <i class="fa-solid fa-user-astronaut"></i>
             </div>
@@ -167,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <button type="submit" class="btn-ceo-primary btn-ripple" style="width:100%;padding:13px;font-size:0.98rem;justify-content:center;margin-bottom:20px;font-weight:700;">
-        <i class="fa-solid fa-user-plus mr-2"></i> Đăng Ký Tài Khoản Ngay
+        <i class="fa-solid fa-user-plus mr-2"></i> Đăng Ký & Truy Cập Ngay
       </button>
     </form>
 
@@ -183,6 +198,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         el.style.borderColor = 'transparent';
       });
       radio.closest('label').querySelector('.avatar-option').style.borderColor = '#6366f1';
+    }
+
+    function quickFillRegister() {
+      const rand = Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('full_name').value = 'VIP Khách Hàng ' + rand;
+      document.getElementById('username').value = 'vip_' + rand;
+      document.getElementById('email').value = 'vip' + rand + '@gmail.com';
+      document.getElementById('password').value = '123456';
+      document.getElementById('password_confirm').value = '123456';
     }
   </script>
 </body>

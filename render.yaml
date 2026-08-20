@@ -9,12 +9,14 @@ services:
     healthCheckPath: /
     envVars:
       - key: DB_HOST
-        value: 127.0.0.1
+        sync: false
       - key: DB_PORT
-        value: 3306
+        sync: false
       - key: DB_USER
-        value: root
+        sync: false
       - key: DB_PASS
-        value: ""
+        sync: false
       - key: DB_NAME
-        value: hieu_ceo_db
+        sync: false
+      - key: DB_SSL
+        value: "true"

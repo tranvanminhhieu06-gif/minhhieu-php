@@ -8,6 +8,7 @@ if (!defined('DB_PORT')) define('DB_PORT', getenv('DB_PORT') ?: '3306');
 if (!defined('DB_USER')) define('DB_USER', getenv('DB_USER') ?: 'root');
 if (!defined('DB_PASS')) define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
 if (!defined('DB_NAME')) define('DB_NAME', getenv('DB_NAME') ?: 'hieu_ceo_db');
+if (!defined('DB_SSL')) define('DB_SSL', (getenv('DB_SSL') === 'true' || getenv('DB_SSL') === '1'));
 
 class Database {
     private static ?PDO $instance = null;
@@ -22,6 +23,12 @@ class Database {
                     PDO::ATTR_EMULATE_PREPARES => false,
                     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
                 ];
+
+                // Auto-enable SSL for Cloud MySQL providers (Aiven, TiDB, Clever Cloud)
+                if (DB_SSL || str_contains(DB_HOST, 'aivencloud.com') || str_contains(DB_HOST, 'tidbcloud.com') || str_contains(DB_HOST, 'clever-cloud.com')) {
+                    $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+                }
+
                 self::$instance = new PDO($dsn, DB_USER, DB_PASS, $options);
             } catch (PDOException $e) {
                 // If in production/json mode vs web view

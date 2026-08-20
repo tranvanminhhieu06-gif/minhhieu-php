@@ -6,7 +6,7 @@ services:
     region: singapore
     branch: main
     autoDeploy: true
-    healthCheckPath: /
+    healthCheckPath: /healthz.php
     envVars:
       - key: DB_HOST
         sync: false

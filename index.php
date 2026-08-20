@@ -71,10 +71,6 @@ $projects = scanProjectsDirectory();
           <i class="fa-solid fa-compass mr-1"></i> Khám Phá Website
         </a>
 
-        <a href="admin/project-upload.php" class="btn-ceo-secondary hide-mobile" style="padding:8px 16px;font-size:0.85rem;" title="Tải lên thư mục dự án ZIP">
-          <i class="fa-solid fa-cloud-arrow-up mr-1" style="color:#38bdf8;"></i> Tải Lên
-        </a>
-
         <button id="btn-theme-mode" class="btn-icon" title="Chuyển chế độ Sáng / Tối">
           <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
@@ -83,26 +79,16 @@ $projects = scanProjectsDirectory();
           <i class="fa-solid fa-arrows-rotate"></i>
         </button>
 
-        <?php if ($currentUser && !empty($_SESSION['user_role']) && in_array($_SESSION['user_role'], ['ceo', 'cdo', 'admin', 'developer'])): ?>
-          <a href="admin/index.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.88rem;">
-            <i class="fa-solid fa-chart-pie mr-2"></i> Bảng Điều Khiển CEO
-          </a>
-          <a href="logout.php" class="btn-ceo-secondary" style="padding:8px 14px;font-size:0.85rem;" title="Đăng xuất">
-            <i class="fa-solid fa-right-from-bracket"></i>
-          </a>
-        <?php elseif ($currentUser): ?>
-          <a href="user/dashboard.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;">
+        <?php if ($currentUser): ?>
+          <a href="user/dashboard.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;" title="Trang cá nhân thành viên">
             <i class="fa-solid fa-user-circle mr-1" style="color:#34d399;"></i> <?= e($currentUser['full_name']) ?>
           </a>
-          <a href="logout.php" class="btn-ceo-secondary" style="padding:8px 12px;font-size:0.85rem;" title="Đăng xuất">
+          <a href="logout.php" class="btn-ceo-secondary" style="padding:8px 12px;font-size:0.85rem;color:#fb7185;" title="Đăng xuất">
             <i class="fa-solid fa-right-from-bracket"></i>
           </a>
         <?php else: ?>
-          <a href="user/login.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.88rem;" title="Đăng nhập thành viên">
-            <i class="fa-solid fa-user mr-1"></i> Thành Viên
-          </a>
-          <a href="login.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.88rem;">
-            <i class="fa-solid fa-shield-halved mr-1"></i> CEO Login
+          <a href="user/login.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.88rem;" title="Đăng nhập thành viên">
+            <i class="fa-solid fa-user mr-1"></i> Đăng Nhập Thành Viên
           </a>
         <?php endif; ?>
       </div>
@@ -125,24 +111,21 @@ $projects = scanProjectsDirectory();
       </h1>
 
       <p style="max-width:760px;margin:0 auto 36px auto;color:var(--text-secondary);font-size:1.1rem;line-height:1.7;">
-        Hệ sinh thái quản trị giao diện website toàn diện viết bằng <strong>PHP & MySQL</strong>, lưu trữ tập trung tại thư mục <code>projects/</code>, cho phép tải lên tệp <strong>.ZIP</strong> dự án, kích hoạt thời gian thực và giả lập hiển thị trên mọi thiết bị.
+        Hệ sinh thái giao diện website toàn diện viết bằng <strong>PHP & MySQL</strong>, lưu trữ tập trung tại thư mục <code>projects/</code>, hỗ trợ kích hoạt thời gian thực và giả lập hiển thị trên mọi thiết bị.
       </p>
 
       <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
         <a href="explore.php" class="btn-ceo-primary btn-ripple animate-pulse-glow" style="padding:14px 32px;font-size:1.05rem;">
           <i class="fa-solid fa-compass mr-1"></i> Khám Phá <?= count($themes) ?> Website Đã Đăng Tải
         </a>
-        <a href="admin/project-upload.php" class="btn-ceo-gold btn-ripple" style="padding:14px 28px;font-size:1.05rem;">
-          <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Tải Lên Dự Án (.ZIP)
+        <a href="live-view.php" class="btn-ceo-gold btn-ripple" style="padding:14px 28px;font-size:1.05rem;">
+          <i class="fa-solid fa-circle-play mr-1"></i> Xem Live Đa Thiết Bị
         </a>
-        <a href="admin/projects.php" class="btn-ceo-secondary btn-ripple" style="padding:14px 26px;font-size:1.05rem;">
-          <i class="fa-solid fa-folder-tree mr-1" style="color:#38bdf8;"></i> Kho Thư Mục Dự Án
+        <a href="user/dashboard.php" class="btn-ceo-secondary btn-ripple" style="padding:14px 26px;font-size:1.05rem;">
+          <i class="fa-solid fa-user-astronaut mr-1" style="color:#38bdf8;"></i> Bảng Điều Khiển Thành Viên
         </a>
         <a href="customizer.php?theme_id=<?= $activeTheme['id'] ?? 1 ?>" class="btn-ceo-secondary btn-ripple" style="padding:14px 26px;font-size:1.05rem;">
           <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--ceo-gold);"></i> Trình Tùy Biến
-        </a>
-        <a href="test_system.php" class="btn-ceo-secondary" style="padding:14px 24px;font-size:1.05rem;" target="_blank" title="Chạy bộ kiểm thử tự động">
-          <i class="fa-solid fa-vial-circle-check" style="color:#10b981;"></i> Kiểm Thử
         </a>
       </div>
 
@@ -339,12 +322,11 @@ $projects = scanProjectsDirectory();
         </p>
       </div>
 
-      <div style="display:flex;gap:20px;font-size:0.9rem;">
-        <a href="admin/project-upload.php" style="color:var(--text-secondary);text-decoration:none;">Tải Lên Dự Án</a>
-        <a href="admin/projects.php" style="color:var(--text-secondary);text-decoration:none;">Kho projects/</a>
+      <div style="display:flex;gap:20px;font-size:0.9rem;flex-wrap:wrap;">
+        <a href="explore.php" style="color:var(--text-secondary);text-decoration:none;">Khám Phá Website</a>
+        <a href="live-view.php" style="color:var(--text-secondary);text-decoration:none;">Xem Live Đa Thiết Bị</a>
+        <a href="user/dashboard.php" style="color:var(--text-secondary);text-decoration:none;">Trang Thành Viên</a>
         <a href="test_system.php" style="color:var(--text-secondary);text-decoration:none;" target="_blank">Kiểm Thử Hệ Thống</a>
-        <a href="admin/index.php" style="color:var(--text-secondary);text-decoration:none;">Quản Trị Admin</a>
-        <a href="README.md" style="color:var(--text-secondary);text-decoration:none;" target="_blank">Tài Liệu Hướng Dẫn</a>
       </div>
     </div>
   </footer>

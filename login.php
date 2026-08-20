@@ -5,8 +5,8 @@
 
 require_once __DIR__ . '/config/helper.php';
 
-if (isLoggedIn()) {
-    header('Location: admin/index.php');
+if (isLoggedIn() || isUserLoggedIn()) {
+    header('Location: user/dashboard.php');
     exit;
 }
 
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 logSystemAction($user['id'], 'AUTH_LOGIN', "Người dùng {$user['full_name']} ({$user['role']}) đăng nhập thành công.");
 
                 setFlash('success', "Chào mừng trở lại, {$user['full_name']} ({$user['title']})!");
-                header('Location: admin/index.php');
+                header('Location: user/dashboard.php');
                 exit;
             } else {
                 $error = 'Tài khoản email hoặc mật khẩu không chính xác.';

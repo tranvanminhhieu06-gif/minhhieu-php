@@ -228,19 +228,11 @@ $demoCredentials = [
           <i class="fa-solid fa-play mr-1"></i> Xem Live Dự Án
         </a>
 
-        <a href="admin/project-upload.php" class="btn-ceo-secondary hide-mobile" style="padding:8px 16px;font-size:0.85rem;">
-          <i class="fa-solid fa-cloud-arrow-up mr-1" style="color:#38bdf8;"></i> Tải Lên
-        </a>
-
         <button id="btn-theme-mode" class="btn-icon" title="Chuyển chế độ Sáng / Tối">
           <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
 
-        <?php if ($currentUser && !empty($_SESSION['user_role']) && in_array($_SESSION['user_role'], ['ceo', 'cdo', 'admin', 'developer'])): ?>
-          <a href="admin/index.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;">
-            <i class="fa-solid fa-chart-pie mr-1"></i> Quản Trị Admin
-          </a>
-        <?php elseif ($currentUser): ?>
+        <?php if ($currentUser): ?>
           <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(255,255,255,0.06);border-radius:9999px;border:1px solid var(--border-glass);">
             <a href="user/dashboard.php" style="font-size:0.82rem;color:var(--text-primary);font-weight:600;text-decoration:none;">
               <i class="fa-solid fa-user-circle mr-1" style="color:#34d399;"></i> <?= e($currentUser['full_name']) ?>
@@ -249,7 +241,7 @@ $demoCredentials = [
           </div>
         <?php else: ?>
           <a href="user/login.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;">
-            <i class="fa-solid fa-user mr-1"></i> Đăng Nhập
+            <i class="fa-solid fa-user mr-1"></i> Đăng Nhập Thành Viên
           </a>
         <?php endif; ?>
       </div>
@@ -559,7 +551,7 @@ $demoCredentials = [
       <div style="display:flex;gap:20px;font-size:0.9rem;">
         <a href="index.php" style="color:var(--text-secondary);text-decoration:none;">Trang Chủ</a>
         <a href="explore.php" style="color:var(--text-secondary);text-decoration:none;">Cổng Khám Phá Website</a>
-        <a href="admin/projects.php" style="color:var(--text-secondary);text-decoration:none;">Kho projects/</a>
+        <a href="user/dashboard.php" style="color:var(--text-secondary);text-decoration:none;">Trang Thành Viên</a>
         <a href="test_system.php" style="color:var(--text-secondary);text-decoration:none;" target="_blank">Kiểm Thử Hệ Thống</a>
       </div>
     </div>

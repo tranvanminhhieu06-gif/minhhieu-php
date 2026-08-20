@@ -35,8 +35,7 @@
                         <li><a href="<?= BASE_URL ?>/about.php"><i class="fas fa-angle-right" style="color: var(--gold-primary); font-size: 0.8rem;"></i> Về HieuMini Club</a></li>
                         <li><a href="<?= BASE_URL ?>/products.php"><i class="fas fa-angle-right" style="color: var(--gold-primary); font-size: 0.8rem;"></i> Cửa Hàng Thể Hình</a></li>
                         <li><a href="<?= BASE_URL ?>/services.php"><i class="fas fa-angle-right" style="color: var(--gold-primary); font-size: 0.8rem;"></i> Thẻ Hội Viên VIP</a></li>
-                        <li><a href="<?= BASE_URL ?>/bmi-calculator.php"><i class="fas fa-angle-right" style="color: var(--gold-primary); font-size: 0.8rem;"></i> Công Cụ Đo InBody/BMI</a></li>
-                        <li><a href="<?= BASE_URL ?>/admin/login.php"><i class="fas fa-angle-right" style="color: var(--gold-primary); font-size: 0.8rem;"></i> Cổng Quản Trị (Admin)</a></li>
+                        <li><a href="<?= BASE_URL ?>/contact.php"><i class="fas fa-angle-right" style="color: var(--gold-primary); font-size: 0.8rem;"></i> Đăng Ký Trải Nghiệm</a></li>
                     </ul>
                 </div>
 

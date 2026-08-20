@@ -67,10 +67,6 @@ $projects = scanProjectsDirectory();
           <i class="fa-solid fa-play mr-1"></i> Xem Live Dự Án
         </a>
 
-        <a href="explore.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;" title="Xem tất cả website đã đăng tải">
-          <i class="fa-solid fa-compass mr-1"></i> Khám Phá Website
-        </a>
-
         <button id="btn-theme-mode" class="btn-icon" title="Chuyển chế độ Sáng / Tối">
           <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
@@ -115,11 +111,8 @@ $projects = scanProjectsDirectory();
       </p>
 
       <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
-        <a href="explore.php" class="btn-ceo-primary btn-ripple animate-pulse-glow" style="padding:14px 32px;font-size:1.05rem;">
-          <i class="fa-solid fa-compass mr-1"></i> Khám Phá <?= count($themes) ?> Website Đã Đăng Tải
-        </a>
-        <a href="live-view.php" class="btn-ceo-gold btn-ripple" style="padding:14px 28px;font-size:1.05rem;">
-          <i class="fa-solid fa-circle-play mr-1"></i> Xem Live Đa Thiết Bị
+        <a href="live-view.php" class="btn-ceo-primary btn-ripple animate-pulse-glow" style="padding:14px 32px;font-size:1.05rem;">
+          <i class="fa-solid fa-play mr-1"></i> Trải Nghiệm <?= count($themes) ?> Website Live
         </a>
         <a href="user/dashboard.php" class="btn-ceo-secondary btn-ripple" style="padding:14px 26px;font-size:1.05rem;">
           <i class="fa-solid fa-user-astronaut mr-1" style="color:#38bdf8;"></i> Bảng Điều Khiển Thành Viên
@@ -323,7 +316,6 @@ $projects = scanProjectsDirectory();
       </div>
 
       <div style="display:flex;gap:20px;font-size:0.9rem;flex-wrap:wrap;">
-        <a href="explore.php" style="color:var(--text-secondary);text-decoration:none;">Khám Phá Website</a>
         <a href="live-view.php" style="color:var(--text-secondary);text-decoration:none;">Xem Live Đa Thiết Bị</a>
         <a href="user/dashboard.php" style="color:var(--text-secondary);text-decoration:none;">Trang Thành Viên</a>
         <a href="test_system.php" style="color:var(--text-secondary);text-decoration:none;" target="_blank">Kiểm Thử Hệ Thống</a>

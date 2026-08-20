@@ -110,8 +110,8 @@ $flash = getFlash();
   <header class="live-toolbar animate-fade-down">
     <!-- Left: Brand & Project Switcher Dropdown -->
     <div class="live-toolbar-left">
-      <a href="explore.php" class="btn-icon" title="Quay lại danh mục dự án (Explore)">
-        <i class="fa-solid fa-arrow-left"></i>
+      <a href="index.php" class="btn-icon" title="Quay lại Trang Chủ">
+        <i class="fa-solid fa-house"></i>
       </a>
 
       <div class="project-selector-dropdown">

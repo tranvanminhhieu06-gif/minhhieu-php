@@ -6,9 +6,9 @@
 
 require_once __DIR__ . '/config/auth_user.php';
 
-$activeCategory = sanitize($_GET['category'] ?? 'all');
-$searchQuery = sanitize($_GET['search'] ?? '');
-$viewTab = sanitize($_GET['tab'] ?? 'showcase'); // 'showcase' or 'projects'
+// Ẩn trang explore và chuyển hướng trực tiếp sang live-view.php
+header('Location: live-view.php');
+exit;
 
 $allCategories = getAllCategories();
 $themes = getAllThemes($activeCategory, $searchQuery);

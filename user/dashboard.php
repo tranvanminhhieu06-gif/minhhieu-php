@@ -80,10 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
           <i class="fa-solid fa-circle-play mr-1"></i> Xem Live Dự Án
         </a>
 
-        <a href="../explore.php" class="btn-ceo-secondary" style="padding:8px 16px;font-size:0.85rem;">
-          <i class="fa-solid fa-compass mr-1"></i> Khám Phá Thêm
-        </a>
-
         <a href="../logout.php" class="btn-ceo-secondary" style="padding:8px 14px;font-size:0.85rem;color:#fb7185;" title="Đăng Xuất">
           <i class="fa-solid fa-right-from-bracket"></i>
         </a>

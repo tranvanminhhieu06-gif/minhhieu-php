@@ -161,11 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       Chưa có tài khoản? <a href="register.php" style="color:var(--text-accent);text-decoration:none;font-weight:700;">Đăng ký thành viên ngay</a>
     </div>
 
-    <div style="text-align:center;font-size:0.82rem;color:var(--text-muted);display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px;">
+    <div style="text-align:center;font-size:0.82rem;color:var(--text-muted);border-top:1px solid rgba(255,255,255,0.08);padding-top:14px;">
       <a href="../index.php" style="color:var(--text-secondary);text-decoration:none;">← Về Trang Chủ</a>
-      <a href="../live-view.php" style="color:#38bdf8;text-decoration:none;font-weight:600;">
-        <i class="fa-solid fa-play mr-1"></i> Xem Live Ngay →
-      </a>
     </div>
   </div>
 

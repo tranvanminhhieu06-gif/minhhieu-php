@@ -153,6 +153,33 @@ function updateSystemSetting(string $key, string $value): bool {
     }
 }
 
+/**
+ * Chuẩn hóa đường dẫn truy cập Live của Theme
+ */
+function getThemeLiveUrl(array|string|null $themeOrUrl): string {
+    if (!$themeOrUrl) return 'live-view.php';
+    $url = is_array($themeOrUrl) ? ($themeOrUrl['preview_url'] ?? '') : $themeOrUrl;
+    if (empty($url)) {
+        if (is_array($themeOrUrl) && !empty($themeOrUrl['folder_path'])) {
+            $folder = $themeOrUrl['folder_path'];
+            if (is_dir(__DIR__ . '/../projects/' . $folder)) {
+                return "projects/{$folder}/index.php";
+            }
+        }
+        return 'live-view.php';
+    }
+    // If it's already full URL or starts with projects/ or special demo query
+    if (str_starts_with($url, 'http://') || str_starts_with($url, 'https://') || str_starts_with($url, 'projects/') || str_starts_with($url, 'index.php') || str_starts_with($url, 'explore.php') || str_starts_with($url, 'live-view.php')) {
+        return $url;
+    }
+    // Check if the folder exists inside projects/
+    $firstFolder = explode('/', trim($url, '/'))[0] ?? '';
+    if (is_dir(__DIR__ . '/../projects/' . $firstFolder)) {
+        return 'projects/' . ltrim($url, '/');
+    }
+    return $url;
+}
+
 function getActiveTheme(): ?array {
     try {
         $db = getDb();
@@ -169,6 +196,9 @@ function getActiveTheme(): ?array {
                                 ORDER BY t.id ASC LIMIT 1");
             $theme = $stmt->fetch();
         }
+        if ($theme) {
+            $theme['preview_url'] = getThemeLiveUrl($theme['preview_url']);
+        }
         return $theme ?: null;
     } catch (Exception $e) {
         return null;
@@ -184,6 +214,9 @@ function getThemeById(int $id): ?array {
                               WHERE t.id = :id LIMIT 1");
         $stmt->execute([':id' => $id]);
         $theme = $stmt->fetch();
+        if ($theme) {
+            $theme['preview_url'] = getThemeLiveUrl($theme['preview_url']);
+        }
         return $theme ?: null;
     } catch (Exception $e) {
         return null;
@@ -199,6 +232,9 @@ function getThemeBySlug(string $slug): ?array {
                               WHERE t.slug = :slug LIMIT 1");
         $stmt->execute([':slug' => $slug]);
         $theme = $stmt->fetch();
+        if ($theme) {
+            $theme['preview_url'] = getThemeLiveUrl($theme['preview_url']);
+        }
         return $theme ?: null;
     } catch (Exception $e) {
         return null;
@@ -230,7 +266,11 @@ function getAllThemes(?string $categorySlug = null, ?string $search = null): arr
 
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        return $stmt->fetchAll();
+        $themes = $stmt->fetchAll();
+        foreach ($themes as &$t) {
+            $t['preview_url'] = getThemeLiveUrl($t['preview_url']);
+        }
+        return $themes;
     } catch (Exception $e) {
         return [];
     }

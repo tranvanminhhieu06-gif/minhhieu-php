@@ -37,10 +37,16 @@ if (!defined('SITE_EMAIL')) define('SITE_EMAIL', 'vip@hieumini.com');
 if (!defined('SITE_ADDRESS')) define('SITE_ADDRESS', 'Tòa nhà HieuMini Tower, 88 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh');
 
 // Xác định Base URL tự động theo đường dẫn thực tế của ứng dụng
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
+$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+           (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ||
+           (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') ||
+           (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on');
+$protocol = $isHttps ? "https://" : "http://";
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
-if (preg_match('#^(.*/HieuWeb05)#i', $scriptName, $matches)) {
+if (preg_match('#^(.*?/projects/[^/]+)#i', $scriptName, $matches)) {
+    $app_path = $matches[1];
+} elseif (preg_match('#^(.*/HieuWeb05)#i', $scriptName, $matches)) {
     $app_path = $matches[1];
 } else {
     $scriptDir = dirname($scriptName);

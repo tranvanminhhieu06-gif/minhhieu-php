@@ -5,13 +5,20 @@
  */
 
 require_once __DIR__ . '/config/helper.php';
+require_once __DIR__ . '/config/auth_user.php';
+
+// Tự động chuyển hướng sang Trang Đăng Nhập Thành Viên nếu chưa đăng nhập
+if (!isUserLoggedIn() && !isLoggedIn()) {
+    header('Location: user/login.php?redirect=../index.php');
+    exit;
+}
 
 $activeCategory = sanitize($_GET['category'] ?? 'all');
 $searchQuery = sanitize($_GET['search'] ?? '');
 $allCategories = getAllCategories();
 $themes = getAllThemes($activeCategory, $searchQuery);
 $activeTheme = getActiveTheme();
-$currentUser = getCurrentUser();
+$currentUser = getUserProfile() ?: getCurrentUser();
 $projects = scanProjectsDirectory();
 ?>
 <!DOCTYPE html>

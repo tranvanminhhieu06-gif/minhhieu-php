@@ -6,10 +6,10 @@
 
 require_once __DIR__ . '/../config/auth_user.php';
 
-$redirect = sanitize($_GET['redirect'] ?? '../live-view.php');
+$redirect = sanitize($_GET['redirect'] ?? '../index.php');
 // Ensure safe redirect
 if (str_starts_with($redirect, 'http://') || str_starts_with($redirect, 'https://') || str_starts_with($redirect, '//')) {
-    $redirect = '../live-view.php';
+    $redirect = '../index.php';
 }
 
 if (isUserLoggedIn()) {

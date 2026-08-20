@@ -132,6 +132,8 @@ c:\Users\tranv\Desktop\DoAnWebsite\
         ├── ceo-app.js                 # Engine tương tác, Toast, Modal, 3D Tilt, Counter
         ├── customizer.js              # Real-time CSS Variable Injector & Sync
         └── preview-simulator.js       # Bộ điều khiển chuyển đổi kích thước khung xem
+├── push.bat                       # Tự động hóa Git 1-Click: add, commit "update", push
+└── push.ps1                       # Kịch bản PowerShell tự động hóa đẩy mã nguồn lên GitHub
 ```
 
 ---

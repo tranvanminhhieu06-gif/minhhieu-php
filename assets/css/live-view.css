@@ -478,3 +478,78 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.5), var(--shadow-glow);
   transform: translateY(-4px);
 }
+
+/* ==================== ADVANCED MOBILE RESPONSIVE ==================== */
+@media (max-width: 900px) {
+  :root {
+    --live-toolbar-height: auto;
+  }
+  .live-toolbar {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .live-toolbar-center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 4px;
+  }
+  .device-tab-btn span {
+    display: none;
+  }
+  .device-tab-btn {
+    padding: 6px 12px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .live-stage {
+    padding: 6px;
+  }
+  .device-frame.desktop,
+  .device-frame.tablet,
+  .device-frame.full-screen,
+  .device-frame.mobile {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: calc(100vh - 100px) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    margin: 0 !important;
+  }
+  .frame-iphone-notch,
+  .iphone-home-indicator,
+  .iphone-action-btn,
+  .iphone-vol-up,
+  .iphone-vol-down,
+  .iphone-power-btn {
+    display: none !important;
+  }
+  .project-select-btn {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    max-width: 150px;
+  }
+  .project-dropdown-menu {
+    width: calc(100vw - 24px);
+    left: -10px;
+  }
+  .live-modal-content {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+    max-width: 95vw;
+  }
+  .live-toast {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    font-size: 0.82rem;
+  }
+  .projects-drawer-panel {
+    width: 90vw;
+    max-width: 320px;
+  }
+}

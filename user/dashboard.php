@@ -126,30 +126,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
       </div>
 
       <!-- Quick stats ribbon -->
-      <div style="display:flex;gap:16px;">
-        <div class="glass-card" style="padding:12px 20px;text-align:center;min-width:120px;">
-          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Yêu Thích</div>
-          <div style="font-size:1.5rem;font-weight:800;color:#fb7185;"><?= count($favoriteThemes) ?> Dự Án</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;width:100%;max-width:320px;">
+        <div class="glass-card" style="padding:10px 16px;text-align:center;flex:1;min-width:110px;">
+          <div style="font-size:0.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Yêu Thích</div>
+          <div style="font-size:1.3rem;font-weight:800;color:#fb7185;"><?= count($favoriteThemes) ?> Dự Án</div>
         </div>
-        <div class="glass-card" style="padding:12px 20px;text-align:center;min-width:120px;">
-          <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Đã Xem Live</div>
-          <div style="font-size:1.5rem;font-weight:800;color:#38bdf8;"><?= count($recentViews) ?> Lần</div>
+        <div class="glass-card" style="padding:10px 16px;text-align:center;flex:1;min-width:110px;">
+          <div style="font-size:0.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Đã Xem Live</div>
+          <div style="font-size:1.3rem;font-weight:800;color:#38bdf8;"><?= count($recentViews) ?> Lần</div>
         </div>
       </div>
     </section>
 
     <!-- 2. Navigation Tabs -->
-    <div style="display:flex;gap:12px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:16px;" class="animate-fade-up">
-      <a href="dashboard.php?tab=favorites" class="btn-ceo-secondary" style="padding:10px 22px;border-radius:var(--radius-full);font-size:0.92rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:<?= $activeTab === 'favorites' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
-        <i class="fa-solid fa-heart" style="color:<?= $activeTab === 'favorites' ? '#fff' : '#fb7185' ?>;"></i> Dự Án Yêu Thích (<?= count($favoriteThemes) ?>)
+    <div style="display:flex;gap:10px;margin-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;" class="animate-fade-up category-tabs-scroll">
+      <a href="dashboard.php?tab=favorites" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'favorites' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
+        <i class="fa-solid fa-heart" style="color:<?= $activeTab === 'favorites' ? '#fff' : '#fb7185' ?>;"></i> Yêu Thích (<?= count($favoriteThemes) ?>)
       </a>
 
-      <a href="dashboard.php?tab=recent" class="btn-ceo-secondary" style="padding:10px 22px;border-radius:var(--radius-full);font-size:0.92rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:<?= $activeTab === 'recent' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
-        <i class="fa-solid fa-clock-rotate-left" style="color:<?= $activeTab === 'recent' ? '#fff' : '#38bdf8' ?>;"></i> Lịch Sử Xem Live
+      <a href="dashboard.php?tab=recent" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'recent' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
+        <i class="fa-solid fa-clock-rotate-left" style="color:<?= $activeTab === 'recent' ? '#fff' : '#38bdf8' ?>;"></i> Lịch Sử Live
       </a>
 
-      <a href="dashboard.php?tab=profile" class="btn-ceo-secondary" style="padding:10px 22px;border-radius:var(--radius-full);font-size:0.92rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:<?= $activeTab === 'profile' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
-        <i class="fa-solid fa-user-gear"></i> Cài Đặt Tài Khoản
+      <a href="dashboard.php?tab=profile" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'profile' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
+        <i class="fa-solid fa-user-gear"></i> Tài Khoản
       </a>
     </div>
 

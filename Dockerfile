@@ -16,12 +16,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Enable Apache modules
 RUN a2enmod rewrite headers
 
-# Configure Apache listening ports for Render (10000 and 80)
-RUN echo "Listen 10000" >> /etc/apache2/ports.conf \
-    && echo "Listen 80" >> /etc/apache2/ports.conf
+# Configure Apache listening ports for Render (overwrite to prevent duplicate Listen 80)
+RUN printf "Listen 10000\nListen 80\n" > /etc/apache2/ports.conf
 
 # Configure VirtualHost for all ports
-RUN echo '<VirtualHost *:80 *:10000 *:8080>\n\
+RUN printf "<VirtualHost *:80 *:10000 *:8080>\n\
     ServerAdmin webmaster@localhost\n\
     DocumentRoot /var/www/html\n\
     DirectoryIndex index.php index.html\n\
@@ -34,7 +33,7 @@ RUN echo '<VirtualHost *:80 *:10000 *:8080>\n\
 \n\
     ErrorLog /var/log/apache2/error.log\n\
     CustomLog /var/log/apache2/access.log combined\n\
-</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+</VirtualHost>\n" > /etc/apache2/sites-available/000-default.conf
 
 # Copy project files
 COPY . /var/www/html/

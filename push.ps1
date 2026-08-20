@@ -30,12 +30,12 @@ if (-not $status) {
 }
 
 Write-Host "[3/3] Pushing to GitHub (git push origin main)..." -ForegroundColor Blue
-git push origin main
+git push -u origin main
 if ($LASTEXITCODE -eq 0) {
     Write-Host ""
     Write-Host "=========================================================" -ForegroundColor Green
     Write-Host "  SUCCESS: CODE PUSHED TO GITHUB (100%)" -ForegroundColor Green
-    Write-Host "  Repo: https://github.com/tranvanminhhieu06-gif/HieuDoAn" -ForegroundColor Yellow
+    Write-Host "  Repo: https://github.com/tranvanminhhieu06-gif/minhhieu-php" -ForegroundColor Yellow
     Write-Host "=========================================================" -ForegroundColor Green
     Write-Host ""
 } else {

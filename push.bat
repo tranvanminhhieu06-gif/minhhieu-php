@@ -20,13 +20,13 @@ echo [2/3] Committing: "%MSG%"...
 git commit -m "%MSG%"
 
 echo [3/3] Pushing to GitHub (git push origin main)...
-git push origin main
+git push -u origin main
 
 if %ERRORLEVEL% equ 0 (
     echo.
     echo =========================================================
     echo   [SUCCESS] CODE PUSHED TO GITHUB SUCCESSFULLY!
-    echo   Repo: https://github.com/tranvanminhhieu06-gif/HieuDoAn
+    echo   Repo: https://github.com/tranvanminhhieu06-gif/minhhieu-php
     echo =========================================================
 ) else (
     echo [ERROR] Git push failed!

@@ -5,20 +5,20 @@
  * ==========================================================
  */
 
-define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
-define('DB_PORT', getenv('DB_PORT') ?: '3306');
-define('DB_NAME', getenv('DB_NAME_WEB02') ?: (getenv('DB_NAME') ?: 'hieumini_bookstore_db'));
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
-define('DB_CHARSET', 'utf8mb4');
+if (!defined('DB_HOST')) define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+if (!defined('DB_PORT')) define('DB_PORT', getenv('DB_PORT') ?: '3306');
+if (!defined('DB_NAME')) define('DB_NAME', getenv('DB_NAME_WEB02') ?: (getenv('DB_NAME') ?: 'hieumini_bookstore_db'));
+if (!defined('DB_USER')) define('DB_USER', getenv('DB_USER') ?: 'root');
+if (!defined('DB_PASS')) define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+if (!defined('DB_CHARSET')) define('DB_CHARSET', 'utf8mb4');
 
 // URL gốc của ứng dụng (Tự động nhận diện hoặc chỉ định)
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 $scriptDir = isset($_SERVER['SCRIPT_NAME']) ? dirname($_SERVER['SCRIPT_NAME']) : '';
 $base_url = rtrim($protocol . "://" . $host . str_replace('/admin', '', $scriptDir), '/');
-define('BASE_URL', $base_url);
-define('SITE_NAME', 'HieuMini - Siêu Thị Công Nghệ Đỉnh Cao');
+if (!defined('BASE_URL')) define('BASE_URL', $base_url);
+if (!defined('SITE_NAME')) define('SITE_NAME', 'HieuMini - Siêu Thị Công Nghệ Đỉnh Cao');
 
 class Database {
     private static $instance = null;
@@ -33,12 +33,19 @@ class Database {
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . DB_CHARSET
         ];
 
+        // Auto-enable SSL for Cloud MySQL
+        if (getenv('DB_SSL') === 'true' || getenv('DB_SSL') === '1' || str_contains(DB_HOST, 'tidbcloud.com') || str_contains(DB_HOST, 'aivencloud.com') || DB_PORT === '4000' || DB_PORT === 4000) {
+            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+            $caFile = file_exists('/etc/ssl/certs/ca-certificates.crt') ? '/etc/ssl/certs/ca-certificates.crt' : (file_exists('C:/xampp/apache/bin/curl-ca-bundle.crt') ? 'C:/xampp/apache/bin/curl-ca-bundle.crt' : null);
+            if ($caFile) {
+                $options[PDO::MYSQL_ATTR_SSL_CA] = $caFile;
+            }
+        }
+
         try {
             $this->conn = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
-            // Trường hợp chưa import database hoặc MySQL chưa bật
             $this->conn = null;
-            // Lưu thông báo lỗi để tiện debug
             $this->error = $e->getMessage();
         }
     }

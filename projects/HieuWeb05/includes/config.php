@@ -22,18 +22,19 @@ if (!headers_sent() && php_sapi_name() !== 'cli') {
 }
 
 // Cấu hình kết nối MySQL
-define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
-define('DB_NAME', getenv('DB_NAME_WEB05') ?: (getenv('DB_NAME') ?: 'hieumini_gym'));
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
-define('DB_CHARSET', 'utf8mb4');
+if (!defined('DB_HOST')) define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+if (!defined('DB_PORT')) define('DB_PORT', getenv('DB_PORT') ?: '3306');
+if (!defined('DB_NAME')) define('DB_NAME', getenv('DB_NAME_WEB05') ?: (getenv('DB_NAME') ?: 'hieumini_gym'));
+if (!defined('DB_USER')) define('DB_USER', getenv('DB_USER') ?: 'root');
+if (!defined('DB_PASS')) define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+if (!defined('DB_CHARSET')) define('DB_CHARSET', 'utf8mb4');
 
 // Cấu hình URL & Đường dẫn ứng dụng
-define('SITE_NAME', 'HieuMini Luxury Fitness Club');
-define('SITE_TAGLINE', 'Đẳng Cấp Thể Hình Thượng Lưu Chuẩn CEO');
-define('SITE_HOTLINE', '1900 8899 - 0988 889 999');
-define('SITE_EMAIL', 'vip@hieumini.com');
-define('SITE_ADDRESS', 'Tòa nhà HieuMini Tower, 88 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh');
+if (!defined('SITE_NAME')) define('SITE_NAME', 'HieuMini Luxury Fitness Club');
+if (!defined('SITE_TAGLINE')) define('SITE_TAGLINE', 'Đẳng Cấp Thể Hình Thượng Lưu Chuẩn CEO');
+if (!defined('SITE_HOTLINE')) define('SITE_HOTLINE', '1900 8899 - 0988 889 999');
+if (!defined('SITE_EMAIL')) define('SITE_EMAIL', 'vip@hieumini.com');
+if (!defined('SITE_ADDRESS')) define('SITE_ADDRESS', 'Tòa nhà HieuMini Tower, 88 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh');
 
 // Xác định Base URL tự động theo đường dẫn thực tế của ứng dụng
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
@@ -46,20 +47,30 @@ if (preg_match('#^(.*/HieuWeb05)#i', $scriptName, $matches)) {
     $cleanDir = preg_replace('#/(admin|api|includes)(/.*)?$#i', '', $scriptDir);
     $app_path = rtrim($cleanDir, '/');
 }
-define('BASE_URL', $protocol . $host . $app_path);
+if (!defined('BASE_URL')) define('BASE_URL', $protocol . $host . $app_path);
 
 // Kết nối Cơ sở dữ liệu bằng PDO
 try {
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+    $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
     $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
     ];
+
+    // Auto-enable SSL for Cloud MySQL
+    if (getenv('DB_SSL') === 'true' || getenv('DB_SSL') === '1' || str_contains(DB_HOST, 'tidbcloud.com') || str_contains(DB_HOST, 'aivencloud.com') || DB_PORT === '4000' || DB_PORT === 4000) {
+        $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+        $caFile = file_exists('/etc/ssl/certs/ca-certificates.crt') ? '/etc/ssl/certs/ca-certificates.crt' : (file_exists('C:/xampp/apache/bin/curl-ca-bundle.crt') ? 'C:/xampp/apache/bin/curl-ca-bundle.crt' : null);
+        if ($caFile) {
+            $options[PDO::MYSQL_ATTR_SSL_CA] = $caFile;
+        }
+    }
+
     $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 } catch (PDOException $e) {
-    die("Lỗi kết nối Cơ sở dữ liệu: " . $e->getMessage());
+    $db_error = $e->getMessage();
 }
 
 // Khởi tạo Giỏ hàng trong Session nếu chưa có

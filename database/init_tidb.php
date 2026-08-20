@@ -41,9 +41,41 @@ try {
     $pdo->exec($schemaSql);
     echo "SUCCESS!\n";
 
-    echo "[4/4] Executing seed.sql... ";
+    echo "[4/5] Executing seed.sql... ";
     $seedSql = file_get_contents(__DIR__ . '/seed.sql');
     $pdo->exec($seedSql);
+    echo "SUCCESS!\n";
+
+    echo "[5/5] Executing projects/HieuWeb01/database/hieumini_db.sql... ";
+    // Ensure compatibility with existing users table
+    $pdo->exec("ALTER TABLE `users` MODIFY COLUMN `username` VARCHAR(50) NULL;");
+    $pdo->exec("ALTER TABLE `users` MODIFY COLUMN `password_hash` VARCHAR(255) NULL;");
+    $pdo->exec("ALTER TABLE `users` MODIFY COLUMN `role` VARCHAR(50) DEFAULT 'viewer';");
+    $pdo->exec("ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `password` VARCHAR(255) NULL;");
+    $pdo->exec("ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `phone` VARCHAR(20) NULL;");
+    $pdo->exec("ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `address` TEXT NULL;");
+
+    $web01Sql = file_get_contents(__DIR__ . '/../projects/HieuWeb01/database/hieumini_db.sql');
+    $web01Sql = preg_replace('/CREATE DATABASE.*?;/is', '', $web01Sql);
+    $web01Sql = preg_replace('/USE `hieumini_db`;/is', '', $web01Sql);
+    $pdo->exec($web01Sql);
+
+    // Run products seeder from HieuWeb01
+    $initWeb01 = file_get_contents(__DIR__ . '/../projects/HieuWeb01/database/init_database.php');
+    if (preg_match('/\$products\s*=\s*\[(.*?)\];\s*\/\/ Xóa sản phẩm/s', $initWeb01, $m)) {
+        eval('$products = [' . $m[1] . '];');
+        if (!empty($products)) {
+            $pdo->exec("DELETE FROM `products`;");
+            $stmt = $pdo->prepare("INSERT INTO `products` (`category_id`, `name`, `slug`, `sku`, `price`, `discount_price`, `stock`, `sizes`, `colors`, `description`, `content`, `image`, `featured`, `status`, `view_count`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)");
+            foreach ($products as $p) {
+                $stmt->execute([
+                    $p['category_id'], $p['name'], $p['slug'], $p['sku'], $p['price'],
+                    $p['discount_price'], $p['stock'], $p['sizes'], $p['colors'],
+                    $p['description'], $p['content'], $p['image'], $p['featured'], $p['view_count']
+                ]);
+            }
+        }
+    }
     echo "SUCCESS!\n\n";
 
     // Verify

@@ -11,9 +11,9 @@ if (isUserLoggedIn()) {
     exit;
 }
 
-$redirect = sanitize($_GET['redirect'] ?? ($_POST['redirect'] ?? '../index.php'));
+$redirect = sanitize($_GET['redirect'] ?? ($_POST['redirect'] ?? '../live-view.php'));
 if (str_starts_with($redirect, 'http://') || str_starts_with($redirect, 'https://') || str_starts_with($redirect, '//')) {
-    $redirect = '../index.php';
+    $redirect = '../live-view.php';
 }
 
 $error = '';

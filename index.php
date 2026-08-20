@@ -9,7 +9,7 @@ require_once __DIR__ . '/config/auth_user.php';
 
 // Tự động chuyển hướng sang Trang Đăng Nhập Thành Viên nếu chưa đăng nhập
 if (!isUserLoggedIn() && !isLoggedIn()) {
-    header('Location: user/login.php?redirect=../index.php');
+    header('Location: user/login.php?redirect=../live-view.php');
     exit;
 }
 

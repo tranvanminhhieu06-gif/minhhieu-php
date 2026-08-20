@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `hieumini_tech_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `hieumini_tech_db`;
+CREATE DATABASE IF NOT EXISTS `hieumini_appliances_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `hieumini_appliances_db`;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- Drop tables if exists

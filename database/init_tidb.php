@@ -1,20 +1,19 @@
 <?php
 /**
- * HIEU CEO - Initialize TiDB Cloud Database & Tables
+ * HIEU CEO - Initialize TiDB Cloud Databases & Tables for All 5 Sub-Projects
  */
 
 $host = 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com';
 $port = '4000';
 $user = 'VacZBGv6cSdbAZA.root';
 $pass = 'mQTDiHQ2bnMq38y0';
-$dbName = 'hieu_ceo_db';
 
 echo "=========================================================\n";
-echo "  🚀 INITIALIZING TIDB CLUSTER FOR RENDER DEPLOYMENT    \n";
+echo "  🚀 INITIALIZING FULL MULTI-PROJECT TIDB CLUSTER        \n";
 echo "=========================================================\n\n";
 
 try {
-    echo "[1/4] Connecting to TiDB Cloud ({$host}:{$port})... ";
+    echo "[1/6] Connecting to TiDB Cloud ({$host}:{$port})... ";
     $caPath = file_exists('C:/xampp/apache/bin/curl-ca-bundle.crt') ? 'C:/xampp/apache/bin/curl-ca-bundle.crt' : (file_exists('/etc/ssl/certs/ca-certificates.crt') ? '/etc/ssl/certs/ca-certificates.crt' : null);
     
     $options = [
@@ -22,7 +21,7 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES => false,
         PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-        PDO::ATTR_TIMEOUT => 15
+        PDO::ATTR_TIMEOUT => 30
     ];
     if ($caPath) {
         $options[PDO::MYSQL_ATTR_SSL_CA] = $caPath;
@@ -31,36 +30,28 @@ try {
     $pdo = new PDO("mysql:host={$host};port={$port};charset=utf8mb4", $user, $pass, $options);
     echo "SUCCESS!\n";
 
-    echo "[2/4] Creating database `{$dbName}` if not exists... ";
-    $pdo->exec("CREATE DATABASE IF NOT EXISTS `{$dbName}` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
-    $pdo->exec("USE `{$dbName}`;");
-    echo "SUCCESS!\n";
-
-    echo "[3/4] Executing schema.sql... ";
+    // ---------------------------------------------------------
+    // 0. Main CEO Portal Database (hieu_ceo_db)
+    // ---------------------------------------------------------
+    echo "[2/6] Setting up `hieu_ceo_db` (Main Theme Hub & User Portal)... ";
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `hieu_ceo_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+    $pdo->exec("USE `hieu_ceo_db`;");
     $schemaSql = file_get_contents(__DIR__ . '/schema.sql');
     $pdo->exec($schemaSql);
-    echo "SUCCESS!\n";
-
-    echo "[4/5] Executing seed.sql... ";
     $seedSql = file_get_contents(__DIR__ . '/seed.sql');
     $pdo->exec($seedSql);
     echo "SUCCESS!\n";
 
-    echo "[5/5] Executing projects/HieuWeb01/database/hieumini_db.sql... ";
-    // Ensure compatibility with existing users table
-    $pdo->exec("ALTER TABLE `users` MODIFY COLUMN `username` VARCHAR(50) NULL;");
-    $pdo->exec("ALTER TABLE `users` MODIFY COLUMN `password_hash` VARCHAR(255) NULL;");
-    $pdo->exec("ALTER TABLE `users` MODIFY COLUMN `role` VARCHAR(50) DEFAULT 'viewer';");
-    $pdo->exec("ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `password` VARCHAR(255) NULL;");
-    $pdo->exec("ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `phone` VARCHAR(20) NULL;");
-    $pdo->exec("ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `address` TEXT NULL;");
-
+    // ---------------------------------------------------------
+    // 1. Project 1: HieuWeb01 (Fashion Studio) -> hieumini_db
+    // ---------------------------------------------------------
+    echo "[3/6] Setting up `hieumini_db` (HieuWeb01 - Fashion Studio)... ";
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `hieumini_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+    $pdo->exec("USE `hieumini_db`;");
     $web01Sql = file_get_contents(__DIR__ . '/../projects/HieuWeb01/database/hieumini_db.sql');
-    $web01Sql = preg_replace('/CREATE DATABASE.*?;/is', '', $web01Sql);
-    $web01Sql = preg_replace('/USE `hieumini_db`;/is', '', $web01Sql);
     $pdo->exec($web01Sql);
-
-    // Run products seeder from HieuWeb01
+    
+    // Seed HieuWeb01 products
     $initWeb01 = file_get_contents(__DIR__ . '/../projects/HieuWeb01/database/init_database.php');
     if (preg_match('/\$products\s*=\s*\[(.*?)\];\s*\/\/ Xóa sản phẩm/s', $initWeb01, $m)) {
         eval('$products = [' . $m[1] . '];');
@@ -76,48 +67,53 @@ try {
             }
         }
     }
+    echo "SUCCESS!\n";
 
-    // Add missing columns for HieuWeb02-05 compatibility
-    $alterCols = [
-        // HieuWeb03 columns
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `sale_price` DECIMAL(12,2) NULL;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `specification` TEXT NULL;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `stock_quantity` INT DEFAULT 100;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_featured` TINYINT(1) DEFAULT 0;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_hot` TINYINT(1) DEFAULT 0;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_new` TINYINT(1) DEFAULT 1;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `rating` DECIMAL(3,2) DEFAULT 5.0;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `review_count` INT DEFAULT 0;",
-        // HieuWeb04 columns
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `old_price` DECIMAL(12,0) NULL;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `short_description` TEXT NULL;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `specs` TEXT NULL;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_best_seller` TINYINT(1) DEFAULT 0;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_flash_sale` TINYINT(1) DEFAULT 0;",
-        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `discount_percent` INT DEFAULT 0;",
-        // Categories extra columns (HieuWeb02/03)
-        "ALTER TABLE `categories` ADD COLUMN IF NOT EXISTS `icon` VARCHAR(50) DEFAULT 'fa-tag';",
-        "ALTER TABLE `categories` ADD COLUMN IF NOT EXISTS `badge` VARCHAR(50) DEFAULT 'Phổ biến';",
-        // Set is_featured from existing featured column
-        "UPDATE `products` SET `is_featured` = `featured` WHERE `featured` IS NOT NULL;",
-        "UPDATE `products` SET `is_hot` = 1 WHERE `is_featured` = 1;",
-    ];
-    foreach ($alterCols as $sql) {
-        try { $pdo->exec($sql); } catch (Exception $e) { /* skip if exists */ }
-    }
+    // ---------------------------------------------------------
+    // 2. Project 2: HieuWeb02 (Tech Store) -> hieumini_bookstore_db
+    // ---------------------------------------------------------
+    echo "[4/6] Setting up `hieumini_bookstore_db` (HieuWeb02 - Tech Gadgets)... ";
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `hieumini_bookstore_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+    $pdo->exec("USE `hieumini_bookstore_db`;");
+    $web02Sql = file_get_contents(__DIR__ . '/../projects/HieuWeb02/database/hieumini_db.sql');
+    $pdo->exec($web02Sql);
+    echo "SUCCESS!\n";
+
+    // ---------------------------------------------------------
+    // 3. Project 3: HieuWeb03 (Stationery) -> hieumini_furniture_db
+    // ---------------------------------------------------------
+    echo "[5/6] Setting up `hieumini_furniture_db` (HieuWeb03 - Stationery & Lifestyle)... ";
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `hieumini_furniture_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+    $pdo->exec("USE `hieumini_furniture_db`;");
+    $web03Sql = file_get_contents(__DIR__ . '/../projects/HieuWeb03/database.sql');
+    $pdo->exec($web03Sql);
+    echo "SUCCESS!\n";
+
+    // ---------------------------------------------------------
+    // 4. Project 4: HieuWeb04 (Smart Appliances) -> hieumini_appliances_db
+    // ---------------------------------------------------------
+    echo "[6/6] Setting up `hieumini_appliances_db` (HieuWeb04 - Smart Appliances)... ";
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `hieumini_appliances_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+    $pdo->exec("USE `hieumini_appliances_db`;");
+    $web04Sql = file_get_contents(__DIR__ . '/../projects/HieuWeb04/database.sql');
+    $pdo->exec($web04Sql);
+    echo "SUCCESS!\n";
+
+    // ---------------------------------------------------------
+    // 5. Project 5: HieuWeb05 (Luxury Fitness) -> hieumini_gym_db
+    // ---------------------------------------------------------
+    echo "[*] Setting up `hieumini_gym_db` (HieuWeb05 - Luxury Fitness Club)... ";
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `hieumini_gym_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+    $pdo->exec("USE `hieumini_gym_db`;");
+    $web05Sql = file_get_contents(__DIR__ . '/../projects/HieuWeb05/database.sql');
+    $pdo->exec($web05Sql);
     echo "SUCCESS!\n\n";
 
-    // Verify
-    $tables = $pdo->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
     echo "=========================================================\n";
-    echo "  🎉 TIDB DATABASE INITIALIZED WITH " . count($tables) . " TABLES! 🎉\n";
+    echo "  🎉 ALL 6 TIDB DATABASES SUCCESSFULLY INITIALIZED! 🎉   \n";
     echo "=========================================================\n";
-    foreach ($tables as $tbl) {
-        $count = $pdo->query("SELECT COUNT(*) FROM `{$tbl}`")->fetchColumn();
-        echo "  - Table `{$tbl}`: {$count} records\n";
-    }
 
 } catch (Exception $e) {
-    echo "FAILED!\n";
-    echo "[ERROR] " . $e->getMessage() . "\n";
+    echo "\n❌ Database Initialization Failed: " . $e->getMessage() . "\n";
+    exit(1);
 }

@@ -4,7 +4,7 @@ $db_host = getenv('DB_HOST') ?: '127.0.0.1';
 $db_port = getenv('DB_PORT') ?: '3306';
 $db_user = getenv('DB_USER') ?: 'root';
 $db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
-$db_name = getenv('DB_NAME_WEB03') ?: (getenv('DB_NAME') ?: 'hieumini_furniture_db');
+$db_name = getenv('DB_NAME_WEB03') ?: 'hieumini_furniture_db';
 
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

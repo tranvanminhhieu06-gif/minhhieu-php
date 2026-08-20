@@ -2,8 +2,8 @@
 -- Database: hieumini_gym
 -- Tương thích: MySQL 5.7+ / MySQL 8.0+ / MariaDB
 
-CREATE DATABASE IF NOT EXISTS `hieumini_gym` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `hieumini_gym`;
+CREATE DATABASE IF NOT EXISTS `hieumini_gym_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `hieumini_gym_db`;
 
 -- 1. Bảng danh mục sản phẩm & dịch vụ (categories)
 DROP TABLE IF EXISTS `categories`;

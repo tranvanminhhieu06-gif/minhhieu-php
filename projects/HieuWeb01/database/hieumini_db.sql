@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 4. Bảng Mã giảm giá (Coupons)
-CREATE TABLE IF NOT EXISTS `coupons` (
+DROP TABLE IF EXISTS `coupons`;
+CREATE TABLE `coupons` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `code` VARCHAR(50) NOT NULL UNIQUE,
     `discount_type` ENUM('percentage', 'fixed') DEFAULT 'percentage',

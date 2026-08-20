@@ -6,7 +6,7 @@
 
 $host = getenv('DB_HOST') ?: '127.0.0.1';
 $port = getenv('DB_PORT') ?: '3306';
-$dbname = getenv('DB_NAME_WEB04') ?: (getenv('DB_NAME') ?: 'hieumini_tech_db');
+$dbname = getenv('DB_NAME_WEB04') ?: 'hieumini_appliances_db';
 $username = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
 $charset = 'utf8mb4';

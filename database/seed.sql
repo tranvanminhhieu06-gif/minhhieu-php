@@ -4,10 +4,10 @@ USE `hieu_ceo_db`;
 -- 1. Insert Executive Users (Default Password for all: admin123)
 -- Password hash for 'admin123' using BCRYPT: $2y$10$wNqV9N1mB49B61QYvYF8v.d8P39rA01Q9Q8L3fC4n7T8q6Z5j5U4i (or generated via PHP)
 INSERT INTO `users` (`id`, `username`, `email`, `password_hash`, `full_name`, `role`, `title`, `avatar`, `status`, `last_login`) VALUES
-(1, 'ceo_hieu', 'ceo@hieu.vn', '$2y$10$xW77Q2FsmMh91aMhSbgOQOP8jG8bUfq1H5Z7R0u5vL9Lp5vE5xK9a', 'HIEU TRAN', 'ceo', 'Founder & Chief Executive Officer', 'assets/images/ceo-avatar.png', 'active', NOW()),
-(2, 'cdo_elena', 'cdo@hieu.vn', '$2y$10$xW77Q2FsmMh91aMhSbgOQOP8jG8bUfq1H5Z7R0u5vL9Lp5vE5xK9a', 'Elena Vance', 'cdo', 'Chief Design Officer', 'assets/images/cdo-avatar.png', 'active', NOW()),
-(3, 'dev_alex', 'dev@hieu.vn', '$2y$10$xW77Q2FsmMh91aMhSbgOQOP8jG8bUfq1H5Z7R0u5vL9Lp5vE5xK9a', 'Alex Thorne', 'developer', 'Lead Theme Architect', 'assets/images/dev-avatar.png', 'active', NOW()),
-(4, 'viewer_guest', 'guest@hieu.vn', '$2y$10$xW77Q2FsmMh91aMhSbgOQOP8jG8bUfq1H5Z7R0u5vL9Lp5vE5xK9a', 'Khách Thăm Quan', 'viewer', 'VIP Observer', 'assets/images/viewer-avatar.png', 'active', NOW());
+(1, 'ceo_hieu', 'ceo@hieu.vn', '$2y$10$08PuJVj3F30zADh3flUCXOzAAUnAi0wGxUURigpesUcjv2EynPxLC', 'HIEU TRAN', 'ceo', 'Founder & Chief Executive Officer', 'assets/images/ceo-avatar.png', 'active', NOW()),
+(2, 'cdo_elena', 'cdo@hieu.vn', '$2y$10$08PuJVj3F30zADh3flUCXOzAAUnAi0wGxUURigpesUcjv2EynPxLC', 'Elena Vance', 'cdo', 'Chief Design Officer', 'assets/images/cdo-avatar.png', 'active', NOW()),
+(3, 'dev_alex', 'dev@hieu.vn', '$2y$10$08PuJVj3F30zADh3flUCXOzAAUnAi0wGxUURigpesUcjv2EynPxLC', 'Alex Thorne', 'developer', 'Lead Theme Architect', 'assets/images/dev-avatar.png', 'active', NOW()),
+(4, 'viewer_guest', 'guest@hieu.vn', '$2y$10$08PuJVj3F30zADh3flUCXOzAAUnAi0wGxUURigpesUcjv2EynPxLC', 'Khách Thăm Quan', 'viewer', 'VIP Observer', 'assets/images/viewer-avatar.png', 'active', NOW());
 
 -- 2. Insert Theme Categories
 INSERT INTO `theme_categories` (`id`, `name`, `slug`, `icon`, `description`, `badge_text`, `sort_order`) VALUES

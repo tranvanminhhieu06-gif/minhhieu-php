@@ -134,29 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </button>
     </form>
 
-    <!-- Quick Credentials Box for 1-Click Testing -->
-    <div style="background:rgba(0,0,0,0.4);border:1px dashed rgba(255,255,255,0.15);border-radius:14px;padding:14px 16px;margin-bottom:22px;font-size:0.82rem;">
-      <div style="color:var(--text-accent);font-weight:700;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">
-        <span><i class="fa-solid fa-bolt text-warning mr-1"></i> 1-Click Đăng Nhập Nhanh:</span>
-        <span style="font-size:0.7rem;color:var(--text-muted);">Bấm để tự điền</span>
-      </div>
-      
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        <div style="cursor:pointer;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.04);transition:all 0.2s;" 
-             onmouseover="this.style.background='rgba(99,102,241,0.15)'" 
-             onmouseout="this.style.background='rgba(255,255,255,0.04)'"
-             onclick="fillUserCredentials('guest@hieu.vn', 'admin123')">
-          👤 <strong>Khách VIP:</strong> <code>guest@hieu.vn</code> / <code>admin123</code>
-        </div>
-        <div style="cursor:pointer;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.04);transition:all 0.2s;" 
-             onmouseover="this.style.background='rgba(99,102,241,0.15)'" 
-             onmouseout="this.style.background='rgba(255,255,255,0.04)'"
-             onclick="fillUserCredentials('ceo@hieu.vn', 'admin123')">
-          👑 <strong>CEO Hieu:</strong> <code>ceo@hieu.vn</code> / <code>admin123</code>
-        </div>
-      </div>
-    </div>
-
     <div style="text-align:center;font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">
       Chưa có tài khoản? <a href="register.php" style="color:var(--text-accent);text-decoration:none;font-weight:700;">Đăng ký thành viên ngay</a>
     </div>
@@ -165,12 +142,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <a href="../index.php" style="color:var(--text-secondary);text-decoration:none;">← Về Trang Chủ</a>
     </div>
   </div>
-
-  <script>
-    function fillUserCredentials(email, pass) {
-      document.getElementById('email').value = email;
-      document.getElementById('password').value = pass;
-    }
-  </script>
 </body>
 </html>

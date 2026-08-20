@@ -92,14 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     <?php endif; ?>
 
-    <!-- Quick Demo Auto-Fill Box -->
-    <div style="background:rgba(0,0,0,0.4);border:1px dashed rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:0.8rem;color:var(--text-muted);"><i class="fa-solid fa-bolt text-warning mr-1"></i> Đăng ký trải nghiệm nhanh?</span>
-      <button type="button" class="btn-ripple" onclick="quickFillRegister()" style="background:rgba(99,102,241,0.2);border:1px solid #6366f1;color:#818cf8;padding:5px 12px;border-radius:8px;font-size:0.78rem;cursor:pointer;font-weight:700;transition:all 0.2s;">
-        ⚡ 1-Click Tự Điền Mẫu
-      </button>
-    </div>
-
     <form action="register.php" method="POST">
       <input type="hidden" name="csrf_token" value="<?= generateCsrfToken() ?>">
       <input type="hidden" name="redirect" value="<?= e($redirect) ?>">
@@ -198,15 +190,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         el.style.borderColor = 'transparent';
       });
       radio.closest('label').querySelector('.avatar-option').style.borderColor = '#6366f1';
-    }
-
-    function quickFillRegister() {
-      const rand = Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('full_name').value = 'VIP Khách Hàng ' + rand;
-      document.getElementById('username').value = 'vip_' + rand;
-      document.getElementById('email').value = 'vip' + rand + '@gmail.com';
-      document.getElementById('password').value = '123456';
-      document.getElementById('password_confirm').value = '123456';
     }
   </script>
 </body>

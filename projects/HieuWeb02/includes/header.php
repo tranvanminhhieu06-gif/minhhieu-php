@@ -113,8 +113,8 @@ $user = current_user();
                     <?php foreach ($categories as $cat): ?>
                         <li>
                             <a href="products.php?cat=<?php echo $cat['id']; ?>" class="<?php echo (isset($_GET['cat']) && $_GET['cat'] == $cat['id']) ? 'active' : ''; ?>">
-                                <i class="fa-solid <?php echo htmlspecialchars($cat['icon']); ?>"></i>
-                                <?php echo htmlspecialchars($cat['name']); ?>
+                                <i class="fa-solid <?php echo htmlspecialchars($cat['icon'] ?? 'fa-tag'); ?>"></i>
+                                <?php echo htmlspecialchars($cat['name'] ?? ''); ?>
                             </a>
                         </li>
                     <?php endforeach; ?>

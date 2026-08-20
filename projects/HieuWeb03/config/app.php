@@ -6,10 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Base URL definition
-define('SITE_NAME', 'HieuMini');
-define('SITE_TAGLINE', 'Thiên Đường Đồ Dùng Học Tập & Sáng Tạo');
-define('SITE_URL', 'http://localhost:8000');
-define('CURRENCY_SYMBOL', 'đ');
+if (!defined('SITE_NAME')) define('SITE_NAME', 'HieuMini');
+if (!defined('SITE_TAGLINE')) define('SITE_TAGLINE', 'Thiên Đường Đồ Dùng Học Tập & Sáng Tạo');
+if (!defined('SITE_URL')) define('SITE_URL', 'http://localhost:8000');
+if (!defined('CURRENCY_SYMBOL')) define('CURRENCY_SYMBOL', 'đ');
 
 // Include Database connection
 require_once __DIR__ . '/db.php';

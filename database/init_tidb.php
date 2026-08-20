@@ -76,6 +76,35 @@ try {
             }
         }
     }
+
+    // Add missing columns for HieuWeb02-05 compatibility
+    $alterCols = [
+        // HieuWeb03 columns
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `sale_price` DECIMAL(12,2) NULL;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `specification` TEXT NULL;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `stock_quantity` INT DEFAULT 100;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_featured` TINYINT(1) DEFAULT 0;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_hot` TINYINT(1) DEFAULT 0;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_new` TINYINT(1) DEFAULT 1;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `rating` DECIMAL(3,2) DEFAULT 5.0;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `review_count` INT DEFAULT 0;",
+        // HieuWeb04 columns
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `old_price` DECIMAL(12,0) NULL;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `short_description` TEXT NULL;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `specs` TEXT NULL;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_best_seller` TINYINT(1) DEFAULT 0;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `is_flash_sale` TINYINT(1) DEFAULT 0;",
+        "ALTER TABLE `products` ADD COLUMN IF NOT EXISTS `discount_percent` INT DEFAULT 0;",
+        // Categories extra columns (HieuWeb02/03)
+        "ALTER TABLE `categories` ADD COLUMN IF NOT EXISTS `icon` VARCHAR(50) DEFAULT 'fa-tag';",
+        "ALTER TABLE `categories` ADD COLUMN IF NOT EXISTS `badge` VARCHAR(50) DEFAULT 'Phổ biến';",
+        // Set is_featured from existing featured column
+        "UPDATE `products` SET `is_featured` = `featured` WHERE `featured` IS NOT NULL;",
+        "UPDATE `products` SET `is_hot` = 1 WHERE `is_featured` = 1;",
+    ];
+    foreach ($alterCols as $sql) {
+        try { $pdo->exec($sql); } catch (Exception $e) { /* skip if exists */ }
+    }
     echo "SUCCESS!\n\n";
 
     // Verify

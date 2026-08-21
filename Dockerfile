@@ -14,12 +14,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules
-RUN a2enmod rewrite headers speling
+RUN a2enmod rewrite headers
 
 # Configure Apache listening ports for Render (overwrite to prevent duplicate Listen 80)
 RUN printf "Listen 10000\nListen 80\n" > /etc/apache2/ports.conf
 
-# Configure VirtualHost for all ports with mod_speling
+# Configure VirtualHost for all ports
 RUN printf "<VirtualHost *:80 *:10000 *:8080>\n\
     ServerAdmin webmaster@localhost\n\
     DocumentRoot /var/www/html\n\
@@ -29,8 +29,6 @@ RUN printf "<VirtualHost *:80 *:10000 *:8080>\n\
         Options -Indexes +FollowSymLinks\n\
         AllowOverride All\n\
         Require all granted\n\
-        CheckSpelling On\n\
-        CheckCaseOnly On\n\
     </Directory>\n\
 \n\
     ErrorLog /var/log/apache2/error.log\n\
@@ -40,12 +38,19 @@ RUN printf "<VirtualHost *:80 *:10000 *:8080>\n\
 # Copy project files
 COPY . /var/www/html/
 
-# Create case-insensitive symlinks for all subprojects
+# Create case-insensitive aliases dynamically for all subprojects
 RUN cd /var/www/html/projects && \
-    for p in HieuWeb01 HieuWeb02 HieuWeb03 HieuWeb04 HieuWeb05; do \
-        ln -sf "$p" "$(echo "$p" | sed 's/Web/web/')" && \
-        ln -sf "$p" "$(echo "$p" | tr '[:upper:]' '[:lower:]')"; \
-    done
+    for d in */; do \
+        [ -d "$d" ] || continue; \
+        name="${d%/}"; \
+        lower="$(echo "$name" | tr '[:upper:]' '[:lower:]')"; \
+        if [ "$name" != "$lower" ] && [ ! -e "$lower" ]; then \
+            ln -sf "$name" "$lower"; \
+        fi; \
+    done && \
+    ln -sf HieuWeb04 DatCyber 2>/dev/null || true && \
+    ln -sf HieuWeb06 HieuMini 2>/dev/null || true
+
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \

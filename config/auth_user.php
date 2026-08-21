@@ -284,6 +284,16 @@ function getDemoCredentialsForProject(string $folderOrCode): array {
             'customer_pass' => 'admin123',
             'tech' => ['HTML5', 'CSS3 Modern', 'JavaScript', 'Glassmorphism', 'High FPS'],
             'features' => ['Showcase dự án công nghệ', 'Giao diện tối ưu Cyberpunk', 'Tốc độ tải siêu mượt', 'Tương thích mọi thiết bị']
+        ],
+        'HieuWeb06' => [
+            'name' => 'HieuMini Market Đồ Án Website',
+            'tagline' => 'Sàn Thương Mại Điện Tử & Phân Phối Mã Nguồn Web PHP',
+            'admin_email' => 'admin@hieumini.vn',
+            'admin_pass' => 'admin123',
+            'customer_email' => 'khachhang@gmail.com',
+            'customer_pass' => 'user123',
+            'tech' => ['PHP 8.2', 'MySQL', 'Vanilla CSS', 'Security Suite', '12 Bảng CSDL'],
+            'features' => ['Mua bán mã nguồn website', 'Giỏ hàng & Thanh toán VietQR', 'Đánh giá 5 sao', '37 Mục Kiểm thử hệ thống']
         ]
     ];
 

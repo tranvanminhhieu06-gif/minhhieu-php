@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng Nhập Quản Trị | HieuMini Admin</title>
+  <title>Đăng Nhập Quản Trị | DatCyber Admin</title>
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- FontAwesome 6 -->
@@ -109,8 +109,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px; font-size: 1.75rem;">
       <i class="fas fa-user-shield"></i>
     </div>
-    <h3 class="fw-bold text-dark mb-1">Hieu<span class="text-primary">Admin</span></h3>
-    <p class="text-muted small">Cổng Đăng Nhập Hệ Thống Quản Trị HieuMini</p>
+    <h3 class="fw-bold text-dark mb-1">Dat<span class="text-primary">Admin</span></h3>
+    <p class="text-muted small">Cổng Đăng Nhập Hệ Thống Quản Trị DatCyber</p>
   </div>
 
   <?php if (!empty($error)): ?>
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="mt-4 pt-3 border-top text-center">
     <div class="p-2 bg-light rounded-3 small text-muted mb-3 text-start">
       <div class="fw-bold text-dark"><i class="fas fa-circle-info text-info me-1"></i> Tài khoản mẫu:</div>
-      <div>Email: <code>admin@hieumini.vn</code></div>
+      <div>Email: <code>admin@datcyber.vn</code></div>
       <div>Mật khẩu: <code>123456</code></div>
     </div>
     <a href="../index.php" class="text-secondary small text-decoration-none">

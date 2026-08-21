@@ -255,15 +255,15 @@ function getDemoCredentialsForProject(string $folderOrCode): array {
             'tech' => ['PHP 8.2', 'MySQL', 'Showroom 3D', 'Bắc Âu Minimalist', 'CSS Grid'],
             'features' => ['Showroom 3D góc rộng', 'Bộ sưu tập theo phòng (Living, Bed, Office)', 'Tư vấn nội thất cá nhân hóa', 'Báo giá nhanh']
         ],
-        'HieuWeb04' => [
-            'name' => 'Công Nghệ Hieu CyberTech Innovation',
-            'tagline' => 'Showroom Thiết Bị Công Nghệ & Hệ Sinh Thái AI',
-            'admin_email' => 'admin@hieutech.vn',
-            'admin_pass' => 'admin123',
+        'DatCyber' => [
+            'name' => 'Gia Dụng Thông Minh DatCyber',
+            'tagline' => 'Showroom Thiết Bị Gia Dụng Thông Minh & Tiện Ích Gia Đình',
+            'admin_email' => 'admin@datcyber.vn',
+            'admin_pass' => '123456',
             'customer_email' => 'khachhang@gmail.com',
-            'customer_pass' => 'admin123',
-            'tech' => ['PHP 8.2', 'MySQL', 'Cyber Dark UI', 'Specs Matrix', 'Neon Glow'],
-            'features' => ['So sánh thông số kỹ thuật', 'Mua trả góp 0%', 'Tra cứu bảo hành điện tử', 'Hộp quà công nghệ Flash Sale']
+            'customer_pass' => '123456',
+            'tech' => ['PHP 8.2', 'MySQL', 'Bootstrap 5', 'AJAX Cart', 'Responsive UI'],
+            'features' => ['Flash Sale đếm ngược', 'Giỏ hàng AJAX mượt mà', 'Mã giảm giá DATCYBER10', 'Quản lý đơn hàng & sản phẩm']
         ],
         'HieuWeb05' => [
             'name' => 'Thể Hình & Dinh Dưỡng Hieu Pro Gym',

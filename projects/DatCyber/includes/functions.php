@@ -1,7 +1,7 @@
 <?php
 /**
  * Helper Functions
- * HieuMini Home Appliances
+ * DatCyber Home Appliances
  */
 
 // Format currency to VND

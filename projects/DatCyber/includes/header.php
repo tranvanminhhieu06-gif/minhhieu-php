@@ -18,8 +18,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo isset($page_title) ? htmlspecialchars($page_title) . ' | HieuMini' : 'HieuMini - Đồ Gia Dụng Thông Minh & Tiện Ích Gia Đình Cao Cấp'; ?></title>
-  <meta name="description" content="HieuMini chuyên phân phối đồ gia dụng thông minh chính hãng: Nồi chiên không dầu, robot hút bụi, máy ép chậm, máy lọc không khí cao cấp, bảo hành 24 tháng.">
+  <title><?php echo isset($page_title) ? htmlspecialchars($page_title) . ' | DatCyber' : 'DatCyber - Đồ Gia Dụng Thông Minh & Tiện Ích Gia Đình Cao Cấp'; ?></title>
+  <meta name="description" content="DatCyber chuyên phân phối đồ gia dụng thông minh chính hãng: Nồi chiên không dầu, robot hút bụi, máy ép chậm, máy lọc không khí cao cấp, bảo hành 24 tháng.">
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
@@ -67,7 +67,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
       <!-- Brand Logo -->
       <a href="index.php" class="navbar-brand-custom">
         <i class="fas fa-home-heart text-primary"></i>
-        <span>Hieu<strong class="text-primary">Mini</strong></span>
+        <span>Dat<strong class="text-primary">Cyber</strong></span>
         <span class="brand-badge">2026</span>
       </a>
 
@@ -124,7 +124,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
           <?php endforeach; ?>
         </div>
         <div class="d-none d-lg-flex align-items-center gap-2">
-          <a href="about.php" class="cat-nav-link <?php echo $current_page == 'about.php' ? 'active' : ''; ?>">Về HieuMini</a>
+          <a href="about.php" class="cat-nav-link <?php echo $current_page == 'about.php' ? 'active' : ''; ?>">Về DatCyber</a>
           <a href="contact.php" class="cat-nav-link <?php echo $current_page == 'contact.php' ? 'active' : ''; ?>">Liên hệ</a>
         </div>
       </div>

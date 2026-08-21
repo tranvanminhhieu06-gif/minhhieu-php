@@ -9,7 +9,7 @@ $urls = [
     'HieuWeb01'   => 'http://127.0.0.1:8099/projects/HieuWeb01/index.php',
     'HieuWeb02'   => 'http://127.0.0.1:8099/projects/HieuWeb02/index.php',
     'HieuWeb03'   => 'http://127.0.0.1:8099/projects/HieuWeb03/index.php',
-    'HieuWeb04'   => 'http://127.0.0.1:8099/projects/HieuWeb04/index.php',
+    'DatCyber'    => 'http://127.0.0.1:8099/projects/DatCyber/index.php',
     'HieuWeb05'   => 'http://127.0.0.1:8099/projects/HieuWeb05/index.php',
 ];
 

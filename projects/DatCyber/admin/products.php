@@ -92,7 +92,7 @@ if (isset($_GET['edit'])) {
       <div class="row g-3">
         <div class="col-md-6">
           <label class="form-label small fw-semibold">Tên sản phẩm *</label>
-          <input type="text" name="name" class="form-control" required value="<?php echo htmlspecialchars($editItem['name'] ?? ''); ?>" placeholder="VD: Nồi Chiên Không Dầu HieuMini">
+          <input type="text" name="name" class="form-control" required value="<?php echo htmlspecialchars($editItem['name'] ?? ''); ?>" placeholder="VD: Nồi Chiên Không Dầu DatCyber">
         </div>
 
         <div class="col-md-3">

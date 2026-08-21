@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Giới Thiệu Về HieuMini';
+$page_title = 'Giới Thiệu Về DatCyber';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -18,16 +18,16 @@ require_once __DIR__ . '/includes/header.php';
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
         <span class="text-primary text-uppercase fw-bold small"><i class="fas fa-sparkles me-1"></i> Thương Hiệu Gia Dụng Thông Minh</span>
-        <h1 class="fw-bold fs-2 mt-2 mb-3">HieuMini - Kiến Tạo Cuộc Sống Tiện Nghi Đỉnh Cao</h1>
+        <h1 class="fw-bold fs-2 mt-2 mb-3">DatCyber - Kiến Tạo Cuộc Sống Tiện Nghi Đỉnh Cao</h1>
         <p class="text-secondary" style="line-height: 1.8;">
-          Được thành lập với khát vọng mang đến những giải pháp công nghệ gia dụng hiện đại, thông minh và tinh tế nhất cho mỗi gia đình Việt, <strong>HieuMini</strong> không ngừng nghiên cứu và tuyển chọn những thiết bị gia dụng đạt tiêu chuẩn chất lượng quốc tế.
+          Được thành lập với khát vọng mang đến những giải pháp công nghệ gia dụng hiện đại, thông minh và tinh tế nhất cho mỗi gia đình Việt, <strong>DatCyber</strong> không ngừng nghiên cứu và tuyển chọn những thiết bị gia dụng đạt tiêu chuẩn chất lượng quốc tế.
         </p>
         <p class="text-secondary" style="line-height: 1.8;">
           Chúng tôi tin rằng ngôi nhà không chỉ là nơi để ở, mà là tổ ấm tận hưởng những khoảnh khắc hạnh phúc cùng bữa ăn ngon, không khí trong lành và không gian sạch sẽ thảnh thơi.
         </p>
       </div>
       <div class="col-lg-6">
-        <img src="assets/images/products/air_purifier.jpg" alt="About HieuMini" class="img-fluid rounded-4 shadow-lg">
+        <img src="assets/images/products/air_purifier.jpg" alt="About DatCyber" class="img-fluid rounded-4 shadow-lg">
       </div>
     </div>
   </section>
@@ -36,7 +36,7 @@ require_once __DIR__ . '/includes/header.php';
   <section class="my-5">
     <div class="text-center max-w-600 mx-auto mb-5">
       <span class="text-primary text-uppercase fw-bold small">Giá Trị Cốt Lõi</span>
-      <h2 class="fw-bold mt-1">4 Trụ Cột Vững Chắc Của HieuMini</h2>
+      <h2 class="fw-bold mt-1">4 Trụ Cột Vững Chắc Của DatCyber</h2>
     </div>
 
     <div class="row g-4">

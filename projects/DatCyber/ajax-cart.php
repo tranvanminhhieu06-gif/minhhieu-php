@@ -1,7 +1,7 @@
 <?php
 /**
  * AJAX Cart Handler & Quick View Endpoint
- * HieuMini Home Appliances
+ * DatCyber Home Appliances
  */
 
 header('Content-Type: application/json; charset=utf-8');

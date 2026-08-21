@@ -167,7 +167,7 @@ if (!empty($catSlug)) {
         <!-- Guarantee Badge -->
         <div class="p-3 bg-light rounded-3 text-center border mt-4">
           <i class="fas fa-shield-check text-success fa-2x mb-2"></i>
-          <div class="fw-bold small">Cam Kết HieuMini</div>
+          <div class="fw-bold small">Cam Kết DatCyber</div>
           <p class="text-muted small m-0">100% sản phẩm có tem chống hàng giả & bảo hành 2 năm.</p>
         </div>
 

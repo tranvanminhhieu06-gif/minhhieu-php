@@ -25,7 +25,7 @@ $allCats = $catCountStmt->fetchAll();
           <i class="fas fa-sparkles"></i> Siêu Phẩm Gia Dụng Thông Minh 2026
         </div>
         <h1 class="hero-title">
-          Nâng Tầm Không Gian Sống Cùng <span>HieuMini</span>
+          Nâng Tầm Không Gian Sống Cùng <span>DatCyber</span>
         </h1>
         <p class="hero-desc">
           Trải nghiệm hệ sinh thái thiết bị gia dụng cao cấp: Nồi chiên không dầu đối lưu, Robot hút bụi tự giặt sấy giẻ, Máy lọc không khí chuẩn y tế HEPA H13 và nhiều tiện ích tuyệt vời cho gia đình bạn.
@@ -59,13 +59,13 @@ $allCats = $catCountStmt->fetchAll();
 
       <div class="col-lg-5">
         <div class="hero-img-box animate-float">
-          <img src="assets/images/products/air_fryer.jpg" alt="HieuMini Air Fryer" class="img-fluid">
+          <img src="assets/images/products/air_fryer.jpg" alt="DatCyber Air Fryer" class="img-fluid">
           <div class="hero-floating-card">
             <div class="p-2 bg-warning bg-opacity-25 rounded-circle text-warning">
               <i class="fas fa-bolt fa-lg"></i>
             </div>
             <div>
-              <div class="fw-bold small">Nồi Chiên HieuMini CrispyPro</div>
+              <div class="fw-bold small">Nồi Chiên DatCyber CrispyPro</div>
               <div class="text-danger fw-bold">2.490.000 ₫ <span class="badge bg-danger ms-1">-24%</span></div>
             </div>
           </div>
@@ -168,7 +168,7 @@ $allCats = $catCountStmt->fetchAll();
     <div class="row align-items-center">
       <div class="col-lg-8">
         <span class="badge bg-warning text-dark fw-bold mb-2">ƯU ĐÃI ĐẶC QUYỀN</span>
-        <h3 class="fw-bold mb-2">Nhập mã <span class="text-warning text-decoration-underline">HIEUMINI10</span> giảm ngay 10% cho đơn từ 1 Triệu</h3>
+        <h3 class="fw-bold mb-2">Nhập mã <span class="text-warning text-decoration-underline">DATCYBER10</span> giảm ngay 10% cho đơn từ 1 Triệu</h3>
         <p class="text-white-50 m-0">Áp dụng kèm mã <strong class="text-white">FREESHIP</strong> miễn phí giao hàng trên toàn quốc cho tất cả sản phẩm.</p>
       </div>
       <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
@@ -239,7 +239,7 @@ $allCats = $catCountStmt->fetchAll();
   <!-- ================= CUSTOMER REVIEWS / TESTIMONIALS ================= -->
   <section class="my-5 p-4 p-lg-5 bg-white rounded-4 border shadow-sm">
     <div class="text-center max-w-600 mx-auto mb-5">
-      <span class="text-primary text-uppercase fw-bold small"><i class="fas fa-heart me-1"></i> Khách Hàng Nói Về HieuMini</span>
+      <span class="text-primary text-uppercase fw-bold small"><i class="fas fa-heart me-1"></i> Khách Hàng Nói Về DatCyber</span>
       <h2 class="fw-bold mt-1">Đánh Giá Từ Hơn 50.000+ Gia Đình Việt</h2>
       <p class="text-secondary">Chất lượng sản phẩm đỉnh cao cùng dịch vụ bảo hành tận tình 1 đổi 1 trong 24 tháng.</p>
     </div>
@@ -251,7 +251,7 @@ $allCats = $catCountStmt->fetchAll();
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
           <p class="text-secondary fst-italic mb-3">
-            "Chiếc nồi chiên không dầu HieuMini CrispyPro 6.5L thực sự làm thay đổi căn bếp nhà mình. Nấu đồ ăn nhanh, giòn rụm và không bị dầu mỡ. Màn hình cảm ứng nhìn rất xịn xò!"
+            "Chiếc nồi chiên không dầu DatCyber CrispyPro 6.5L thực sự làm thay đổi căn bếp nhà mình. Nấu đồ ăn nhanh, giòn rụm và không bị dầu mỡ. Màn hình cảm ứng nhìn rất xịn xò!"
           </p>
           <div class="d-flex align-items-center gap-3">
             <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">TQ</div>

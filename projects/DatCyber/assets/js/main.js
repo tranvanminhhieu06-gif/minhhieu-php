@@ -1,5 +1,5 @@
 /**
- * HieuMini - Main JavaScript Application
+ * DatCyber - Main JavaScript Application
  * Modern AJAX Cart, Quick View, Toasts, Countdown & Animations
  */
 

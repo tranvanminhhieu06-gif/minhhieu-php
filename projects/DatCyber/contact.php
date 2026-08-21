@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_contact'])) {
     <div class="col-lg-6">
       <div class="bg-white p-4 p-lg-5 rounded-4 border shadow-sm h-100">
         <span class="text-primary text-uppercase fw-bold small"><i class="fas fa-headset me-1"></i> Trung Tâm Trợ Giúp</span>
-        <h2 class="fw-bold fs-3 mt-1 mb-3">Gửi Lời Nhắn Cho HieuMini</h2>
+        <h2 class="fw-bold fs-3 mt-1 mb-3">Gửi Lời Nhắn Cho DatCyber</h2>
         <p class="text-secondary small mb-4">Bạn có câu hỏi về sản phẩm, hướng dẫn bảo hành hay cần tư vấn giải pháp gia dụng? Hãy gửi thông tin cho chúng tôi.</p>
 
         <form action="contact.php" method="POST">
@@ -104,14 +104,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_contact'])) {
     <!-- Right: Showrooms & Info -->
     <div class="col-lg-6">
       <div class="bg-white p-4 p-lg-5 rounded-4 border shadow-sm mb-4">
-        <h4 class="fw-bold mb-4"><i class="fas fa-building text-primary me-2"></i> Hệ Thống Showroom HieuMini</h4>
+        <h4 class="fw-bold mb-4"><i class="fas fa-building text-primary me-2"></i> Hệ Thống Showroom DatCyber</h4>
         
         <div class="d-flex flex-column gap-4">
           <div class="d-flex gap-3">
             <div class="perk-icon"><i class="fas fa-store"></i></div>
             <div>
               <h6 class="fw-bold mb-1">Trụ Sở & Showroom Hà Nội</h6>
-              <p class="text-secondary small mb-1"><i class="fas fa-map-pin text-danger me-1"></i> Tòa nhà HieuMini Tower, Cầu Giấy, Hà Nội</p>
+              <p class="text-secondary small mb-1"><i class="fas fa-map-pin text-danger me-1"></i> Tòa nhà DatCyber Tower, Cầu Giấy, Hà Nội</p>
               <p class="text-secondary small mb-0"><i class="fas fa-phone text-success me-1"></i> 024.3888.6868 (8:00 - 21:30 hàng ngày)</p>
             </div>
           </div>
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_contact'])) {
             <div class="perk-icon"><i class="fas fa-envelope-open-text"></i></div>
             <div>
               <h6 class="fw-bold mb-1">Hỗ Trợ Kỹ Thuật & Bảo Hành</h6>
-              <p class="text-secondary small mb-1"><i class="fas fa-envelope text-primary me-1"></i> Email: warranty@hieumini.vn</p>
+              <p class="text-secondary small mb-1"><i class="fas fa-envelope text-primary me-1"></i> Email: warranty@datcyber.vn</p>
               <p class="text-secondary small mb-0"><i class="fas fa-headset text-warning me-1"></i> Tổng đài miễn cước: <strong>1900 6868</strong></p>
             </div>
           </div>
@@ -143,12 +143,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_contact'])) {
           <div class="accordion-item border-0 border-bottom">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed fw-bold px-0 bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                Sản phẩm tại HieuMini có được bảo hành chính hãng không?
+                Sản phẩm tại DatCyber có được bảo hành chính hãng không?
               </button>
             </h2>
             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body px-0 text-secondary small">
-                Tất cả sản phẩm bán ra tại HieuMini đều là hàng chính hãng 100%, được kích hoạt bảo hành điện tử 24 tháng và hỗ trợ 1 đổi 1 trong 30 ngày nếu có lỗi từ nhà sản xuất.
+                Tất cả sản phẩm bán ra tại DatCyber đều là hàng chính hãng 100%, được kích hoạt bảo hành điện tử 24 tháng và hỗ trợ 1 đổi 1 trong 30 ngày nếu có lỗi từ nhà sản xuất.
               </div>
             </div>
           </div>

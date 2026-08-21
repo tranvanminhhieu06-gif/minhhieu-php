@@ -1,4 +1,4 @@
-# 🏠 HieuMini - Website Thương Mại Điện Tử Đồ Gia Dụng Thông Minh
+# 🏠 DatCyber - Website Thương Mại Điện Tử Đồ Gia Dụng Thông Minh
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.0%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
@@ -6,7 +6,7 @@
 [![FontAwesome](https://img.shields.io/badge/Font_Awesome-6.5.1-339AF0?style=for-the-badge&logo=font-awesome&logoColor=white)](https://fontawesome.com/)
 [![XAMPP](https://img.shields.io/badge/Server-XAMPP%20%2F%20Apache-FB7A24?style=for-the-badge&logo=xampp&logoColor=white)](https://www.apachefriends.org/)
 
-> **HieuMini** là nền tảng thương mại điện tử chuyên cung cấp các thiết bị gia dụng thông minh chính hãng (robot hút bụi, nồi chiên không dầu, máy lọc không khí, máy ép chậm, máy pha cà phê,...). Website được xây dựng hoàn chỉnh với giao diện hiện đại, chuẩn SEO, trải nghiệm giỏ hàng AJAX mượt mà và hệ thống quản trị (Admin Dashboard) toàn diện.
+> **DatCyber** là nền tảng thương mại điện tử chuyên cung cấp các thiết bị gia dụng thông minh chính hãng (robot hút bụi, nồi chiên không dầu, máy lọc không khí, máy ép chậm, máy pha cà phê,...). Website được xây dựng hoàn chỉnh với giao diện hiện đại, chuẩn SEO, trải nghiệm giỏ hàng AJAX mượt mà và hệ thống quản trị (Admin Dashboard) toàn diện.
 
 ---
 
@@ -47,7 +47,7 @@
 * **Thanh Toán & Áp Dụng Mã Giảm Giá (Checkout & Coupons):**
   * Áp dụng mã khuyến mãi (Coupon/Voucher) giảm theo `%` hoặc số tiền cố định, kiểm tra điều kiện đơn hàng tối thiểu.
   * Đa dạng phương thức thanh toán: COD (Tiền mặt khi nhận hàng) và Chuyển khoản ngân hàng (Hiển thị thông tin QR/Số tài khoản).
-  * Tự động tạo mã đơn hàng chuẩn format (`HM-YYYYMMDD-XX`).
+  * Tự động tạo mã đơn hàng chuẩn format (`DC-YYYYMMDD-XX`).
 * **Trang Xác Nhận Đơn Hàng (Order Confirmation):**
   * Hiển thị biên lai tóm tắt đơn hàng, danh sách sản phẩm, địa chỉ giao hàng và trạng thái đơn hàng.
 
@@ -86,7 +86,7 @@
 ## 📂 Cấu Trúc Thư Mục
 
 ```plaintext
-HieuWeb04/
+DatCyber/
 │
 ├── admin/                      # Phân hệ Quản trị viên
 │   ├── categories.php          # Quản lý danh mục (CRUD)
@@ -104,18 +104,18 @@ HieuWeb04/
 │   └── images/                 # Hình ảnh sản phẩm, banner, logo
 │
 ├── includes/                   # Các module dùng chung
-│   ├── db.php                  # Kết nối Cơ sở dữ liệu PDO (hieumini_db)
+│   ├── db.php                  # Kết nối Cơ sở dữ liệu PDO (datcyber_appliances_db)
 │   ├── functions.php           # Hàm tiện ích (format tiền tệ, xử lý giỏ hàng, slug...)
 │   ├── header.php              # Header người dùng, thanh tìm kiếm & điều hướng
 │   └── footer.php              # Footer thông tin liên hệ, cam kết & chính sách
 │
-├── about.php                   # Trang Giới thiệu thương hiệu HieuMini
+├── about.php                   # Trang Giới thiệu thương hiệu DatCyber
 ├── ajax-cart.php               # API nội bộ xử lý AJAX cho Giỏ hàng & Áp Coupon
 ├── cart.php                    # Trang hiển thị và chỉnh sửa Giỏ hàng
 ├── checkout.php                # Trang Đặt hàng & Nhập thông tin thanh toán
 ├── contact.php                 # Trang Liên hệ & Bản đồ/Form phản hồi
 ├── database.sql                # CSDL mẫu (Bảng, Ràng buộc khóa & Dữ liệu Seed)
-├── index.php                   # Trang chủ Website HieuMini
+├── index.php                   # Trang chủ Website DatCyber
 ├── order-success.php           # Trang xác nhận & Biên lai đơn hàng thành công
 ├── product-detail.php          # Trang Chi tiết sản phẩm & Đánh giá
 ├── products.php                # Trang Danh mục sản phẩm (Lọc, Tìm kiếm, Phân trang)
@@ -133,12 +133,12 @@ HieuWeb04/
 ### 2. Tải Mã Nguồn Vào Thư Mục Web
 - Đặt toàn bộ thư mục dự án vào thư mục gốc của Web Server:
   ```plaintext
-  C:\xampp\htdocs\HieuWeb04
+  C:\xampp\htdocs\DoAnWebsite\projects\DatCyber
   ```
 
 ### 3. Nhập Cơ Sở Dữ Liệu (Import Database)
 1. Mở trình duyệt và truy cập vào **phpMyAdmin**: [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
-2. Tạo một Database mới có tên: `hieumini_db` với bảng mã `utf8mb4_unicode_ci`.
+2. Tạo một Database mới có tên: `datcyber_appliances_db` với bảng mã `utf8mb4_unicode_ci`.
 3. Chọn tab **Nhập (Import)** ➔ Chọn tệp `database.sql` nằm trong thư mục dự án ➔ Bấm **Thực hiện (Go)**.
 4. Kiểm tra xem 8 bảng đã được tạo thành công:
    - `categories`: Danh mục sản phẩm
@@ -151,19 +151,19 @@ HieuWeb04/
    - `contacts`: Hộp thư liên hệ & phản hồi của khách hàng
 
 ### 4. Cấu Hình Kết Nối CSDL (Nếu cần)
-Mặc định cấu hình trong [includes/db.php](file:///c:/xampp/htdocs/HieuWeb04/includes/db.php) là:
+Mặc định cấu hình trong [includes/db.php](file:///c:/xampp/htdocs/DoAnWebsite/projects/DatCyber/includes/db.php) là:
 ```php
 $host = '127.0.0.1';
-$dbname = 'hieumini_db';
+$dbname = 'datcyber_appliances_db';
 $username = 'root';
 $password = ''; // Mặc định XAMPP để trống
 ```
 *Nếu bạn đổi cổng MySQL hoặc mật khẩu root, vui lòng cập nhật lại file này.*
 
 ### 5. Truy Cập Ứng Dụng
-- **Trang Khách Hàng:** [http://localhost/HieuWeb04/](http://localhost/HieuWeb04/)
-- **Cổng Đăng Nhập Quản Trị:** [http://localhost/HieuWeb04/admin/login.php](http://localhost/HieuWeb04/admin/login.php)
-- **Bảng Điều Khiển Admin:** [http://localhost/HieuWeb04/admin/](http://localhost/HieuWeb04/admin/)
+- **Trang Khách Hàng:** [http://localhost/projects/DatCyber/](http://localhost/projects/DatCyber/)
+- **Cổng Đăng Nhập Quản Trị:** [http://localhost/projects/DatCyber/admin/login.php](http://localhost/projects/DatCyber/admin/login.php)
+- **Bảng Điều Khiển Admin:** [http://localhost/projects/DatCyber/admin/](http://localhost/projects/DatCyber/admin/)
 
 ---
 
@@ -171,18 +171,18 @@ $password = ''; // Mặc định XAMPP để trống
 
 | Phân Quyền | Email | Mật Khẩu | Mục Đích |
 | :--- | :--- | :--- | :--- |
-| **Quản trị viên (Admin)** | `admin@hieumini.vn` | `123456` | Truy cập toàn quyền Admin Dashboard |
+| **Quản trị viên (Admin)** | `admin@datcyber.vn` | `123456` | Truy cập toàn quyền Admin Dashboard |
 | **Khách hàng (Customer)** | `khachhang@gmail.com` | `123456` | Tài khoản thành viên mẫu |
 
 ---
 
 ## 💳 Mã Giảm Giá Dùng Thử
 
-Khi tiến hành đặt hàng tại trang [checkout.php](file:///c:/xampp/htdocs/HieuWeb04/checkout.php), bạn có thể nhập thử các mã khuyến mãi sau:
+Khi tiến hành đặt hàng tại trang [checkout.php](file:///c:/xampp/htdocs/DoAnWebsite/projects/DatCyber/checkout.php), bạn có thể nhập thử các mã khuyến mãi sau:
 
 | Mã Coupon | Loại Giảm | Giá Trị Giảm | Điều Kiện Đơn Hàng |
 | :--- | :--- | :--- | :--- |
-| `HIEUMINI10` | Phần trăm | Giảm **10%** | Đơn hàng từ 1.000.000đ trở lên |
+| `DATCYBER10` | Phần trăm | Giảm **10%** | Đơn hàng từ 1.000.000đ trở lên |
 | `FREESHIP` | Cố định | Giảm **50.000đ** | Đơn hàng từ 500.000đ trở lên |
 | `GIADUNGVIP` | Phần trăm | Giảm **15%** | Đơn hàng từ 3.000.000đ trở lên |
 
@@ -212,6 +212,6 @@ Khi tiến hành đặt hàng tại trang [checkout.php](file:///c:/xampp/htdocs
 ---
 
 ## 👨‍💻 Tác Giả & Bản Quyền
-- **Dự án:** Website Thương Mại Điện Tử Thiết Bị Gia Dụng HieuMini
-- **Nhà phát triển:** Nhóm phát triển HieuMini
-- **Bản quyền:** © 2026 HieuMini Smart Home Appliances. All rights reserved.
+- **Dự án:** Website Thương Mại Điện Tử Thiết Bị Gia Dụng DatCyber
+- **Nhà phát triển:** Nhóm phát triển DatCyber
+- **Bản quyền:** © 2026 DatCyber Smart Home Appliances. All rights reserved.

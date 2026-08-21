@@ -194,29 +194,29 @@ IMAGES = {
         "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&auto=format&fit=crop&q=80",
 
     # ----------------------------------------------------
-    # PROJECT 4: SMART APPLIANCES (HieuWeb04)
+    # PROJECT 4: SMART APPLIANCES (DatCyber)
     # ----------------------------------------------------
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "air_fryer.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "air_fryer.jpg"):
         "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "robot_vacuum.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "robot_vacuum.jpg"):
         "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "slow_juicer.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "slow_juicer.jpg"):
         "https://images.unsplash.com/photo-1589734740747-0bc6c8484b77?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "air_purifier.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "air_purifier.jpg"):
         "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "electric_kettle.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "electric_kettle.jpg"):
         "https://images.unsplash.com/photo-1594213114663-d94db9e1f126?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "smart_blender.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "smart_blender.jpg"):
         "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "coffee_machine.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "coffee_machine.jpg"):
         "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "microwave_oven.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "microwave_oven.jpg"):
         "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "smart_rice_cooker.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "smart_rice_cooker.jpg"):
         "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "garment_steamer.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "garment_steamer.jpg"):
         "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=85",
-    os.path.join(ROOT, "projects", "HieuWeb04", "assets", "images", "products", "countertop_dishwasher.jpg"):
+    os.path.join(ROOT, "projects", "DatCyber", "assets", "images", "products", "countertop_dishwasher.jpg"):
         "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=85",
 
     # ----------------------------------------------------

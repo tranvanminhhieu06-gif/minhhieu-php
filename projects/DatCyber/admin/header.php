@@ -13,7 +13,7 @@ $admin_page = basename($_SERVER['PHP_SELF']);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo isset($admin_title) ? htmlspecialchars($admin_title) . ' | Quản Trị HieuMini' : 'Bảng Quản Trị HieuMini'; ?></title>
+  <title><?php echo isset($admin_title) ? htmlspecialchars($admin_title) . ' | Quản Trị DatCyber' : 'Bảng Quản Trị DatCyber'; ?></title>
   
   <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +70,7 @@ $admin_page = basename($_SERVER['PHP_SELF']);
     <div class="col-md-3 col-lg-2 admin-sidebar p-3 d-flex flex-column">
       <a href="index.php" class="navbar-brand-custom text-white mb-4 d-block px-2">
         <i class="fas fa-home-heart text-primary"></i>
-        <span>Hieu<strong class="text-primary">Admin</strong></span>
+        <span>Dat<strong class="text-primary">Admin</strong></span>
       </a>
 
       <div class="d-flex flex-column flex-grow-1">
@@ -113,7 +113,7 @@ $admin_page = basename($_SERVER['PHP_SELF']);
             </div>
             <div class="d-none d-sm-block text-start">
               <div class="fw-bold small"><?php echo htmlspecialchars($admin_user['name'] ?? 'Admin'); ?></div>
-              <small class="text-muted"><?php echo htmlspecialchars($admin_user['email'] ?? 'admin@hieumini.vn'); ?></small>
+              <small class="text-muted"><?php echo htmlspecialchars($admin_user['email'] ?? 'admin@datcyber.vn'); ?></small>
             </div>
             <a href="logout.php" class="btn btn-sm btn-outline-secondary ms-2" title="Đăng xuất">
               <i class="fas fa-power-off text-danger"></i>

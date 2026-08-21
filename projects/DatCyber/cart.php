@@ -143,7 +143,7 @@ $finalTotal = max(0, $subtotal - $discount + $shippingFee);
         <div class="bg-white p-4 rounded-4 border shadow-sm mb-4">
           <h6 class="fw-bold mb-3"><i class="fas fa-ticket text-primary me-2"></i> Mã Giảm Giá / Voucher</h6>
           <form action="cart.php" method="POST" class="d-flex gap-2 mb-2">
-            <input type="text" name="coupon_code" class="form-control" placeholder="Nhập mã voucher (VD: HIEUMINI10)" value="<?php echo $couponInfo ? htmlspecialchars($couponInfo['code']) : ''; ?>" required>
+            <input type="text" name="coupon_code" class="form-control" placeholder="Nhập mã voucher (VD: DATCYBER10)" value="<?php echo $couponInfo ? htmlspecialchars($couponInfo['code']) : ''; ?>" required>
             <button type="submit" name="apply_coupon" class="btn btn-primary-custom text-nowrap">Áp dụng</button>
           </form>
 
@@ -156,7 +156,7 @@ $finalTotal = max(0, $subtotal - $discount + $shippingFee);
 
           <div class="mt-3 pt-2 border-top">
             <small class="text-muted d-block">Gợi ý mã khuyến mãi:</small>
-            <span class="badge bg-light text-primary border me-1">HIEUMINI10</span>
+            <span class="badge bg-light text-primary border me-1">DATCYBER10</span>
             <span class="badge bg-light text-primary border">FREESHIP</span>
           </div>
         </div>

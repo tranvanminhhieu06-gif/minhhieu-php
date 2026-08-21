@@ -18,7 +18,8 @@ try {
         'hieumini_db'            => [__DIR__ . '/../projects/HieuWeb01/database/hieumini_db.sql'],
         'hieumini_bookstore_db'  => [__DIR__ . '/../projects/HieuWeb02/database/hieumini_db.sql'],
         'hieumini_furniture_db'  => [__DIR__ . '/../projects/HieuWeb03/database.sql'],
-        'hieumini_appliances_db' => [__DIR__ . '/../projects/HieuWeb04/database.sql'],
+        'datcyber_appliances_db' => [__DIR__ . '/../projects/DatCyber/database.sql'],
+        'hieumini_appliances_db' => [__DIR__ . '/../projects/DatCyber/database.sql'],
         'hieumini_gym_db'        => [__DIR__ . '/../projects/HieuWeb05/database.sql'],
     ];
 

@@ -29,7 +29,7 @@ $orderItems = $itemStmt->fetchAll();
     </div>
 
     <h2 class="fw-bold text-dark">Đặt Hàng Thành Công!</h2>
-    <p class="text-secondary mb-2">Cảm ơn bạn đã tin tưởng mua sắm tại <strong>HieuMini</strong>. Đơn hàng của bạn đã được tiếp nhận và đang được xử lý.</p>
+    <p class="text-secondary mb-2">Cảm ơn bạn đã tin tưởng mua sắm tại <strong>DatCyber</strong>. Đơn hàng của bạn đã được tiếp nhận và đang được xử lý.</p>
     <div class="badge bg-light text-primary border fs-6 px-3 py-2">
       Mã đơn hàng: <strong class="font-monospace"><?php echo htmlspecialchars($order['order_code']); ?></strong>
     </div>

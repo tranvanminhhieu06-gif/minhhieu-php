@@ -51,10 +51,10 @@
         <div class="col-lg-4 col-md-6">
           <div class="navbar-brand-custom text-white mb-3">
             <i class="fas fa-home-heart text-primary"></i>
-            <span>Hieu<strong class="text-primary">Mini</strong></span>
+            <span>Dat<strong class="text-primary">Cyber</strong></span>
           </div>
           <p class="text-secondary-emphasis" style="color: #94a3b8; font-size: 0.92rem; line-height: 1.7;">
-            HieuMini tự hào là hệ thống bán lẻ thiết bị gia dụng và tiện ích gia đình thông minh hàng đầu. Chúng tôi mang đến không gian sống tiện nghi, hiện đại và nâng tầm chất lượng cuộc sống cho mọi gia đình Việt.
+            DatCyber tự hào là hệ thống bán lẻ thiết bị gia dụng và tiện ích gia đình thông minh hàng đầu. Chúng tôi mang đến không gian sống tiện nghi, hiện đại và nâng tầm chất lượng cuộc sống cho mọi gia đình Việt.
           </p>
           <div class="d-flex gap-2 mt-3">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-action-icon" title="Facebook"><i class="fab fa-facebook-f text-primary"></i></a>
@@ -92,7 +92,7 @@
         <div class="col-lg-3 col-md-6">
           <h5 class="footer-title">Hệ Thống Showroom</h5>
           <p style="color: #94a3b8; font-size: 0.9rem;" class="mb-2">
-            <i class="fas fa-map-marker-alt text-primary me-2"></i> Trụ sở chính: Tòa nhà HieuMini Tower, Cầu Giấy, Hà Nội
+            <i class="fas fa-map-marker-alt text-primary me-2"></i> Trụ sở chính: Tòa nhà DatCyber Tower, Cầu Giấy, Hà Nội
           </p>
           <p style="color: #94a3b8; font-size: 0.9rem;" class="mb-2">
             <i class="fas fa-store text-primary me-2"></i> Chi nhánh HCM: 456 Nguyễn Thị Minh Khai, Quận 3, TP.HCM
@@ -101,7 +101,7 @@
             <i class="fas fa-phone-volume text-primary me-2"></i> Hotline: <strong>1900 6868</strong> (8:00 - 21:30)
           </p>
           <p style="color: #94a3b8; font-size: 0.9rem;" class="mb-3">
-            <i class="fas fa-envelope text-primary me-2"></i> Email: support@hieumini.vn
+            <i class="fas fa-envelope text-primary me-2"></i> Email: support@datcyber.vn
           </p>
           <div class="p-2 bg-dark rounded border border-secondary border-opacity-25 d-flex align-items-center gap-2">
             <i class="fas fa-shield-check text-success fa-2x"></i>
@@ -112,7 +112,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p class="m-0">© 2026 HieuMini Home Appliances. All rights reserved. Thiết kế và phát triển bởi Đội Ngũ Kỹ Sư HieuMini.</p>
+        <p class="m-0">© 2026 DatCyber Home Appliances. All rights reserved. Thiết kế và phát triển bởi Đội Ngũ Kỹ Sư DatCyber.</p>
       </div>
     </div>
   </footer>

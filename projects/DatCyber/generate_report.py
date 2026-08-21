@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Script to generate high-quality academic and technical document BaoCao.docx
-for HieuMini E-commerce Project adhering strictly to mucluc.txt.
+for DatCyber E-commerce Project adhering strictly to mucluc.txt.
 """
 
 import docx
@@ -132,7 +132,7 @@ def generate_doc():
     r_sub.font.bold = True
     r_sub.font.color.rgb = RGBColor(2, 132, 199)
 
-    r_main = p_title.add_run("NGHIÊN CỨU, PHÂN TÍCH, THIẾT KẾ VÀ XÂY DỰNG WEBSITE BÁN ĐỒ GIA DỤNG THÔNG MINH HIEUMINI SỬ DỤNG PHP & MYSQL\n\n\n")
+    r_main = p_title.add_run("NGHIÊN CỨU, PHÂN TÍCH, THIẾT KẾ VÀ XÂY DỰNG WEBSITE BÁN ĐỒ GIA DỤNG THÔNG MINH DATCYBER SỬ DỤNG PHP & MYSQL\n\n\n")
     r_main.font.name = 'Times New Roman'
     r_main.font.size = Pt(20)
     r_main.font.bold = True
@@ -206,7 +206,7 @@ def generate_doc():
     # ================= LỜI NÓI ĐẦU =================
     add_header_styled(doc, "LỜI NÓI ĐẦU", level=1)
     add_body_p(doc, "Trong kỷ nguyên bùng nổ của cuộc Cách mạng Công nghiệp 4.0 và chuyển đổi số toàn diện, thương mại điện tử (E-commerce) đã trở thành một phần tất yếu trong đời sống kinh tế xã hội. Người tiêu dùng ngày nay không chỉ tìm kiếm các sản phẩm thiết yếu với mức giá cạnh tranh, mà còn đặc biệt quan tâm đến trải nghiệm mua sắm trực tuyến: tốc độ truy cập mượt mà, giao diện trực quan, hiệu ứng tương tác hiện đại, hình ảnh sản phẩm chân thực cùng sự minh bạch về nguồn gốc và chính sách bảo hành.")
-    add_body_p(doc, "Ngành hàng đồ gia dụng và thiết bị thông minh phục vụ đời sống gia đình (nồi chiên không dầu, robot hút bụi, máy ép chậm, máy lọc không khí, ấm siêu tốc...) đang chứng kiến tốc độ tăng trưởng vượt bậc tại thị trường Việt Nam. Nhận thức được nhu cầu cấp thiết đó, đồ án chuyên ngành này tập trung nghiên cứu, thiết kế và phát triển toàn diện hệ thống website thương mại điện tử chuyên biệt mang tên 'HieuMini' - Thiết Bị Gia Dụng Thông Minh Cao Cấp.")
+    add_body_p(doc, "Ngành hàng đồ gia dụng và thiết bị thông minh phục vụ đời sống gia đình (nồi chiên không dầu, robot hút bụi, máy ép chậm, máy lọc không khí, ấm siêu tốc...) đang chứng kiến tốc độ tăng trưởng vượt bậc tại thị trường Việt Nam. Nhận thức được nhu cầu cấp thiết đó, đồ án chuyên ngành này tập trung nghiên cứu, thiết kế và phát triển toàn diện hệ thống website thương mại điện tử chuyên biệt mang tên 'DatCyber' - Thiết Bị Gia Dụng Thông Minh Cao Cấp.")
     add_body_p(doc, "Đề tài được triển khai bằng việc ứng dụng ngôn ngữ lập trình phía máy chủ PHP phiên bản 8.x kết hợp cùng hệ quản trị cơ sở dữ liệu quan hệ MySQL. Đồng thời, website tích hợp bộ giải pháp hình ảnh sản phẩm chất lượng cao sinh bởi trí tuệ nhân tạo (AI Image Generation), hệ thống hiệu ứng chuyển động mượt mà (CSS Transitions & Keyframe Animations) cùng kiến trúc quản trị Admin mạnh mẽ, đáp ứng đầy đủ các tiêu chuẩn kỹ thuật của một ứng dụng web thương mại điện tử chuẩn mực.")
 
     # ================= CHƯƠNG 1 =================
@@ -220,10 +220,10 @@ def generate_doc():
     add_body_p(doc, "Khi một người dùng (Client) gửi yêu cầu HTTP Request thông qua trình duyệt web tới máy chủ chứa mã nguồn PHP, Web Server (như Apache hoặc Nginx) sẽ chuyển tiếp tệp `.php` tới bộ xử lý PHP Zend Engine. Tại đây, mã PHP được phân tích cú pháp (Parsing), biên dịch thành các mã chỉ lệnh (Opcode) và thực thi trong môi trường máy chủ. Kết quả đầu ra sau khi xử lý xong các tác vụ nghiệp vụ, truy vấn cơ sở dữ liệu MySQL và dựng giao diện sẽ là chuỗi văn bản thuần HTML/CSS/JavaScript hoặc JSON, được đóng gói vào gói phản hồi HTTP Response gửi ngược lại cho trình duyệt hiển thị. Điều này giúp mã nguồn và logic nghiệp vụ được bảo vệ an toàn tuyệt đối tại máy chủ, người dùng không thể can thiệp vào logic xử lý dữ liệu nội bộ.")
 
     add_body_p(doc, "2. Những đột phá mạnh mẽ trên phiên bản PHP 8.x:", bold_prefix="b. ")
-    add_body_p(doc, "Dự án HieuMini được phát triển trên nền tảng PHP 8.2 với những cải tiến công nghệ vượt bậc so với các phiên bản PHP 5.x hay 7.x cũ:", italic=False)
+    add_body_p(doc, "Dự án DatCyber được phát triển trên nền tảng PHP 8.2 với những cải tiến công nghệ vượt bậc so với các phiên bản PHP 5.x hay 7.x cũ:", italic=False)
     
     php_feats = [
-        ["Tính năng PHP 8.x", "Mô tả chi tiết và ý nghĩa kỹ thuật", "Ứng dụng trong dự án HieuMini"],
+        ["Tính năng PHP 8.x", "Mô tả chi tiết và ý nghĩa kỹ thuật", "Ứng dụng trong dự án DatCyber"],
         ["JIT (Just-In-Time) Compiler", "Biên dịch mã opcode trực tiếp sang mã máy x86/ARM trong thời gian chạy, tăng hiệu năng tính toán lên 2-3 lần.", "Tối ưu tốc độ dựng trang và xử lý dữ liệu giỏ hàng lớn."],
         ["Named Arguments", "Cho phép truyền tham số vào hàm dựa trên tên định danh thay vì thứ tự vị trí bắt buộc.", "Tăng tính linh hoạt và dễ bảo trì trong các hàm tiện ích (`functions.php`)."],
         ["Constructor Property Promotion", "Rút ngắn cú pháp khai báo và gán thuộc tính trong hàm khởi tạo của Class.", "Viết code OOP tinh gọn, chuẩn mực và dễ đọc."],
@@ -241,13 +241,13 @@ def generate_doc():
     add_header_styled(doc, "1.2 Hệ quản trị cơ sở dữ liệu MySQL", level=2)
     add_body_p(doc, "MySQL là hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở (RDBMS - Relational Database Management System) phổ biến nhất hiện nay. MySQL lưu trữ dữ liệu dưới dạng các bảng có cấu trúc (Tables) gồm các hàng (Rows/Records) và các cột (Columns/Attributes), cho phép thiết lập các mối quan hệ chặt chẽ (Relationships) giữa các thực thể dữ liệu thông qua cơ chế khóa chính (Primary Key) và khóa ngoại (Foreign Key).")
 
-    add_body_p(doc, "1. Các đặc tính cốt lõi của MySQL được ứng dụng trong HieuMini:", bold_prefix="a. ")
-    add_body_p(doc, "- Động cơ lưu trữ InnoDB: Mặc định trên MySQL 8.x, hỗ trợ đầy đủ tiêu chuẩn ACID (Atomicity, Consistency, Isolation, Durability) cho các giao dịch (Transactions). Trong luồng thanh toán giỏ hàng của website HieuMini, thao tác trừ tồn kho sản phẩm và ghi nhận đơn hàng được bọc trong khối giao dịch `beginTransaction()` - `commit()` - `rollBack()`, ngăn chặn triệt để tình trạng xung đột hoặc sai lệch số lượng hàng tồn.")
+    add_body_p(doc, "1. Các đặc tính cốt lõi của MySQL được ứng dụng trong DatCyber:", bold_prefix="a. ")
+    add_body_p(doc, "- Động cơ lưu trữ InnoDB: Mặc định trên MySQL 8.x, hỗ trợ đầy đủ tiêu chuẩn ACID (Atomicity, Consistency, Isolation, Durability) cho các giao dịch (Transactions). Trong luồng thanh toán giỏ hàng của website DatCyber, thao tác trừ tồn kho sản phẩm và ghi nhận đơn hàng được bọc trong khối giao dịch `beginTransaction()` - `commit()` - `rollBack()`, ngăn chặn triệt để tình trạng xung đột hoặc sai lệch số lượng hàng tồn.")
     add_body_p(doc, "- Khóa ngoại và tính toàn vẹn tham chiếu: Các bảng `order_items`, `products`, `reviews` đều được thiết lập khóa ngoại liên kết với `ON DELETE CASCADE` hoặc `ON DELETE SET NULL`, bảo đảm khi danh mục hoặc sản phẩm thay đổi thì tính toàn vẹn dữ liệu luôn được duy trì.")
-    add_body_p(doc, "- Bộ giải mã ký tự UTF8MB4: Cơ sở dữ liệu `hieumini_db` được cấu hình sử dụng `utf8mb4_unicode_ci`, hỗ trợ đầy đủ và chuẩn xác các ký tự tiếng Việt có dấu, ký hiệu tiền tệ (₫) cũng như các ký tự biểu cảm emoji hiện đại.")
+    add_body_p(doc, "- Bộ giải mã ký tự UTF8MB4: Cơ sở dữ liệu `datcyber_appliances_db` được cấu hình sử dụng `utf8mb4_unicode_ci`, hỗ trợ đầy đủ và chuẩn xác các ký tự tiếng Việt có dấu, ký hiệu tiền tệ (₫) cũng như các ký tự biểu cảm emoji hiện đại.")
 
     mysql_props = [
-        ["Tiêu chuẩn ACID", "Nội dung nguyên lý", "Ý nghĩa đối với hệ thống HieuMini"],
+        ["Tiêu chuẩn ACID", "Nội dung nguyên lý", "Ý nghĩa đối với hệ thống DatCyber"],
         ["Atomicity (Nguyên tử)", "Mọi tác vụ trong một giao dịch hoặc cùng thành công hoặc cùng bị hủy bỏ.", "Khi tạo đơn hàng, nếu lưu chi tiết sản phẩm thất bại thì toàn bộ đơn hàng sẽ tự động rollback."],
         ["Consistency (Nhất quán)", "Dữ liệu chuyển từ trạng thái hợp lệ này sang trạng thái hợp lệ khác đúng ràng buộc.", "Tồn kho không bao giờ bị âm, đơn giá luôn đúng chuẩn định dạng số."],
         ["Isolation (Cô lập)", "Các giao dịch chạy đồng thời không can thiệp hay làm sai lệch dữ liệu của nhau.", "Nhiều khách hàng cùng đặt mua một sản phẩm cùng lúc không bị tranh chấp dữ liệu."],
@@ -264,11 +264,11 @@ def generate_doc():
     add_body_p(doc, "- Phía Client (Trình duyệt web của người dùng): Đảm nhận nhiệm vụ gửi yêu cầu tương tác và hiển thị giao diện đồ họa. Sử dụng HTML5, CSS3 và JavaScript thuần để render hình ảnh sản phẩm, thực hiện các hiệu ứng hoạt họa và bắt sự kiện người dùng.")
     add_body_p(doc, "- Phía Server (Máy chủ Apache & PHP): Lắng nghe tại cổng mạng (Port 80/443 hoặc cổng tùy chỉnh), nhận yêu cầu, gọi chương trình PHP biên dịch logic, truy vấn cơ sở dữ liệu MySQL qua cổng 3306 và phản hồi dữ liệu về cho Client.")
 
-    add_body_p(doc, "2. Quy trình cài đặt và thiết lập máy chủ XAMPP cho dự án HieuMini:", bold_prefix="b. ")
+    add_body_p(doc, "2. Quy trình cài đặt và thiết lập máy chủ XAMPP cho dự án DatCyber:", bold_prefix="b. ")
     add_body_p(doc, "Bước 1: Tải và cài đặt phiên bản XAMPP mới nhất hỗ trợ PHP 8.2 và MariaDB 10.4 trên hệ điều hành Windows tại thư mục `C:\\xampp`.")
     add_body_p(doc, "Bước 2: Kích hoạt các dịch vụ Apache HTTP Server và MySQL Server từ bảng điều khiển XAMPP Control Panel hoặc thông qua script quản lý tự động.")
     add_body_p(doc, "Bước 3: Cấu hình tệp `php.ini` để kích hoạt các extension quan trọng như `extension=pdo_mysql`, `extension=mbstring`, `extension=fileinfo` và thiết lập giới hạn bộ nhớ `memory_limit = 512M`.")
-    add_body_p(doc, "Bước 4: Thiết lập cơ sở dữ liệu `hieumini_db` và nạp toàn bộ cấu trúc bảng cùng dữ liệu mẫu (Seed data) thông qua tập lệnh SQL `database.sql`.")
+    add_body_p(doc, "Bước 4: Thiết lập cơ sở dữ liệu `datcyber_appliances_db` và nạp toàn bộ cấu trúc bảng cùng dữ liệu mẫu (Seed data) thông qua tập lệnh SQL `database.sql`.")
     add_body_p(doc, "Bước 5: Khởi chạy máy chủ ảo hoặc PHP Built-in Web Server tại thư mục dự án và truy cập kiểm thử qua địa chỉ `http://localhost/` hoặc `http://127.0.0.1:8000`.")
 
     # ================= CHƯƠNG 2 =================
@@ -276,21 +276,21 @@ def generate_doc():
     
     # 2.1 Chức năng (usecase)
     add_header_styled(doc, "2.1 Chức năng ( usecase )", level=2)
-    add_body_p(doc, "Phân tích chức năng hệ thống là giai đoạn then chốt nhằm xác định rõ ràng các nhóm tác nhân (Actors), ranh giới hệ thống cũng như các trường hợp sử dụng (Use Cases) mà website HieuMini cần đáp ứng để phục vụ người dùng cuối và đội ngũ quản trị.")
+    add_body_p(doc, "Phân tích chức năng hệ thống là giai đoạn then chốt nhằm xác định rõ ràng các nhóm tác nhân (Actors), ranh giới hệ thống cũng như các trường hợp sử dụng (Use Cases) mà website DatCyber cần đáp ứng để phục vụ người dùng cuối và đội ngũ quản trị.")
 
     add_body_p(doc, "1. Xác định các tác nhân (Actors) trong hệ thống:", bold_prefix="a. ")
     add_body_p(doc, "- Khách vãng lai (Guest): Người dùng truy cập website nhưng chưa đăng nhập tài khoản. Có quyền duyệt danh mục, tìm kiếm sản phẩm, xem chi tiết thông số kỹ thuật, xem đánh giá, thêm hàng vào giỏ và đặt hàng nhanh.")
     add_body_p(doc, "- Khách hàng thành viên (Customer): Người dùng có tài khoản đã đăng ký, có thể đăng nhập để quản lý lịch sử đơn hàng cá nhân, gửi nhận xét và nhận các mã ưu đãi độc quyền.")
     add_body_p(doc, "- Quản trị viên (Admin): Người quản lý toàn quyền hệ thống. Truy cập phân hệ Admin để theo dõi biểu đồ doanh thu, quản lý danh mục, thêm/sửa/xóa sản phẩm, cập nhật tồn kho và thay đổi trạng thái xử lý đơn hàng.")
 
-    add_body_p(doc, "2. Bảng phân rã chi tiết các Use Case chính trong hệ thống HieuMini:", bold_prefix="b. ")
+    add_body_p(doc, "2. Bảng phân rã chi tiết các Use Case chính trong hệ thống DatCyber:", bold_prefix="b. ")
     
     uc_data = [
         ["Mã UC", "Tên Use Case", "Tác nhân chính", "Mô tả tóm tắt luồng xử lý"],
         ["UC01", "Xem & Tìm kiếm sản phẩm", "Khách hàng, Khách vãng lai", "Tìm kiếm theo từ khóa tên sản phẩm, lọc theo danh mục, lọc theo khoảng giá, sắp xếp theo giá tăng/giảm."],
         ["UC02", "Xem chi tiết sản phẩm", "Khách hàng, Khách vãng lai", "Xem ảnh AI phóng to, thông số kỹ thuật, giá khuyến mãi, tình trạng tồn kho, chính sách bảo hành 24T."],
         ["UC03", "Quản lý giỏ hàng thông minh", "Khách hàng, Khách vãng lai", "Thêm sản phẩm qua AJAX không cần load lại trang, mở giỏ hàng trượt (Drawer), tăng giảm số lượng, xóa món."],
-        ["UC04", "Áp dụng mã giảm giá (Voucher)", "Khách hàng, Khách vãng lai", "Nhập mã voucher (HIEUMINI10, FREESHIP), hệ thống tự động kiểm tra điều kiện và trừ tiền trực tiếp."],
+        ["UC04", "Áp dụng mã giảm giá (Voucher)", "Khách hàng, Khách vãng lai", "Nhập mã voucher (DATCYBER10, FREESHIP), hệ thống tự động kiểm tra điều kiện và trừ tiền trực tiếp."],
         ["UC05", "Đặt hàng & Thanh toán", "Khách hàng, Khách vãng lai", "Điền thông tin nhận hàng, chọn hình thức thanh toán (COD, VietQR Banking, Ví điện tử), xác nhận đơn."],
         ["UC06", "Theo dõi tiến trình đơn hàng", "Khách hàng, Khách vãng lai", "Tra cứu đơn hàng qua mã code, hiển thị thanh tiến trình 4 giai đoạn từ đóng gói đến giao thành công."],
         ["UC07", "Đánh giá & Nhận xét sản phẩm", "Khách hàng", "Gửi số sao (1-5 sao) và cảm nhận đánh giá; hệ thống tự động tính lại điểm trung bình cho sản phẩm."],
@@ -307,14 +307,14 @@ def generate_doc():
     add_body_p(doc, "  + Bước 2: Hệ thống chuyển hướng tới giao diện `checkout.php` và hiển thị bảng tóm tắt đơn giá, phí vận chuyển và số tiền giảm giá.")
     add_body_p(doc, "  + Bước 3: Người dùng nhập thông tin người nhận (Họ tên, SĐT, Địa chỉ chi tiết, Ghi chú) và lựa chọn phương thức thanh toán.")
     add_body_p(doc, "  + Bước 4: Người dùng nhấn nút 'Xác nhận đặt hàng'. Hệ thống mở Transaction kiểm tra số lượng tồn kho trong database.")
-    add_body_p(doc, "  + Bước 5: Hệ thống tạo bản ghi mới trong bảng `orders` với mã định danh duy nhất (VD: `HM-20260820-A1B2C3`), đồng thời sao chép toàn bộ các sản phẩm từ Session Cart vào bảng `order_items` và trừ số lượng tương ứng trong bảng `products`.")
+    add_body_p(doc, "  + Bước 5: Hệ thống tạo bản ghi mới trong bảng `orders` với mã định danh duy nhất (VD: `DC-20260820-A1B2C3`), đồng thời sao chép toàn bộ các sản phẩm từ Session Cart vào bảng `order_items` và trừ số lượng tương ứng trong bảng `products`.")
     add_body_p(doc, "  + Bước 6: Transaction được Commit thành công, hệ thống xóa rỗng giỏ hàng và chuyển hướng người dùng tới trang `order-success.php` kèm hóa đơn chi tiết.")
 
     # 2.2 Cơ sở dữ liệu
     add_header_styled(doc, "2.2 Cơ sở dữ liệu", level=2)
-    add_body_p(doc, "Cơ sở dữ liệu của hệ thống HieuMini được thiết kế theo mô hình quan hệ chuẩn hóa 3NF (Third Normal Form), loại bỏ hoàn toàn các dị thường dư thừa dữ liệu (Redundancy) và đảm bảo hiệu năng truy vấn tối ưu.")
+    add_body_p(doc, "Cơ sở dữ liệu của hệ thống DatCyber được thiết kế theo mô hình quan hệ chuẩn hóa 3NF (Third Normal Form), loại bỏ hoàn toàn các dị thường dư thừa dữ liệu (Redundancy) và đảm bảo hiệu năng truy vấn tối ưu.")
 
-    add_body_p(doc, "1. Danh mục các bảng trong cơ sở dữ liệu `hieumini_db`:", bold_prefix="a. ")
+    add_body_p(doc, "1. Danh mục các bảng trong cơ sở dữ liệu `datcyber_appliances_db`:", bold_prefix="a. ")
     
     tbl_summary = [
         ["Tên bảng (Table)", "Mục đích sử dụng & Ý nghĩa nghiệp vụ", "Số trường", "Khóa ngoại liên kết"],
@@ -373,7 +373,7 @@ def generate_doc():
     
     # 3.1 Giao diện
     add_header_styled(doc, "3.1 Giao diện", level=2)
-    add_body_p(doc, "Giao diện người dùng của website HieuMini được thiết kế và xây dựng tuân thủ nghiêm ngặt các nguyên lý thiết kế UI/UX hiện đại bậc nhất, mang đến trải nghiệm thị giác ấn tượng (Visual Wow Effect), cảm giác tương tác mượt mà và khả năng sử dụng trực quan, tiện lợi.")
+    add_body_p(doc, "Giao diện người dùng của website DatCyber được thiết kế và xây dựng tuân thủ nghiêm ngặt các nguyên lý thiết kế UI/UX hiện đại bậc nhất, mang đến trải nghiệm thị giác ấn tượng (Visual Wow Effect), cảm giác tương tác mượt mà và khả năng sử dụng trực quan, tiện lợi.")
 
     add_body_p(doc, "1. Ngôn ngữ thiết kế và Hệ thống nhận diện thị giác (Design System):", bold_prefix="a. ")
     add_body_p(doc, "- Bảng màu chủ đạo (Color Palette): Sử dụng gam màu xanh công nghệ thanh lịch (Ocean Blue #0284c7) kết hợp nền xanh đen hiện đại (Dark Slate #0f172a) và điểm xuyết các sắc cam năng động (Vibrant Orange #f97316) cho các nút hành động, thẻ giảm giá và đếm ngược Flash Sale.")
@@ -381,7 +381,7 @@ def generate_doc():
     add_body_p(doc, "- Hiệu ứng kính mờ (Glassmorphism): Thanh điều hướng Header Sticky và các khối thẻ nổi được áp dụng kỹ thuật `backdrop-filter: blur(16px)` với độ trong suốt tinh tế, tạo chiều sâu không gian đa tầng.")
 
     add_body_p(doc, "2. Hình ảnh sản phẩm chất lượng cao sinh bởi Trí tuệ Nhân tạo (AI Image Generation):", bold_prefix="b. ")
-    add_body_p(doc, "Toàn bộ hình ảnh sản phẩm trong hệ thống HieuMini đều được khởi tạo trực tiếp bằng công nghệ AI sinh ảnh chuyên nghiệp, đảm bảo độ phân giải cao 1:1, góc chụp studio thương mại chuẩn mực, ánh sáng tự nhiên ấm áp và độ sắc nét chân thực. Danh mục hình ảnh bao gồm:")
+    add_body_p(doc, "Toàn bộ hình ảnh sản phẩm trong hệ thống DatCyber đều được khởi tạo trực tiếp bằng công nghệ AI sinh ảnh chuyên nghiệp, đảm bảo độ phân giải cao 1:1, góc chụp studio thương mại chuẩn mực, ánh sáng tự nhiên ấm áp và độ sắc nét chân thực. Danh mục hình ảnh bao gồm:")
     add_body_p(doc, "+ Nồi chiên không dầu điện tử `air_fryer.jpg`: Thân máy đen mờ viền đồng Rose Gold, màn hình kính cảm ứng hiển thị nhiệt độ sống động.")
     add_body_p(doc, "+ Robot hút bụi lau nhà thông minh `robot_vacuum.jpg`: Trạm sạc tự giặt sấy giẻ, cảm biến laser LiDAR phát sáng xanh công nghệ cao.")
     add_body_p(doc, "+ Máy ép chậm nguyên quả `slow_juicer.jpg`: Trục xoay inox và ly nước ép cam tươi nguyên chất bắt mắt.")
@@ -408,7 +408,7 @@ def generate_doc():
 
     # 3.2 Kết luận
     add_header_styled(doc, "3.2 Kết luận", level=2)
-    add_body_p(doc, "Sau quá trình nghiên cứu lý thuyết chuyên sâu, phân tích yêu cầu kỹ thuật và hiện thực hóa mã nguồn, dự án xây dựng website thương mại điện tử đồ gia dụng HieuMini bằng ngôn ngữ PHP và hệ quản trị cơ sở dữ liệu MySQL đã hoàn thành xuất sắc toàn bộ các mục tiêu đề ra.")
+    add_body_p(doc, "Sau quá trình nghiên cứu lý thuyết chuyên sâu, phân tích yêu cầu kỹ thuật và hiện thực hóa mã nguồn, dự án xây dựng website thương mại điện tử đồ gia dụng DatCyber bằng ngôn ngữ PHP và hệ quản trị cơ sở dữ liệu MySQL đã hoàn thành xuất sắc toàn bộ các mục tiêu đề ra.")
 
     add_body_p(doc, "1. Các kết quả nổi bật đạt được:", bold_prefix="a. ")
     add_body_p(doc, "- Về mặt kiến trúc và kỹ thuật: Xây dựng thành công hệ thống web hoàn chỉnh với mã nguồn PHP 8.x hướng cấu trúc rõ ràng, sử dụng kết nối cơ sở dữ liệu PDO an toàn tuyệt đối trước các nguy cơ tấn công SQL Injection. Cơ sở dữ liệu MySQL được thiết kế chuẩn mực 3NF với các ràng buộc khóa ngoại chặt chẽ và cơ chế Transaction đảm bảo toàn vẹn dữ liệu đơn hàng.")
@@ -423,7 +423,7 @@ def generate_doc():
     add_body_p(doc, "3. Hướng phát triển và mở rộng trong tương lai:", bold_prefix="c. ")
     add_body_p(doc, "- Tích hợp trợ lý ảo AI Chatbot thông minh hỗ trợ tư vấn sản phẩm, so sánh thông số kỹ thuật gia dụng và giải đáp thắc mắc cho khách hàng 24/7.")
     add_body_p(doc, "- Kết nối API cổng thanh toán thực tế (VNPAY Sandbox / MoMo Payment Gateway) và tích hợp tổng đài gửi tin nhắn SMS / Email Brandname tự động thông báo trạng thái đơn hàng.")
-    add_body_p(doc, "- Xây dựng ứng dụng di động HieuMini Mobile App (Flutter hoặc React Native) đồng bộ cơ sở dữ liệu với website để tăng cường trải nghiệm đa kênh (Omnichannel).")
+    add_body_p(doc, "- Xây dựng ứng dụng di động DatCyber Mobile App (Flutter hoặc React Native) đồng bộ cơ sở dữ liệu với website để tăng cường trải nghiệm đa kênh (Omnichannel).")
 
     # ================= TÀI LIỆU THAM KHẢO =================
     doc.add_page_break()
@@ -442,7 +442,8 @@ def generate_doc():
         add_body_p(doc, r, space_after=8)
 
     # Save document
-    outputPath = r"c:\Users\tranv\Desktop\HieuWeb04\BaoCao.docx"
+    import os
+    outputPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "BaoCao.docx")
     doc.save(outputPath)
     print(f"Report generated successfully at: {outputPath}")
 

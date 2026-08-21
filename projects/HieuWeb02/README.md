@@ -79,8 +79,8 @@ HieuWeb02/
 4. Chọn tệp `database/hieumini_db.sql` từ thư mục dự án và nhấn **Go** (Thực hiện).
 
 ### Bước 3: Truy cập Website
-- **Trang chủ Khách hàng:** `http://localhost/HieuWeb02/` (hoặc `http://localhost:8000` nếu chạy `php -S localhost:8000`)
-- **Trang Quản trị Admin:** `http://localhost/HieuWeb02/admin/`
+- **Trang chủ Khách hàng:** `http://localhost/DoAnWebsite/projects/HieuWeb02/` (hoặc `http://localhost:8000` nếu chạy `php -S localhost:8000`)
+- **Trang Quản trị Admin:** `http://localhost/DoAnWebsite/projects/HieuWeb02/admin/`
 
 ---
 

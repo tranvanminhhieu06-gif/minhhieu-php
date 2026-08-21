@@ -4,6 +4,10 @@
 # =====================================================================
 
 # ---------- Trang lỗi tuỳ chỉnh ----------
+# LƯU Ý: Apache yêu cầu đường dẫn TUYỆT ĐỐI tính từ thư mục gốc của máy chủ web.
+# Nếu bạn đặt dự án ở vị trí khác, hãy sửa lại dòng dưới cho khớp. Ví dụ:
+#   - Đặt tại htdocs/HieuMini        ->  ErrorDocument 404 /HieuMini/404.php
+#   - Đặt tại thư mục gốc tên miền   ->  ErrorDocument 404 /404.php
 ErrorDocument 404 /DoAnWebsite/projects/HieuMini/404.php
 
 # ---------- Bảo vệ tệp nhạy cảm ----------
@@ -20,6 +24,9 @@ ErrorDocument 404 /DoAnWebsite/projects/HieuMini/404.php
 # Cấm liệt kê thư mục
 Options -Indexes
 
+# LƯU Ý: việc cấm thực thi PHP trong thư mục tải lên được đặt tại
+# uploads/.htaccess, KHÔNG dùng khối <Directory> ở đây vì Apache
+# không cho phép <Directory> bên trong tệp .htaccess (gây lỗi 500).
 
 # ---------- Đường dẫn thân thiện (tuỳ chọn) ----------
 <IfModule mod_rewrite.c>

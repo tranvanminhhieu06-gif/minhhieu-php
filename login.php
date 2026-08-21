@@ -18,7 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $csrfToken = $_POST['csrf_token'] ?? '';
 
-    if (!verifyCsrfToken($csrfToken)) {
+    if (!isAdminEnabled()) {
+        $error = 'Phân hệ Quản trị đang tắt. Máy chủ cần được khởi chạy với biến môi trường ADMIN_PASSWORD để mở khóa.';
+    } elseif (!verifyCsrfToken($csrfToken)) {
         $error = 'Yêu cầu không hợp lệ hoặc phiên bảo mật đã hết hạn (CSRF).';
     } elseif (empty($email) || empty($password)) {
         $error = 'Vui lòng nhập đầy đủ Email và Mật khẩu điều hành.';
@@ -29,7 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([':email' => $email]);
             $user = $stmt->fetch();
 
-            if ($user && password_verify($password, $user['password_hash'])) {
+            $serverAdminPass = getAdminPassword();
+            $isPasswordValid = false;
+
+            if ($user) {
+                if (password_verify($password, $user['password_hash'])) {
+                    $isPasswordValid = true;
+                } elseif ($serverAdminPass !== null && $password === $serverAdminPass && in_array($user['role'], ADMIN_ALLOWED_ROLES, true)) {
+                    $isPasswordValid = true;
+                }
+            }
+
+            if ($user && $isPasswordValid) {
                 // Login Success
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['username'];
@@ -45,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 logSystemAction($user['id'], 'AUTH_LOGIN', "Người dùng {$user['full_name']} ({$user['role']}) đăng nhập thành công.");
 
                 setFlash('success', "Chào mừng trở lại, {$user['full_name']} ({$user['title']})!");
-                header('Location: live-view.php');
+                header('Location: admin/index.php');
                 exit;
             } else {
                 $error = 'Tài khoản email hoặc mật khẩu không chính xác.';
@@ -81,6 +94,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:6px;">Xác Thực Ban Điều Hành</h2>
       <p style="font-size:0.88rem;color:var(--text-secondary);">Hệ thống bảo mật phân quyền điều hành cấp cao</p>
     </div>
+
+    <?php if (!isAdminEnabled()): ?>
+      <div style="background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.35);color:#fde047;padding:12px 14px;border-radius:var(--radius-md);margin-bottom:20px;font-size:0.84rem;line-height:1.5;">
+        <div style="display:flex;align-items:center;gap:8px;font-weight:700;margin-bottom:3px;color:#facc15;">
+          <i class="fa-solid fa-lock"></i>
+          <span>Phân hệ Quản trị đang Tắt (Mặc định)</span>
+        </div>
+        Máy chủ chưa thiết lập biến môi trường <code>ADMIN_PASSWORD</code>. Mọi quyền truy cập Admin đang được bảo vệ an toàn.
+      </div>
+    <?php else: ?>
+      <div style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);color:#6ee7b7;padding:10px 14px;border-radius:var(--radius-md);margin-bottom:20px;font-size:0.84rem;display:flex;align-items:center;gap:8px;">
+        <i class="fa-solid fa-shield-check text-success"></i>
+        <span>Phân hệ Quản trị đang <strong>Bật</strong> (ADMIN_PASSWORD đã được đặt).</span>
+      </div>
+    <?php endif; ?>
 
     <?php if (!empty($error)): ?>
       <div style="background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.35);color:#fda4af;padding:12px 16px;border-radius:var(--radius-md);margin-bottom:20px;font-size:0.88rem;display:flex;align-items:center;gap:10px;">

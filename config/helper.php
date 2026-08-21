@@ -42,6 +42,29 @@ function verifyCsrfToken(?string $token): bool {
 
 // ==================== AUTHENTICATION & RBAC ====================
 
+/**
+ * Kiểm tra xem phân hệ Quản trị Admin của DoAnWebsite có được kích hoạt hay không.
+ * MẶC ĐỊNH TẮT HẲN: Chỉ bật khi máy chủ được khởi chạy có thiết lập biến môi trường ADMIN_PASSWORD.
+ */
+function isAdminEnabled(): bool {
+    $adminPass = getenv('ADMIN_PASSWORD');
+    if ($adminPass === false || $adminPass === null || trim((string)$adminPass) === '') {
+        $adminPass = $_ENV['ADMIN_PASSWORD'] ?? $_SERVER['ADMIN_PASSWORD'] ?? null;
+    }
+    return !empty($adminPass) && trim((string)$adminPass) !== '';
+}
+
+/**
+ * Lấy mật khẩu Quản trị viên từ biến môi trường của máy chủ
+ */
+function getAdminPassword(): ?string {
+    $adminPass = getenv('ADMIN_PASSWORD');
+    if ($adminPass === false || $adminPass === null || trim((string)$adminPass) === '') {
+        $adminPass = $_ENV['ADMIN_PASSWORD'] ?? $_SERVER['ADMIN_PASSWORD'] ?? null;
+    }
+    return !empty($adminPass) ? trim((string)$adminPass) : null;
+}
+
 function isLoggedIn(): bool {
     return !empty($_SESSION['user_id']) && !empty($_SESSION['user_role']);
 }

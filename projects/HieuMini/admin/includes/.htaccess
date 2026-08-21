@@ -1,0 +1,2 @@
+# Cấm truy cập trực tiếp qua trình duyệt vào khung giao diện quản trị.
+Require all denied

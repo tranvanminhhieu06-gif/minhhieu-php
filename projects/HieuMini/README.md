@@ -12,7 +12,9 @@
 
 **Website thương mại điện tử bán mã nguồn dự án website — viết bằng PHP 8 thuần và MySQL, không dùng framework.**
 
-[Trang chủ](#) • [Kho dự án](#) • [Quản trị](#-tài-khoản-dùng-thử) • [Báo cáo đồ án](BaoCao.docx)
+[Cài đặt 5 phút](#-5-cài-đặt-trong-5-phút) • [Tài khoản dùng thử](#-6-tài-khoản-dùng-thử) • [Cấu trúc thư mục](#-7-cấu-trúc-thư-mục) • [Báo cáo đồ án](BaoCao.docx)
+
+*Sau khi cài đặt:* <http://localhost/DoAnWebsite/projects/HieuMini/> · <http://localhost/DoAnWebsite/projects/HieuMini/admin/login.php>
 
 </div>
 
@@ -155,9 +157,9 @@ define('DB_PASS', '');        // XAMPP mặc định để trống
 |---|---|
 | <http://localhost/DoAnWebsite/projects/HieuMini/> | Trang chủ |
 | <http://localhost/DoAnWebsite/projects/HieuMini/admin/login.php> | Đăng nhập quản trị |
-| <http://localhost/DoAnWebsite/projects/HieuMini/test_system.php> | **Tự kiểm tra hệ thống (37 mục)** |
+| <http://localhost/DoAnWebsite/projects/HieuMini/test_system.php> | **Tự kiểm tra hệ thống (39 mục)** |
 
-> 💡 Chạy `test_system.php` trước tiên. Trang này kiểm tra phiên bản PHP, các phần mở rộng, kết nối CSDL, sự tồn tại của 12 bảng, 17 tệp lõi, ảnh đại diện dự án và các cơ chế bảo mật.
+> 💡 Chạy `test_system.php` trước tiên. Trang này kiểm tra 39 hạng mục: phiên bản PHP, các phần mở rộng, kết nối CSDL, sự tồn tại của 12 bảng, 17 tệp lõi, ảnh đại diện dự án và các cơ chế bảo mật.
 
 ---
 
@@ -205,6 +207,7 @@ HieuMini/
 ├── 404.php                    # Trang lỗi thân thiện
 │
 ├── includes/
+│   ├── .htaccess              # Cấm truy cập trực tiếp thư mục lõi qua trình duyệt
 │   ├── config.php             # Kết nối PDO, phiên, hằng số, tự phát hiện BASE_URL
 │   ├── functions.php          # 6 nhóm hàm dùng chung
 │   ├── header.php             # Toàn bộ thẻ SEO + JSON-LD + điều hướng
@@ -212,7 +215,7 @@ HieuMini/
 │   └── project-card.php       # Thẻ dự án dùng lại
 │
 ├── admin/
-│   ├── includes/header.php · footer.php
+│   ├── includes/.htaccess · header.php · footer.php
 │   ├── index.php              # Bảng điều khiển
 │   ├── login.php
 │   ├── projects.php · project-form.php
@@ -231,7 +234,8 @@ HieuMini/
 │       ├── projects/          # 18 ảnh đại diện dự án
 │       └── blog/              # 6 ảnh bài viết
 │
-└── uploads/                   # Thư mục tải lên (đã tắt thực thi PHP)
+└── uploads/
+    └── .htaccess              # Chặn thực thi PHP/CGI với mọi tệp được tải lên
 ```
 
 ---
@@ -428,7 +432,7 @@ Sửa 2 biến `--font-display`, `--font-body` trong `style.css` và dòng `<lin
 |---|---|
 | Truy cập | 19 trang công khai (200) · 16 trang quản trị (200) · trang riêng tư khi chưa đăng nhập (302) |
 | Nghiệp vụ | Thêm giỏ AJAX · đổi giấy phép ×1,6 · mã giảm giá 20% · đặt hàng đầy đủ · đánh giá · yêu thích |
-| Bảo mật | Thiếu token CSRF → 419 · đăng nhập sai 6 lần → khoá tạm |
+| Bảo mật | Thiếu token CSRF → 403 · đăng nhập sai 6 lần → khoá tạm |
 | Dữ liệu | Thêm dự án · trùng slug → báo lỗi · lọc + sắp xếp + phân trang |
 | SEO | `sitemap.php` (29 URL) · `rss.php` · đủ 6 loại schema |
 | Giao diện | 390px · 768px · 1440px — không tràn ngang |
@@ -479,7 +483,7 @@ Chưa bật `mod_rewrite`. Mở `httpd.conf`, bỏ dấu `#` ở dòng `LoadModu
 <details>
 <summary><b>Bấm "Thêm giỏ" không có phản hồi</b></summary>
 
-Mở Console của trình duyệt (F12). Nếu thấy lỗi 419 nghĩa là token CSRF hết hạn — tải lại trang. Nếu lỗi 404, kiểm tra `ajax-cart.php` có tồn tại không.
+Mở Console của trình duyệt (F12). Nếu thấy lỗi 403 nghĩa là token CSRF hết hạn — tải lại trang. Nếu lỗi 404, kiểm tra `ajax-cart.php` có tồn tại không.
 </details>
 
 <details>

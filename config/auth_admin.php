@@ -55,6 +55,12 @@ function getAdminUser(): ?array {
  * @param string $loginRedirect Trang chuyển hướng khi chưa đăng nhập
  */
 function requireAdminAuth(array $roles = ADMIN_ALLOWED_ROLES, string $loginRedirect = '../login.php'): void {
+    // 0. MẶC ĐỊNH TẮT HẲN: Phân hệ Admin chỉ bật khi server có biến môi trường ADMIN_PASSWORD
+    if (!isAdminEnabled()) {
+        renderAdminDisabledPage();
+        exit;
+    }
+
     // 1. Chưa đăng nhập -> Chuyển hướng về cổng đăng nhập Admin
     if (empty($_SESSION['user_id']) || empty($_SESSION['user_role'])) {
         $_SESSION['flash_error'] = 'Khu vực quản trị yêu cầu đăng nhập tài khoản Ban Điều Hành (CEO / CDO / Admin).';
@@ -69,6 +75,77 @@ function requireAdminAuth(array $roles = ADMIN_ALLOWED_ROLES, string $loginRedir
         renderAdminForbiddenPage($currentRole);
         exit;
     }
+}
+
+/**
+ * Hiển thị giao diện thông báo Khóa Admin khi phân hệ Quản trị bị tắt mặc định
+ * (Chỉ bật khi máy chủ được khởi chạy có truyền biến môi trường ADMIN_PASSWORD)
+ */
+function renderAdminDisabledPage(): void {
+    http_response_code(403);
+    ?>
+    <!DOCTYPE html>
+    <html lang="vi" data-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>403 - Phân Hệ Quản Trị Đang Tắt | HIEU CEO Security Guard</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="../assets/css/ceo-core.css">
+        <link rel="stylesheet" href="../assets/css/animations.css">
+    </head>
+    <body style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <div class="ceo-mesh-bg"></div>
+
+        <div class="glass-card animate-scale-up" style="max-width:580px;width:100%;padding:40px;text-align:center;border-color:rgba(234,179,8,0.4);box-shadow:0 25px 60px rgba(0,0,0,0.8), 0 0 35px rgba(234,179,8,0.2);">
+            <div style="width:76px;height:76px;border-radius:50%;background:rgba(234,179,8,0.15);border:1px solid rgba(234,179,8,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 20px auto;color:#facc15;font-size:2.2rem;">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <span class="badge-ceo badge-ready" style="background:rgba(234,179,8,0.2);color:#facc15;border-color:rgba(234,179,8,0.4);margin-bottom:12px;">
+                🔒 ADMIN ACCESS DISABLED (DEFAULT)
+            </span>
+
+            <h1 style="font-size:1.75rem;font-weight:800;color:var(--text-primary);margin-bottom:12px;">
+                Phân Hệ Quản Trị Đang Tắt
+            </h1>
+
+            <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6;margin-bottom:24px;">
+                Theo quy chuẩn bảo mật, toàn bộ trang Quản trị Admin của <strong>DoAnWebsite</strong> mặc định được <strong>tắt hoàn toàn</strong>. Phân hệ này chỉ được kích hoạt khi máy chủ được khởi chạy có thiết lập biến môi trường <code>ADMIN_PASSWORD</code>.
+            </p>
+
+            <div style="background:rgba(0,0,0,0.45);border:1px dashed rgba(234,179,8,0.3);border-radius:12px;padding:16px;margin-bottom:28px;text-align:left;font-size:0.88rem;">
+                <div style="color:#facc15;font-weight:700;margin-bottom:8px;">
+                    <i class="fa-solid fa-terminal mr-1"></i> Cách kích hoạt phân hệ Admin khi chạy Server:
+                </div>
+                <div style="color:var(--text-secondary);line-height:1.7;font-family:monospace;font-size:0.83rem;">
+                    <div style="margin-bottom:6px;">
+                        <span style="color:#94a3b8;"># PowerShell (Windows):</span><br>
+                        <code style="color:#38bdf8;">$env:ADMIN_PASSWORD="mat_khau_cua_ban"; php -S localhost:8000</code>
+                    </div>
+                    <div style="margin-bottom:6px;">
+                        <span style="color:#94a3b8;"># Linux / macOS / Bash:</span><br>
+                        <code style="color:#38bdf8;">ADMIN_PASSWORD="mat_khau_cua_ban" php -S localhost:8000</code>
+                    </div>
+                    <div>
+                        <span style="color:#94a3b8;"># Cloud / Docker (Render/Apache):</span><br>
+                        <span style="color:#cbd5e1;">Thêm biến môi trường <code>ADMIN_PASSWORD</code> vào Environment Variables.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="../explore.php" class="btn-ceo-primary btn-ripple" style="padding:10px 22px;">
+                    <i class="fa-solid fa-compass mr-1"></i> Đến Cổng Khám Phá
+                </a>
+                <a href="../live-view.php" class="btn-ceo-secondary" style="padding:10px 20px;">
+                    <i class="fa-solid fa-desktop mr-1"></i> Xem Trình Chiếu Live
+                </a>
+            </div>
+        </div>
+    </body>
+    </html>
+    <?php
 }
 
 /**

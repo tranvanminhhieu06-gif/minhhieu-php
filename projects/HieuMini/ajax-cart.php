@@ -19,8 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     json_out(['ok' => false, 'message' => 'Phương thức không được hỗ trợ.']);
 }
 
+// Mã 403 chuẩn HTTP; mã 419 phi tiêu chuẩn sẽ bị Apache đổi thành 500.
 if (!csrf_verify($_POST['csrf_token'] ?? null)) {
-    http_response_code(419);
+    http_response_code(403);
     json_out(['ok' => false, 'message' => 'Phiên làm việc hết hạn, vui lòng tải lại trang.']);
 }
 

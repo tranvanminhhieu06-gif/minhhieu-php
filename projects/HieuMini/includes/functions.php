@@ -141,11 +141,15 @@ function csrf_verify(?string $token): bool
         && hash_equals($_SESSION['csrf_token'], $token);
 }
 
-/** Dừng ngay nếu POST không kèm token hợp lệ. */
+/**
+ * Dừng ngay nếu POST không kèm token hợp lệ.
+ * Dùng mã 403 (chuẩn HTTP) thay vì 419 - Apache không nhận diện được
+ * mã phi tiêu chuẩn 419 và sẽ tự đổi thành 500 Internal Server Error.
+ */
 function csrf_guard(): void
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !csrf_verify($_POST['csrf_token'] ?? null)) {
-        http_response_code(419);
+        http_response_code(403);
         exit('Phiên làm việc đã hết hạn. Vui lòng tải lại trang và thử lại.');
     }
 }

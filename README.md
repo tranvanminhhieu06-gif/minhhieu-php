@@ -150,6 +150,13 @@ Phân hệ dành riêng cho Khách hàng, Độc giả và Thành viên trải n
 
 ## 👑 5. Phân Hệ Quản Trị Điều Hành CEO (Admin Suite)
 
+> 🔒 **CHÍNH SÁCH BẢO MẬT ADMIN (Chỉ áp dụng cho DoAnWebsite):**
+> Trang Admin mặc định **TẮT HẲN** để đảm bảo an toàn tuyệt đối. Phân hệ Admin chỉ được kích hoạt khi máy chủ được khởi chạy có thiết lập biến môi trường `ADMIN_PASSWORD`.
+> 
+> - **Chạy với PHP Server:** `ADMIN_PASSWORD=mat_khau_cua_ban php -S localhost:8000`
+> - **Chạy trên PowerShell:** `$env:ADMIN_PASSWORD="mat_khau_cua_ban"; php -S localhost:8000`
+> - **Cấu hình trên Cloud (Render / Docker):** Đặt `ADMIN_PASSWORD` trong danh sách Environment Variables.
+
 Dành riêng cho Ban Điều Hành cấp cao quản lý toàn bộ hệ thống website:
 
 1. **Bảng Điều Khiển Tổng Quan (`admin/index.php`)**:

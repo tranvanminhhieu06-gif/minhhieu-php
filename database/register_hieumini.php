@@ -131,7 +131,12 @@ try {
     $ok = false;
 }
 
-$base = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? '', 1), '/');
+/* Tệp này nằm trong DoAnWebsite/database/ nên phải lùi HAI cấp
+   mới ra đường dẫn gốc của hub (ví dụ: /DoAnWebsite). */
+$base = rtrim(dirname((string)($_SERVER['SCRIPT_NAME'] ?? '/index.php'), 2), '/\\');
+if ($base === '.' || $base === '') {
+    $base = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="vi">

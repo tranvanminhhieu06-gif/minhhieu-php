@@ -1,0 +1,4 @@
+# Cấm truy cập trực tiếp qua trình duyệt vào thư viện lõi.
+# Các tệp PHP khác vẫn nạp được bằng require/include vì đó là thao tác
+# ở mức hệ thống tệp, không đi qua máy chủ web.
+Require all denied

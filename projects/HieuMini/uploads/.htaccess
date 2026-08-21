@@ -1,4 +1,22 @@
-# Ngăn chặn thực thi script PHP trong thư mục uploads
-<FilesMatch "\.(php|phtml|php3|php4|php5|phps)$">
+# =====================================================================
+#  HieuMini - Bảo vệ thư mục tải lên
+#  Chặn mọi khả năng thực thi mã trong thư mục này, kể cả khi kẻ tấn công
+#  tải lên được tệp .php nguỵ trang dưới dạng ảnh.
+# =====================================================================
+
+# 1. Từ chối truy cập trực tiếp mọi tệp có thể thực thi
+<FilesMatch "\.(?i:php|php[3-8]|phtml|phps|phar|pl|py|cgi|sh|asp|aspx|jsp)$">
   Require all denied
 </FilesMatch>
+
+# 2. Tắt cơ chế thực thi CGI và bỏ liệt kê thư mục
+Options -ExecCGI -Indexes
+
+# 3. Gỡ mọi trình xử lý mã nguồn khỏi thư mục này
+RemoveHandler .php .php3 .php4 .php5 .php7 .php8 .phtml .phar
+RemoveType .php .php3 .php4 .php5 .php7 .php8 .phtml .phar
+
+# 4. Buộc trình duyệt tải xuống thay vì diễn giải nội dung
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>

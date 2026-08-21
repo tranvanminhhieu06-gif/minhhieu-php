@@ -58,11 +58,16 @@ if ($currentTheme) {
     $liveUrl = 'projects/' . $selectedFolder . '/index.php';
 }
 
+// Kiểm tra sự tồn tại của trang Quản Trị (Admin) dự án
+$targetFolder = $selectedFolder ?: ($currentTheme ? basename($currentTheme['folder_path']) : 'HieuWeb01');
+$adminRelUrl = 'projects/' . $targetFolder . '/admin/index.php';
+$hasAdmin = file_exists(__DIR__ . '/' . $adminRelUrl);
+
 // Lấy thông tin tài khoản demo & cấu hình
 $projectName = $currentTheme ? $currentTheme['name'] : $selectedFolder;
 $projectTagline = $currentTheme ? ($currentTheme['tagline'] ?: $currentTheme['description']) : "Dự án website trong thư mục projects/{$selectedFolder}";
 $projectCode = $currentTheme ? $currentTheme['code_name'] : $selectedFolder;
-$primaryColor = $currentTheme ? ($currentTheme['primary_color'] ?: '#6366f1') : '#6366f1';
+$primaryColor = $currentTheme ? ($currentTheme['primary_color'] ?: '#ffb8e7') : '#ffb8e7';
 $demoCreds = getDemoCredentialsForProject($selectedFolder ?: $projectCode);
 
 // Kiểm tra trạng thái yêu thích
@@ -104,7 +109,7 @@ $flash = getFlash();
 <body class="live-workspace">
 
   <!-- Ambient Light Glow matching project theme color -->
-  <div class="live-ambient-glow" id="ambient-glow" style="background: radial-gradient(circle, <?= e($primaryColor) ?>33 0%, rgba(6,182,212,0.08) 40%, transparent 70%);"></div>
+  <div class="live-ambient-glow" id="ambient-glow" style="background: radial-gradient(circle, <?= e($primaryColor) ?>33 0%, rgba(137,245,255,0.08) 40%, transparent 70%);"></div>
 
   <!-- ==================== 1. TOP LIVE TOOLBAR ==================== -->
   <header class="live-toolbar animate-fade-down">
@@ -131,7 +136,7 @@ $flash = getFlash();
             <?php foreach ($allThemes as $t): ?>
               <?php 
                 $isCurrent = ($currentTheme && $currentTheme['id'] == $t['id']);
-                $tColor = $t['primary_color'] ?: '#6366f1';
+                $tColor = $t['primary_color'] ?: '#ffb8e7';
               ?>
               <a href="live-view.php?theme_id=<?= $t['id'] ?>" class="dropdown-item-project <?= $isCurrent ? 'active' : '' ?>">
                 <span style="width:8px;height:8px;border-radius:50%;background:<?= e($tColor) ?>;"></span>
@@ -148,7 +153,7 @@ $flash = getFlash();
             <?php foreach ($allProjects as $p): ?>
               <?php $isCurrent = ($selectedFolder === $p['folder_name']); ?>
               <a href="live-view.php?project=<?= urlencode($p['folder_name']) ?>" class="dropdown-item-project <?= $isCurrent ? 'active' : '' ?>">
-                <span style="width:8px;height:8px;border-radius:50%;background:#38bdf8;"></span>
+                <span style="width:8px;height:8px;border-radius:50%;background:#89f5ff;"></span>
                 <div style="flex:1;min-width:0;">
                   <div style="font-size:0.85rem;font-weight:700;"><?= e($p['folder_name']) ?></div>
                   <div style="font-size:0.72rem;color:var(--text-muted);">projects/<?= e($p['folder_name']) ?></div>
@@ -198,8 +203,15 @@ $flash = getFlash();
 
       <!-- Tech Specs / Demo Account Button -->
       <button id="btn-open-specs-modal" class="btn-ceo-secondary" style="padding:7px 12px;font-size:0.82rem;" title="Xem thông tin chi tiết & tài khoản mẫu">
-        <i class="fa-solid fa-circle-info mr-1" style="color:#38bdf8;"></i> <span class="hide-mobile">Thông Tin</span>
+        <i class="fa-solid fa-circle-info mr-1" style="color:#89f5ff;"></i> <span class="hide-mobile">Thông Tin</span>
       </button>
+
+      <!-- Admin Panel Direct Switcher Button -->
+      <?php if ($hasAdmin): ?>
+        <button id="btn-toggle-admin-mode" class="btn-ceo-secondary" style="padding:7px 12px;font-size:0.82rem;border-color:rgba(245,158,11,0.5);color:#fbbf24;" title="Chuyển đổi giao diện Khách Hàng / Quản Trị Admin">
+          <i class="fa-solid fa-shield-halved mr-1"></i> <span id="admin-mode-label" class="hide-mobile">Admin Panel</span>
+        </button>
+      <?php endif; ?>
 
       <!-- Mobile QR Code Button -->
       <button id="btn-open-qr-modal" class="btn-icon" title="Quét mã QR để xem live trên điện thoại cá nhân">
@@ -283,7 +295,7 @@ $flash = getFlash();
   <aside class="projects-drawer-panel" id="projects-drawer">
     <div style="padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:space-between;">
       <div style="display:flex;align-items:center;gap:8px;">
-        <i class="fa-solid fa-folder-tree" style="color:#38bdf8;"></i>
+        <i class="fa-solid fa-folder-tree" style="color:#89f5ff;"></i>
         <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Kho Dự Án Website</h3>
       </div>
       <button id="btn-close-drawer" class="btn-icon" style="width:32px;height:32px;"><i class="fa-solid fa-xmark"></i></button>
@@ -300,9 +312,9 @@ $flash = getFlash();
         <?php foreach ($allThemes as $t): ?>
           <?php 
             $isActive = ($currentTheme && $currentTheme['id'] == $t['id']);
-            $tColor = $t['primary_color'] ?: '#6366f1';
+            $tColor = $t['primary_color'] ?: '#ffb8e7';
           ?>
-          <div class="glass-card drawer-item" data-name="<?= strtolower(e($t['name'] . ' ' . $t['code_name'])) ?>" style="padding:14px;margin-bottom:10px;cursor:pointer;border-color:<?= $isActive ? 'rgba(99,102,241,0.6)' : 'rgba(255,255,255,0.08)' ?>;background:<?= $isActive ? 'rgba(99,102,241,0.12)' : 'rgba(15,23,42,0.6)' ?>;" onclick="window.location.href='live-view.php?theme_id=<?= $t['id'] ?>'">
+          <div class="glass-card drawer-item" data-name="<?= strtolower(e($t['name'] . ' ' . $t['code_name'])) ?>" style="padding:14px;margin-bottom:10px;cursor:pointer;border-color:<?= $isActive ? 'rgba(255,184,231,0.6)' : 'rgba(255,255,255,0.08)' ?>;background:<?= $isActive ? 'rgba(255,184,231,0.12)' : 'rgba(16,16,16,0.6)' ?>;" onclick="window.location.href='live-view.php?theme_id=<?= $t['id'] ?>'">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
               <span class="badge-ceo" style="font-size:0.68rem;padding:2px 8px;border-color:<?= e($tColor) ?>66;color:<?= e($tColor) ?>;">
                 <?= e($t['category_name']) ?>
@@ -316,7 +328,7 @@ $flash = getFlash();
             </p>
 
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.74rem;">
-              <span style="color:#38bdf8;font-family:var(--font-mono);"><i class="fa-solid fa-folder mr-1"></i><?= e($t['folder_path']) ?></span>
+              <span style="color:#89f5ff;font-family:var(--font-mono);"><i class="fa-solid fa-folder mr-1"></i><?= e($t['folder_path']) ?></span>
               <span style="color:var(--text-accent);font-weight:600;">Xem Ngay →</span>
             </div>
           </div>
@@ -324,9 +336,9 @@ $flash = getFlash();
       <?php else: ?>
         <?php foreach ($allProjects as $p): ?>
           <?php $isActive = ($selectedFolder === $p['folder_name']); ?>
-          <div class="glass-card drawer-item" data-name="<?= strtolower(e($p['folder_name'])) ?>" style="padding:14px;margin-bottom:10px;cursor:pointer;border-color:<?= $isActive ? 'rgba(99,102,241,0.6)' : 'rgba(255,255,255,0.08)' ?>;background:<?= $isActive ? 'rgba(99,102,241,0.12)' : 'rgba(15,23,42,0.6)' ?>;" onclick="window.location.href='live-view.php?project=<?= urlencode($p['folder_name']) ?>'">
+          <div class="glass-card drawer-item" data-name="<?= strtolower(e($p['folder_name'])) ?>" style="padding:14px;margin-bottom:10px;cursor:pointer;border-color:<?= $isActive ? 'rgba(255,184,231,0.6)' : 'rgba(255,255,255,0.08)' ?>;background:<?= $isActive ? 'rgba(255,184,231,0.12)' : 'rgba(16,16,16,0.6)' ?>;" onclick="window.location.href='live-view.php?project=<?= urlencode($p['folder_name']) ?>'">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span class="badge-ceo" style="font-size:0.68rem;padding:2px 8px;border-color:#38bdf866;color:#38bdf8;">
+              <span class="badge-ceo" style="font-size:0.68rem;padding:2px 8px;border-color:#89f5ff66;color:#89f5ff;">
                 Dự Án projects/
               </span>
               <span style="font-size:0.75rem;color:var(--text-muted);"><i class="fa-solid fa-folder text-accent mr-1"></i><?= $p['file_count'] ?> files</span>
@@ -338,7 +350,7 @@ $flash = getFlash();
             </p>
 
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.74rem;">
-              <span style="color:#38bdf8;font-family:var(--font-mono);">projects/<?= e($p['folder_name']) ?></span>
+              <span style="color:#89f5ff;font-family:var(--font-mono);">projects/<?= e($p['folder_name']) ?></span>
               <span style="color:var(--text-accent);font-weight:600;">Xem Ngay →</span>
             </div>
           </div>
@@ -354,7 +366,7 @@ $flash = getFlash();
     <div class="live-modal-content animate-scale-up">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
         <div style="display:flex;align-items:center;gap:10px;">
-          <div style="width:36px;height:36px;border-radius:10px;background:rgba(56,189,248,0.2);display:flex;align-items:center;justify-content:center;color:#38bdf8;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(137,245,255,0.2);display:flex;align-items:center;justify-content:center;color:#89f5ff;">
             <i class="fa-solid fa-laptop-code"></i>
           </div>
           <div>
@@ -412,10 +424,15 @@ $flash = getFlash();
         </ul>
       </div>
 
-      <div style="display:flex;gap:10px;">
-        <a href="<?= e($liveUrl) ?>" target="_blank" class="btn-ceo-primary btn-ripple" style="flex:1;padding:10px;font-size:0.88rem;justify-content:center;">
-          <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i> Mở Trực Tiếp Tab Mới
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="<?= e($liveUrl) ?>" target="_blank" class="btn-ceo-primary btn-ripple" style="flex:1;min-width:140px;padding:10px;font-size:0.88rem;justify-content:center;">
+          <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i> Mở Bán Hàng
         </a>
+        <?php if ($hasAdmin): ?>
+          <a href="<?= e($adminRelUrl) ?>" target="_blank" class="btn-ceo-secondary" style="flex:1;min-width:140px;padding:10px;font-size:0.88rem;justify-content:center;color:#fbbf24;border-color:rgba(245,158,11,0.5);">
+            <i class="fa-solid fa-shield-halved mr-2"></i> Mở Admin Panel
+          </a>
+        <?php endif; ?>
         <button class="btn-ceo-secondary btn-close-modal" style="padding:10px 18px;font-size:0.88rem;">Đóng</button>
       </div>
     </div>
@@ -463,7 +480,7 @@ $flash = getFlash();
         <input type="hidden" name="theme_id" value="<?= $currentTheme ? $currentTheme['id'] : 1 ?>">
 
         <!-- Star selector -->
-        <div style="display:flex;justify-content:center;gap:12px;font-size:1.8rem;margin-bottom:20px;color:#cbd5e1;cursor:pointer;" id="star-rating-container">
+        <div style="display:flex;justify-content:center;gap:12px;font-size:1.8rem;margin-bottom:20px;color:#d4d4d4;cursor:pointer;" id="star-rating-container">
           <i class="fa-solid fa-star" data-rating="1"></i>
           <i class="fa-solid fa-star" data-rating="2"></i>
           <i class="fa-solid fa-star" data-rating="3"></i>
@@ -552,6 +569,34 @@ $flash = getFlash();
       setTimeout(() => liveIframe.classList.remove('loading'), 400);
       showToast('Đang tải lại giao diện...', 'fa-rotate-right');
     });
+
+    // Admin Mode Direct Switcher
+    const btnAdminMode = document.getElementById('btn-toggle-admin-mode');
+    const adminModeLabel = document.getElementById('admin-mode-label');
+    const storeUrl = '<?= e($liveUrl) ?>';
+    const adminUrl = '<?= e($adminRelUrl) ?>';
+    let inAdminMode = false;
+
+    if (btnAdminMode) {
+      btnAdminMode.addEventListener('click', () => {
+        inAdminMode = !inAdminMode;
+        liveIframe.classList.add('loading');
+        liveIframe.src = inAdminMode ? adminUrl : storeUrl;
+        setTimeout(() => liveIframe.classList.remove('loading'), 350);
+
+        if (inAdminMode) {
+          btnAdminMode.style.background = 'rgba(245, 158, 11, 0.25)';
+          btnAdminMode.style.borderColor = '#fbbf24';
+          if (adminModeLabel) adminModeLabel.textContent = 'Trang Bán Hàng';
+          showToast('Đã chuyển sang Quản Trị Super Admin', 'fa-shield-halved');
+        } else {
+          btnAdminMode.style.background = '';
+          btnAdminMode.style.borderColor = 'rgba(245, 158, 11, 0.5)';
+          if (adminModeLabel) adminModeLabel.textContent = 'Admin Panel';
+          showToast('Đã chuyển về Giao diện Khách Hàng', 'fa-store');
+        }
+      });
+    }
 
     // Toggle Project Dropdown
     const toggleDropdownBtn = document.getElementById('btn-toggle-project-dropdown');

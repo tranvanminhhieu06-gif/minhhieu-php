@@ -41,6 +41,7 @@
                         <li><a href="#">Hướng Dẫn Bảo Quản Quần Áo</a></li>
                         <li><a href="#">Chính Sách Bảo Mật Thông Tin</a></li>
                         <li><a href="my_orders.php">Tra Cứu Tình Trạng Đơn Hàng</a></li>
+                        <li><a href="admin/index.php" style="color: #fbbf24; font-weight: 700;"><i class="fa-solid fa-shield-halved mr-1"></i> Quản Trị Hệ Thống (Admin)</a></li>
                     </ul>
                 </div>
 

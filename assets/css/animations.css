@@ -12,10 +12,10 @@
 
 @keyframes ceoPulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3), inset 0 0 10px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 15px rgba(255, 184, 231, 0.3), inset 0 0 10px rgba(255, 184, 231, 0.1);
   }
   50% {
-    box-shadow: 0 0 35px rgba(99, 102, 241, 0.7), inset 0 0 20px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 0 35px rgba(255, 184, 231, 0.7), inset 0 0 20px rgba(255, 184, 231, 0.3);
   }
 }
 
@@ -108,12 +108,12 @@
 
 .ceo-card-tilt:hover {
   transform: translateY(-6px) scale(1.015);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 184, 231, 0.35);
 }
 
 /* Gradient Shimmer Text */
 .text-shimmer {
-  background: linear-gradient(90deg, #f8fafc 0%, #a855f7 30%, #38bdf8 60%, #f8fafc 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #d68cb8 30%, #89f5ff 60%, #ffffff 100%);
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
@@ -128,7 +128,7 @@
 }
 
 .text-cyan-gradient {
-  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #0284c7 100%);
+  background: linear-gradient(135deg, #89f5ff 0%, #89f5ff 50%, #4fd8e8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -190,7 +190,7 @@
 }
 
 .modal-box {
-  background: #0f172a;
+  background: #101010;
   border: 1px solid var(--border-glass-hover);
   border-radius: var(--radius-xl);
   padding: 36px;
@@ -221,7 +221,7 @@
   pointer-events: auto;
   min-width: 320px;
   max-width: 420px;
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(16, 16, 16, 0.95);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
@@ -242,5 +242,5 @@
 
 .toast-card.success { border-left: 4px solid #10b981; }
 .toast-card.error { border-left: 4px solid #f43f5e; }
-.toast-card.info { border-left: 4px solid #38bdf8; }
+.toast-card.info { border-left: 4px solid #89f5ff; }
 .toast-card.warning { border-left: 4px solid #f59e0b; }

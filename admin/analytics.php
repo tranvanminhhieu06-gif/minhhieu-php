@@ -28,10 +28,10 @@ $analytics = $db->query("SELECT t.name, t.code_name, AVG(a.conversion_rate) as a
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .admin-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-    .admin-sidebar { background: #090d16; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
+    .admin-sidebar { background: #0a0a0a; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
     .sidebar-menu { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .sidebar-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-md); font-weight: 600; font-size: 0.92rem; }
-    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(99, 102, 241, 0.15); color: #818cf8; border-left: 3px solid #6366f1; }
+    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(255, 184, 231, 0.15); color: #ffd4f0; border-left: 3px solid #ffb8e7; }
     .admin-main { padding: 30px 40px; overflow-y: auto; }
   </style>
 </head>
@@ -100,7 +100,7 @@ $analytics = $db->query("SELECT t.name, t.code_name, AVG(a.conversion_rate) as a
                 <td style="padding:14px 12px;text-align:center;"><?= number_format((float)($row['total_views'] ?: 15400)) ?></td>
                 <td style="padding:14px 12px;text-align:center;color:#34d399;font-weight:600;"><?= number_format((float)($row['avg_speed'] ?: 340)) ?> ms</td>
                 <td style="padding:14px 12px;text-align:center;color:#fbbf24;"><?= number_format((float)($row['avg_bounce'] ?: 21.5), 1) ?>%</td>
-                <td style="padding:14px 12px;text-align:center;color:#818cf8;font-weight:700;"><?= number_format((float)($row['avg_conv'] ?: 8.4), 2) ?>%</td>
+                <td style="padding:14px 12px;text-align:center;color:#ffd4f0;font-weight:700;"><?= number_format((float)($row['avg_conv'] ?: 8.4), 2) ?>%</td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -119,7 +119,7 @@ $analytics = $db->query("SELECT t.name, t.code_name, AVG(a.conversion_rate) as a
         datasets: [{
           label: 'Tỉ Lệ Chuyển Đổi %',
           data: [9.25, 7.80, 8.10, 8.70, 9.60, 10.40],
-          backgroundColor: ['#6366f1', '#0284c7', '#10b981', '#8b5cf6', '#ef4444', '#a855f7'],
+          backgroundColor: ['#ffb8e7', '#4fd8e8', '#10b981', '#d68cb8', '#ef4444', '#d68cb8'],
           borderRadius: 8
         }]
       },
@@ -128,8 +128,8 @@ $analytics = $db->query("SELECT t.name, t.code_name, AVG(a.conversion_rate) as a
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } },
-          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }
+          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#737373' } },
+          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#737373' } }
         }
       }
     });
@@ -141,7 +141,7 @@ $analytics = $db->query("SELECT t.name, t.code_name, AVG(a.conversion_rate) as a
         labels: ['Desktop / Laptop (58.4%)', 'Mobile Smartphone (34.2%)', 'Tablet / iPad (7.4%)'],
         datasets: [{
           data: [58.4, 34.2, 7.4],
-          backgroundColor: ['#6366f1', '#ec4899', '#06b6d4'],
+          backgroundColor: ['#ffb8e7', '#89f5ff', '#89f5ff'],
           borderWidth: 0
         }]
       },
@@ -149,7 +149,7 @@ $analytics = $db->query("SELECT t.name, t.code_name, AVG(a.conversion_rate) as a
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 11 } } }
+          legend: { position: 'bottom', labels: { color: '#a3a3a3', font: { size: 11 } } }
         }
       }
     });

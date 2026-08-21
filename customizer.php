@@ -36,7 +36,7 @@ $tokens = getThemeTokens($themeId);
       overflow: hidden;
     }
     .customizer-sidebar {
-      background: #0b0f19;
+      background: #050505;
       border-right: 1px solid var(--border-glass);
       display: flex;
       flex-direction: column;
@@ -46,7 +46,7 @@ $tokens = getThemeTokens($themeId);
     .customizer-header {
       padding: 20px 24px;
       border-bottom: 1px solid var(--border-glass);
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(16, 16, 16, 0.8);
       position: sticky;
       top: 0;
       z-index: 10;
@@ -56,7 +56,7 @@ $tokens = getThemeTokens($themeId);
       flex: 1;
     }
     .customizer-section-card {
-      background: rgba(30, 41, 59, 0.4);
+      background: rgba(28, 28, 28, 0.4);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-md);
       padding: 16px;
@@ -78,7 +78,7 @@ $tokens = getThemeTokens($themeId);
       background: transparent;
     }
     .customizer-preview-container {
-      background: #05070f;
+      background: #000000;
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -119,27 +119,27 @@ $tokens = getThemeTokens($themeId);
         <!-- 1. Brand Color Palette -->
         <div class="customizer-section-card">
           <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:14px;color:var(--text-primary);display:flex;align-items:center;gap:8px;">
-            <i class="fa-solid fa-palette" style="color:#6366f1;"></i> Bảng Màu Thương Hiệu
+            <i class="fa-solid fa-palette" style="color:#ffb8e7;"></i> Bảng Màu Thương Hiệu
           </h3>
 
           <div class="color-picker-row">
             <label class="form-label" style="margin:0;">Màu Chủ Đạo (Primary):</label>
-            <input type="color" id="cust-primary-color" value="<?= e($theme['primary_color'] ?: '#6366f1') ?>" class="color-input-badge">
+            <input type="color" id="cust-primary-color" value="<?= e($theme['primary_color'] ?: '#ffb8e7') ?>" class="color-input-badge">
           </div>
 
           <div class="color-picker-row">
             <label class="form-label" style="margin:0;">Màu Phụ (Secondary):</label>
-            <input type="color" id="cust-secondary-color" value="<?= e($theme['secondary_color'] ?: '#ec4899') ?>" class="color-input-badge">
+            <input type="color" id="cust-secondary-color" value="<?= e($theme['secondary_color'] ?: '#89f5ff') ?>" class="color-input-badge">
           </div>
 
           <div class="color-picker-row">
             <label class="form-label" style="margin:0;">Màu Nhấn (Accent):</label>
-            <input type="color" id="cust-accent-color" value="<?= e($theme['accent_color'] ?: '#06b6d4') ?>" class="color-input-badge">
+            <input type="color" id="cust-accent-color" value="<?= e($theme['accent_color'] ?: '#89f5ff') ?>" class="color-input-badge">
           </div>
 
           <div class="color-picker-row">
             <label class="form-label" style="margin:0;">Màu Nền Nền (Background):</label>
-            <input type="color" id="cust-bg-color" value="<?= e($theme['bg_color'] ?: '#0f172a') ?>" class="color-input-badge">
+            <input type="color" id="cust-bg-color" value="<?= e($theme['bg_color'] ?: '#101010') ?>" class="color-input-badge">
           </div>
         </div>
 
@@ -184,7 +184,7 @@ $tokens = getThemeTokens($themeId);
         <!-- 4. Custom CSS Injection -->
         <div class="customizer-section-card">
           <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;color:var(--text-primary);display:flex;align-items:center;gap:8px;">
-            <i class="fa-solid fa-code" style="color:#ec4899;"></i> Tùy Biến Custom CSS
+            <i class="fa-solid fa-code" style="color:#89f5ff;"></i> Tùy Biến Custom CSS
           </h3>
           <textarea id="cust-custom-css" rows="4" class="glass-input" style="font-family:var(--font-mono);font-size:0.8rem;" placeholder="/* Thêm CSS tùy biến tại đây */"><?= e($theme['custom_css']) ?></textarea>
         </div>
@@ -193,7 +193,7 @@ $tokens = getThemeTokens($themeId);
 
     <!-- Right: Real-time Live Preview Stage -->
     <main class="customizer-preview-container">
-      <div style="height:44px;background:#090d16;border-bottom:1px solid var(--border-glass);display:flex;align-items:center;justify-content:space-between;padding:0 20px;">
+      <div style="height:44px;background:#0a0a0a;border-bottom:1px solid var(--border-glass);display:flex;align-items:center;justify-content:space-between;padding:0 20px;">
         <span style="font-size:0.8rem;color:var(--text-muted);">
           <i class="fa-solid fa-circle-dot animate-beacon mr-1" style="color:#10b981;"></i>
           Khung Xem Trước Trực Quan (Real-time Live Sync)

@@ -74,10 +74,10 @@ function requireRole(array $allowedRoles = ['ceo', 'cdo']): void {
     $currentRole = $_SESSION['user_role'] ?? 'viewer';
     if (!in_array($currentRole, $allowedRoles, true)) {
         http_response_code(403);
-        die("<div style='font-family:sans-serif;padding:40px;background:#0f172a;color:#f87171;text-align:center;'>
+        die("<div style='font-family:sans-serif;padding:40px;background:#101010;color:#f87171;text-align:center;'>
             <h2>🚫 Truy Cập Bị Từ Chối (403 Forbidden)</h2>
-            <p style='color:#94a3b8;'>Tài khoản của bạn với vai trò <strong>" . strtoupper($currentRole) . "</strong> không có thẩm quyền thực hiện thao tác này.</p>
-            <a href='index.php' style='color:#38bdf8;text-decoration:none;'>← Quay lại Trang Chủ</a>
+            <p style='color:#a3a3a3;'>Tài khoản của bạn với vai trò <strong>" . strtoupper($currentRole) . "</strong> không có thẩm quyền thực hiện thao tác này.</p>
+            <a href='index.php' style='color:#89f5ff;text-decoration:none;'>← Quay lại Trang Chủ</a>
         </div>");
     }
 }
@@ -431,9 +431,9 @@ function autoRegisterProjectTheme(string $folderName, array $options = []): int 
     $categoryId = (int)($options['category_id'] ?? 1);
     $tagline = $options['tagline'] ?? "Giao diện website tải lên tự động: {$name}";
     $description = $options['description'] ?? "Bộ giao diện hoàn chỉnh được quản lý trong thư mục projects/{$folderName}";
-    $primaryColor = $options['primary_color'] ?? '#6366f1';
-    $secondaryColor = $options['secondary_color'] ?? '#ec4899';
-    $accentColor = $options['accent_color'] ?? '#06b6d4';
+    $primaryColor = $options['primary_color'] ?? '#ffb8e7';
+    $secondaryColor = $options['secondary_color'] ?? '#89f5ff';
+    $accentColor = $options['accent_color'] ?? '#89f5ff';
     $fontFamily = $options['font_family'] ?? 'Outfit';
 
     $hasIndexPhp = file_exists($projectPath . '/index.php');
@@ -454,7 +454,7 @@ function autoRegisterProjectTheme(string $folderName, array $options = []): int 
     $stmt = $db->prepare("INSERT INTO `themes` 
         (`category_id`, `name`, `slug`, `code_name`, `tagline`, `description`, `thumbnail`, `preview_url`, `folder_path`, `version`, `author`, `status`, `primary_color`, `secondary_color`, `accent_color`, `bg_color`, `font_family`, `layout_type`)
         VALUES
-        (:cat, :name, :slug, :code, :tag, :desc, 'assets/images/themes/custom-preview.png', :preview, :folder, '1.0.0', 'HIEU CEO Upload Hub', 'ready', :c1, :c2, :c3, '#0f172a', :font, 'executive_glass')");
+        (:cat, :name, :slug, :code, :tag, :desc, 'assets/images/themes/custom-preview.png', :preview, :folder, '1.0.0', 'HIEU CEO Upload Hub', 'ready', :c1, :c2, :c3, '#101010', :font, 'executive_glass')");
 
     $stmt->execute([
         ':cat' => $categoryId,

@@ -24,13 +24,13 @@ $flash = getFlash();
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
     .admin-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-    .admin-sidebar { background: #090d16; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
+    .admin-sidebar { background: #0a0a0a; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
     .sidebar-menu { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .sidebar-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-md); font-weight: 600; font-size: 0.92rem; }
-    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(99, 102, 241, 0.15); color: #818cf8; border-left: 3px solid #6366f1; }
+    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(255, 184, 231, 0.15); color: #ffd4f0; border-left: 3px solid #ffb8e7; }
     .admin-main { padding: 30px 40px; overflow-y: auto; }
     .theme-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .theme-table th { text-align: left; padding: 14px 18px; background: rgba(30, 41, 59, 0.6); color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border-glass); }
+    .theme-table th { text-align: left; padding: 14px 18px; background: rgba(28, 28, 28, 0.6); color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border-glass); }
     .theme-table td { padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; vertical-align: middle; }
     .theme-table tr:hover { background: rgba(255,255,255,0.02); }
   </style>

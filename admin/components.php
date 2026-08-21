@@ -22,14 +22,14 @@ $components = $db->query("SELECT * FROM `ui_components` ORDER BY `id` ASC")->fet
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
     .admin-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-    .admin-sidebar { background: #090d16; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
+    .admin-sidebar { background: #0a0a0a; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
     .sidebar-menu { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .sidebar-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-md); font-weight: 600; font-size: 0.92rem; }
-    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(99, 102, 241, 0.15); color: #818cf8; border-left: 3px solid #6366f1; }
+    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(255, 184, 231, 0.15); color: #ffd4f0; border-left: 3px solid #ffb8e7; }
     .admin-main { padding: 30px 40px; overflow-y: auto; }
-    .component-box { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); margin-bottom: 30px; overflow: hidden; }
+    .component-box { background: rgba(16, 16, 16, 0.7); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); margin-bottom: 30px; overflow: hidden; }
     .component-preview { padding: 36px; background: rgba(7, 9, 19, 0.5); display: flex; align-items: center; justify-content: center; min-height: 150px; border-bottom: 1px solid var(--border-glass); }
-    .code-preview-block { background: #05070d; padding: 18px; font-family: var(--font-mono); font-size: 0.8rem; color: #38bdf8; overflow-x: auto; white-space: pre-wrap; margin: 0; }
+    .code-preview-block { background: #000000; padding: 18px; font-family: var(--font-mono); font-size: 0.8rem; color: #89f5ff; overflow-x: auto; white-space: pre-wrap; margin: 0; }
   </style>
 </head>
 <body>
@@ -62,7 +62,7 @@ $components = $db->query("SELECT * FROM `ui_components` ORDER BY `id` ASC")->fet
 
       <?php foreach ($components as $c): ?>
         <div class="component-box animate-fade-up">
-          <div style="padding:16px 24px;background:rgba(30,41,59,0.4);border-bottom:1px solid var(--border-glass);display:flex;align-items:center;justify-content:space-between;">
+          <div style="padding:16px 24px;background:rgba(28,28,28,0.4);border-bottom:1px solid var(--border-glass);display:flex;align-items:center;justify-content:space-between;">
             <div>
               <span class="badge-ceo badge-active" style="font-size:0.72rem;margin-bottom:4px;"><?= e($c['category']) ?></span>
               <h3 style="font-size:1.15rem;font-weight:700;margin:0;"><?= e($c['name']) ?></h3>

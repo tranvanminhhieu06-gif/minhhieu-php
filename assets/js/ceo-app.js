@@ -35,9 +35,9 @@ function showToast(message, type = 'info', duration = 3500) {
   const toast = document.createElement('div');
   toast.className = `toast-card ${type}`;
   toast.innerHTML = `
-    <i class="fa-solid ${icons[type] || icons.info}" style="font-size: 1.2rem; color: ${type === 'success' ? '#10b981' : type === 'error' ? '#f43f5e' : type === 'warning' ? '#f59e0b' : '#38bdf8'};"></i>
+    <i class="fa-solid ${icons[type] || icons.info}" style="font-size: 1.2rem; color: ${type === 'success' ? '#10b981' : type === 'error' ? '#f43f5e' : type === 'warning' ? '#f59e0b' : '#89f5ff'};"></i>
     <div style="flex: 1; font-size: 0.9rem; font-weight: 500;">${message}</div>
-    <button onclick="this.parentElement.remove()" style="background: none; border: none; color: #64748b; cursor: pointer; padding: 4px;">
+    <button onclick="this.parentElement.remove()" style="background: none; border: none; color: #737373; cursor: pointer; padding: 4px;">
       <i class="fa-solid fa-xmark"></i>
     </button>
   `;

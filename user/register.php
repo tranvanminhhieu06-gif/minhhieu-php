@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div style="display:flex;gap:12px;justify-content:center;">
           <label style="cursor:pointer;text-align:center;">
             <input type="radio" name="avatar" value="assets/images/user-avatar.png" checked style="display:none;" onchange="updateAvatarStyle(this)">
-            <div class="avatar-option selected" style="width:48px;height:48px;border-radius:50%;background:rgba(99,102,241,0.2);border:2px solid #6366f1;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#818cf8;">
+            <div class="avatar-option selected" style="width:48px;height:48px;border-radius:50%;background:rgba(255,184,231,0.2);border:2px solid #ffb8e7;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#ffd4f0;">
               <i class="fa-solid fa-user-astronaut"></i>
             </div>
             <span style="font-size:0.7rem;color:var(--text-muted);margin-top:4px;display:block;">Khách VIP</span>
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           <label style="cursor:pointer;text-align:center;">
             <input type="radio" name="avatar" value="assets/images/cdo-avatar.png" style="display:none;" onchange="updateAvatarStyle(this)">
-            <div class="avatar-option" style="width:48px;height:48px;border-radius:50%;background:rgba(236,72,153,0.15);border:2px solid transparent;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#ec4899;">
+            <div class="avatar-option" style="width:48px;height:48px;border-radius:50%;background:rgba(137,245,255,0.15);border:2px solid transparent;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#89f5ff;">
               <i class="fa-solid fa-palette"></i>
             </div>
             <span style="font-size:0.7rem;color:var(--text-muted);margin-top:4px;display:block;">Design</span>
@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           <label style="cursor:pointer;text-align:center;">
             <input type="radio" name="avatar" value="assets/images/dev-avatar.png" style="display:none;" onchange="updateAvatarStyle(this)">
-            <div class="avatar-option" style="width:48px;height:48px;border-radius:50%;background:rgba(56,189,248,0.15);border:2px solid transparent;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#38bdf8;">
+            <div class="avatar-option" style="width:48px;height:48px;border-radius:50%;background:rgba(137,245,255,0.15);border:2px solid transparent;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#89f5ff;">
               <i class="fa-solid fa-code"></i>
             </div>
             <span style="font-size:0.7rem;color:var(--text-muted);margin-top:4px;display:block;">Dev</span>
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       document.querySelectorAll('.avatar-option').forEach(el => {
         el.style.borderColor = 'transparent';
       });
-      radio.closest('label').querySelector('.avatar-option').style.borderColor = '#6366f1';
+      radio.closest('label').querySelector('.avatar-option').style.borderColor = '#ffb8e7';
     }
   </script>
 </body>

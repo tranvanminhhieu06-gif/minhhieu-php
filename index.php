@@ -63,7 +63,7 @@ $projects = scanProjectsDirectory();
 
       <!-- Action Navigation -->
       <div style="display:flex;align-items:center;gap:12px;">
-        <a href="live-view.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.85rem;background:linear-gradient(135deg, #6366f1, #ec4899);box-shadow:0 0 20px rgba(99,102,241,0.4);" title="Trình xem live đa thiết bị tương tác">
+        <a href="live-view.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.85rem;background:linear-gradient(135deg, #ffb8e7, #89f5ff);box-shadow:0 0 20px rgba(255,184,231,0.4);" title="Trình xem live đa thiết bị tương tác">
           <i class="fa-solid fa-play mr-1"></i> Xem Live Dự Án
         </a>
 
@@ -94,9 +94,9 @@ $projects = scanProjectsDirectory();
   <main class="ceo-container">
     <!-- 2. Hero Section -->
     <section style="padding:30px 0 50px 0;text-align:center;" class="animate-fade-up">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.3);border-radius:9999px;margin-bottom:20px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(255,184,231,0.12);border:1px solid rgba(255,184,231,0.3);border-radius:9999px;margin-bottom:20px;">
         <span class="animate-beacon" style="width:8px;height:8px;background:#10b981;border-radius:50%;display:inline-block;"></span>
-        <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.08em;color:#818cf8;text-transform:uppercase;">
+        <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.08em;color:#ffd4f0;text-transform:uppercase;">
           CÔNG NGHỆ QUẢN LÝ GIAO DIỆN CHUẨN CEO 2026
         </span>
       </div>
@@ -115,7 +115,7 @@ $projects = scanProjectsDirectory();
           <i class="fa-solid fa-play mr-1"></i> Trải Nghiệm <?= count($themes) ?> Website Live
         </a>
         <a href="user/dashboard.php" class="btn-ceo-secondary btn-ripple" style="padding:14px 26px;font-size:1.05rem;">
-          <i class="fa-solid fa-user-astronaut mr-1" style="color:#38bdf8;"></i> Bảng Điều Khiển Thành Viên
+          <i class="fa-solid fa-user-astronaut mr-1" style="color:#89f5ff;"></i> Bảng Điều Khiển Thành Viên
         </a>
         <a href="customizer.php?theme_id=<?= $activeTheme['id'] ?? 1 ?>" class="btn-ceo-secondary btn-ripple" style="padding:14px 26px;font-size:1.05rem;">
           <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--ceo-gold);"></i> Trình Tùy Biến
@@ -126,7 +126,7 @@ $projects = scanProjectsDirectory();
       <div class="glass-panel" style="padding:28px;display:grid;grid-template-columns:repeat(4, 1fr);gap:20px;text-align:center;">
         <div>
           <div style="color:var(--text-muted);font-size:0.85rem;font-weight:600;text-transform:uppercase;margin-bottom:6px;">
-            <i class="fa-solid fa-cube mr-2" style="color:#6366f1;"></i> Giao Diện Đang Chạy
+            <i class="fa-solid fa-cube mr-2" style="color:#ffb8e7;"></i> Giao Diện Đang Chạy
           </div>
           <div style="font-size:2rem;font-weight:800;color:var(--text-primary);">
             <span class="counter-val" data-target="<?= count($themes) ?>" data-current="0">0</span> Mẫu
@@ -134,7 +134,7 @@ $projects = scanProjectsDirectory();
         </div>
         <div>
           <div style="color:var(--text-muted);font-size:0.85rem;font-weight:600;text-transform:uppercase;margin-bottom:6px;">
-            <i class="fa-solid fa-folder-tree mr-2" style="color:#38bdf8;"></i> Thư Mục projects/
+            <i class="fa-solid fa-folder-tree mr-2" style="color:#89f5ff;"></i> Thư Mục projects/
           </div>
           <div style="font-size:2rem;font-weight:800;color:var(--text-primary);">
             <span class="counter-val" data-target="<?= count($projects) ?>" data-current="0">0</span> Thư Mục
@@ -162,7 +162,7 @@ $projects = scanProjectsDirectory();
     <!-- 4. Active Theme Live Spotlight -->
     <?php if ($activeTheme): ?>
     <section style="margin-bottom:60px;" class="animate-fade-up">
-      <div class="glass-panel" style="padding:32px;border:1px solid rgba(16,185,129,0.35);background:linear-gradient(135deg, rgba(15,23,42,0.85), rgba(6,78,59,0.15));position:relative;overflow:hidden;">
+      <div class="glass-panel" style="padding:32px;border:1px solid rgba(16,185,129,0.35);background:linear-gradient(135deg, rgba(16,16,16,0.85), rgba(6,78,59,0.15));position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;right:0;background:linear-gradient(135deg, #10b981, #059669);color:#fff;padding:6px 24px;border-bottom-left-radius:18px;font-size:0.78rem;font-weight:800;letter-spacing:0.08em;">
           <i class="fa-solid fa-circle-dot animate-beacon mr-1"></i> GIAO DIỆN ĐANG VẬN HÀNH CHÍNH
         </div>
@@ -270,7 +270,7 @@ $projects = scanProjectsDirectory();
             </div>
 
             <!-- Actions Row -->
-            <a href="live-view.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-primary btn-ripple" style="padding:10px;font-size:0.88rem;text-align:center;justify-content:center;margin-bottom:10px;background:linear-gradient(135deg, #6366f1, #8b5cf6);" title="Mô phỏng đa thiết bị và trải nghiệm trực tiếp">
+            <a href="live-view.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-primary btn-ripple" style="padding:10px;font-size:0.88rem;text-align:center;justify-content:center;margin-bottom:10px;background:linear-gradient(135deg, #ffb8e7, #d68cb8);" title="Mô phỏng đa thiết bị và trải nghiệm trực tiếp">
               <i class="fa-solid fa-play mr-2"></i> Xem Live Đa Thiết Bị
             </a>
 
@@ -279,7 +279,7 @@ $projects = scanProjectsDirectory();
                 <i class="fa-solid fa-wand-magic-sparkles mr-1" style="color:var(--ceo-gold);"></i> Tùy Biến
               </a>
               <a href="<?= e($t['preview_url']) ?>" target="_blank" class="btn-ceo-secondary" style="padding:8px;font-size:0.82rem;text-align:center;" title="Mở trang web trực tiếp trong tab mới">
-                <i class="fa-solid fa-arrow-up-right-from-square mr-1" style="color:#38bdf8;"></i> Mở Web
+                <i class="fa-solid fa-arrow-up-right-from-square mr-1" style="color:#89f5ff;"></i> Mở Web
               </a>
             </div>
 

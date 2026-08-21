@@ -96,22 +96,130 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 5. Desktop Search Shortcuts & Clear Button
+  // 5. Desktop Live Search & AJAX Autocomplete
   // ==========================================
+  const headerSearchForm = document.getElementById('header-search-form');
   const headerSearchInput = document.getElementById('header-search-input');
   const searchClearBtn = document.getElementById('search-clear-btn');
+  const searchSuggestions = document.getElementById('search-suggestions');
+  const defaultBox = document.getElementById('suggestions-default-box');
+  const liveResultsBox = document.getElementById('search-live-results');
+  const suggestionsFooter = document.getElementById('suggestions-footer');
+  const keywordDisplay = document.getElementById('search-keyword-display');
+  const viewAllBtn = document.getElementById('view-all-search-btn');
 
-  if (headerSearchInput && searchClearBtn) {
-    const updateClearBtn = () => {
-      searchClearBtn.style.display = headerSearchInput.value.trim().length > 0 ? 'flex' : 'none';
+  let searchDebounceTimer = null;
+
+  if (headerSearchInput) {
+    const performLiveSearch = (keyword) => {
+      const trimmed = keyword.trim();
+
+      if (trimmed.length === 0) {
+        if (defaultBox) defaultBox.style.display = 'block';
+        if (liveResultsBox) liveResultsBox.style.display = 'none';
+        if (suggestionsFooter) suggestionsFooter.style.display = 'none';
+        return;
+      }
+
+      // Switch to live search mode
+      if (defaultBox) defaultBox.style.display = 'none';
+      if (liveResultsBox) {
+        liveResultsBox.style.display = 'flex';
+        liveResultsBox.innerHTML = `
+          <div class="live-search-loading">
+            <i class="fa-solid fa-spinner fa-spin text-accent"></i> Đang tìm kiếm sản phẩm...
+          </div>
+        `;
+      }
+      if (suggestionsFooter) {
+        suggestionsFooter.style.display = 'block';
+        if (keywordDisplay) keywordDisplay.textContent = trimmed;
+        if (viewAllBtn) viewAllBtn.href = `products.php?keyword=${encodeURIComponent(trimmed)}`;
+      }
+
+      // Fetch live results from API
+      fetch(`api/search.php?keyword=${encodeURIComponent(trimmed)}`)
+        .then(res => res.json())
+        .then(res => {
+          if (!liveResultsBox) return;
+
+          if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
+            let html = '';
+            res.data.forEach(p => {
+              const oldPriceHtml = p.has_discount ? `<span class="live-search-old-price">${p.price_formatted}</span>` : '';
+              const badgeHtml = p.has_discount ? `<span class="badge-ceo" style="font-size:0.65rem;color:#ef4444;border-color:rgba(239,68,68,0.3);margin-left:4px;">-${p.discount_percent}%</span>` : '';
+
+              html += `
+                <a href="${p.url}" class="live-search-item">
+                  <img src="${p.image}" alt="${p.name}" class="live-search-thumb" onerror="this.src='assets/images/logo.png'">
+                  <div class="live-search-meta">
+                    <span class="live-search-title">${p.name}</span>
+                    <span class="live-search-category">${p.category_name} ${badgeHtml}</span>
+                  </div>
+                  <div class="live-search-prices">
+                    <div>${p.current_price_formatted}</div>
+                    ${oldPriceHtml}
+                  </div>
+                </a>
+              `;
+            });
+            liveResultsBox.innerHTML = html;
+          } else {
+            liveResultsBox.innerHTML = `
+              <div class="live-search-empty">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>Không tìm thấy sản phẩm nào khớp với "<strong>${trimmed}</strong>"</div>
+                <div style="font-size: 0.75rem; margin-top: 4px; color: var(--text-light);">Thử tìm từ khóa khác như "Áo thun", "Polo", "Sơ mi", "Jean"</div>
+              </div>
+            `;
+          }
+        })
+        .catch(err => {
+          console.error('Search error:', err);
+          if (liveResultsBox) {
+            liveResultsBox.innerHTML = `
+              <div class="live-search-empty" style="color: #ef4444;">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <div>Không thể tải kết quả lúc này. Vui lòng bấm Enter để tìm kiếm.</div>
+              </div>
+            `;
+          }
+        });
     };
 
-    headerSearchInput.addEventListener('input', updateClearBtn);
-    searchClearBtn.addEventListener('click', () => {
-      headerSearchInput.value = '';
+    const updateClearBtn = () => {
+      if (searchClearBtn) {
+        searchClearBtn.style.display = headerSearchInput.value.trim().length > 0 ? 'flex' : 'none';
+      }
+    };
+
+    headerSearchInput.addEventListener('input', (e) => {
       updateClearBtn();
-      headerSearchInput.focus();
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        performLiveSearch(e.target.value);
+      }, 200);
     });
+
+    headerSearchInput.addEventListener('focus', () => {
+      if (headerSearchInput.value.trim().length > 0) {
+        performLiveSearch(headerSearchInput.value);
+      } else {
+        if (defaultBox) defaultBox.style.display = 'block';
+        if (liveResultsBox) liveResultsBox.style.display = 'none';
+        if (suggestionsFooter) suggestionsFooter.style.display = 'none';
+      }
+    });
+
+    if (searchClearBtn) {
+      searchClearBtn.addEventListener('click', () => {
+        headerSearchInput.value = '';
+        updateClearBtn();
+        performLiveSearch('');
+        headerSearchInput.focus();
+      });
+    }
+
     updateClearBtn();
   }
 
@@ -128,10 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Escape key closes modals and drawers
+    // Escape key closes modals, search, and drawers
     if (e.key === 'Escape') {
       closeDrawer();
       closeMobileSearch();
+      if (headerSearchInput) headerSearchInput.blur();
       const userCard = document.getElementById('user-dropdown-card');
       if (userCard) userCard.classList.remove('show');
     }

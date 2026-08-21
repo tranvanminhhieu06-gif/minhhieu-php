@@ -60,6 +60,10 @@ $currentScript = basename($_SERVER['PHP_SELF']);
                 </div>
             </div>
             <div class="topbar-links">
+                <a href="admin/index.php" class="topbar-link admin-topbar-link" style="color: #fbbf24; font-weight: 700; background: rgba(245, 158, 11, 0.15); padding: 3px 8px; border-radius: 4px;" title="Vào Bảng Điều Khiển Quản Trị Viên">
+                    <i class="fa-solid fa-shield-halved"></i> <span>Quản Trị (Admin)</span>
+                </a>
+                <span class="topbar-divider"></span>
                 <a href="tel:0988889999" class="topbar-link"><i class="fa-solid fa-phone"></i> <span>Hotline: 0988.889.999</span></a>
                 <span class="topbar-divider"></span>
                 <a href="my_orders.php" class="topbar-link"><i class="fa-solid fa-truck-fast"></i> <span>Tra cứu đơn hàng</span></a>
@@ -154,7 +158,7 @@ $currentScript = basename($_SERVER['PHP_SELF']);
                 <!-- Desktop Search Bar -->
                 <form action="products.php" method="GET" class="header-search" id="header-search-form">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" name="keyword" id="header-search-input" class="search-input" placeholder="Tìm kiếm áo thun, hoodie, quần jean..." value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>" autocomplete="off">
+                    <input type="text" name="keyword" id="header-search-input" class="search-input" placeholder="Tìm kiếm áo thun, hoodie, quần jean..." value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>" autocomplete="off" spellcheck="false">
                     <button type="button" class="search-clear-btn" id="search-clear-btn" aria-label="Xóa từ khóa tìm kiếm" style="display: none;">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
@@ -162,17 +166,31 @@ $currentScript = basename($_SERVER['PHP_SELF']);
                         <kbd>/</kbd>
                     </div>
 
-                    <!-- Search Quick Suggestions Dropdown -->
+                    <!-- Search Quick Suggestions & Live Results Dropdown -->
                     <div class="search-suggestions-dropdown" id="search-suggestions">
-                        <div class="suggestions-header">
-                            <span><i class="fa-solid fa-arrow-trend-up"></i> Tìm kiếm phổ biến</span>
+                        <!-- 1. Default Quick Trends (shown when keyword is empty) -->
+                        <div class="suggestions-default-box" id="suggestions-default-box">
+                            <div class="suggestions-header">
+                                <span><i class="fa-solid fa-arrow-trend-up text-accent"></i> Xu Hướng Tìm Kiếm Phổ Biến</span>
+                            </div>
+                            <div class="suggestions-tags">
+                                <a href="products.php?keyword=Áo+polo" class="suggestion-tag"><i class="fa-solid fa-magnifying-glass mr-1"></i> Áo polo nam</a>
+                                <a href="products.php?keyword=Hoodie" class="suggestion-tag"><i class="fa-solid fa-magnifying-glass mr-1"></i> Hoodie nỉ bông</a>
+                                <a href="products.php?keyword=Sơ+mi" class="suggestion-tag"><i class="fa-solid fa-magnifying-glass mr-1"></i> Sơ mi trắng Oxford</a>
+                                <a href="products.php?keyword=Quần+jean" class="suggestion-tag"><i class="fa-solid fa-magnifying-glass mr-1"></i> Quần jean ống suông</a>
+                                <a href="products.php?keyword=Oversize" class="suggestion-tag"><i class="fa-solid fa-magnifying-glass mr-1"></i> Áo oversize</a>
+                            </div>
                         </div>
-                        <div class="suggestions-tags">
-                            <a href="products.php?keyword=Áo+polo" class="suggestion-tag">Áo polo nam</a>
-                            <a href="products.php?keyword=Hoodie" class="suggestion-tag">Hoodie nỉ bông</a>
-                            <a href="products.php?keyword=Sơ+mi" class="suggestion-tag">Sơ mi trắng Oxford</a>
-                            <a href="products.php?keyword=Quần+jean" class="suggestion-tag">Quần jean ống suông</a>
-                            <a href="products.php?keyword=Oversize" class="suggestion-tag">Áo oversize</a>
+
+                        <!-- 2. Dynamic Live Search Results (populated via AJAX) -->
+                        <div class="search-live-results" id="search-live-results" style="display: none;"></div>
+
+                        <!-- 3. Footer Action -->
+                        <div class="suggestions-footer" id="suggestions-footer" style="display: none;">
+                            <a href="#" class="view-all-search-btn" id="view-all-search-btn">
+                                <span>Xem tất cả kết quả cho "<strong id="search-keyword-display"></strong>"</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </form>
@@ -337,6 +355,9 @@ $currentScript = basename($_SERVER['PHP_SELF']);
                         <a href="login.php" class="drawer-btn primary"><i class="fa-solid fa-arrow-right-to-bracket"></i> Đăng Nhập</a>
                         <a href="register.php" class="drawer-btn secondary"><i class="fa-solid fa-user-plus"></i> Đăng Ký</a>
                     </div>
+                    <a href="admin/login.php" class="drawer-admin-btn" style="margin-top: 10px; background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); text-align: center; justify-content: center; display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.85rem;">
+                        <i class="fa-solid fa-shield-halved"></i> Cổng Quản Trị Super Admin
+                    </a>
                 </div>
             <?php endif; ?>
         </div>

@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!iframe || !iframe.contentDocument) return;
     const doc = iframe.contentDocument;
 
-    const primary = primaryColorInput?.value || '#6366f1';
-    const secondary = secondaryColorInput?.value || '#ec4899';
-    const accent = accentColorInput?.value || '#06b6d4';
-    const bg = bgColorInput?.value || '#0f172a';
+    const primary = primaryColorInput?.value || '#ffb8e7';
+    const secondary = secondaryColorInput?.value || '#89f5ff';
+    const accent = accentColorInput?.value || '#89f5ff';
+    const bg = bgColorInput?.value || '#101010';
     const radius = (radiusInput?.value || 14) + 'px';
     const font = fontSelect?.value || 'Outfit';
 

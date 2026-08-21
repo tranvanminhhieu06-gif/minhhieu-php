@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <!-- 1. Member Profile Banner -->
     <section class="glass-panel animate-fade-up" style="padding:28px 32px;margin-bottom:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
       <div style="display:flex;align-items:center;gap:20px;">
-        <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg, rgba(99,102,241,0.3), rgba(236,72,153,0.3));border:2px solid var(--ceo-primary);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--text-accent);box-shadow:0 0 25px rgba(99,102,241,0.4);">
+        <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg, rgba(255,184,231,0.3), rgba(137,245,255,0.3));border:2px solid var(--ceo-primary);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--text-accent);box-shadow:0 0 25px rgba(255,184,231,0.4);">
           <i class="fa-solid fa-user-astronaut"></i>
         </div>
 
@@ -133,22 +133,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         </div>
         <div class="glass-card" style="padding:10px 16px;text-align:center;flex:1;min-width:110px;">
           <div style="font-size:0.72rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Đã Xem Live</div>
-          <div style="font-size:1.3rem;font-weight:800;color:#38bdf8;"><?= count($recentViews) ?> Lần</div>
+          <div style="font-size:1.3rem;font-weight:800;color:#89f5ff;"><?= count($recentViews) ?> Lần</div>
         </div>
       </div>
     </section>
 
     <!-- 2. Navigation Tabs -->
     <div style="display:flex;gap:10px;margin-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;" class="animate-fade-up category-tabs-scroll">
-      <a href="dashboard.php?tab=favorites" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'favorites' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
-        <i class="fa-solid fa-heart" style="color:<?= $activeTab === 'favorites' ? '#fff' : '#fb7185' ?>;"></i> Yêu Thích (<?= count($favoriteThemes) ?>)
+      <a href="dashboard.php?tab=favorites" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'favorites' ? 'linear-gradient(135deg, #ffb8e7, #d68cb8)' : 'rgba(255,255,255,0.05)' ?>;color:<?= $activeTab === 'favorites' ? '#000' : '#fff' ?>;">
+        <i class="fa-solid fa-heart" style="color:<?= $activeTab === 'favorites' ? '#000' : '#fb7185' ?>;"></i> Yêu Thích (<?= count($favoriteThemes) ?>)
       </a>
 
-      <a href="dashboard.php?tab=recent" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'recent' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
-        <i class="fa-solid fa-clock-rotate-left" style="color:<?= $activeTab === 'recent' ? '#fff' : '#38bdf8' ?>;"></i> Lịch Sử Live
+      <a href="dashboard.php?tab=recent" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'recent' ? 'linear-gradient(135deg, #ffb8e7, #d68cb8)' : 'rgba(255,255,255,0.05)' ?>;color:<?= $activeTab === 'recent' ? '#000' : '#fff' ?>;">
+        <i class="fa-solid fa-clock-rotate-left" style="color:<?= $activeTab === 'recent' ? '#000' : '#89f5ff' ?>;"></i> Lịch Sử Live
       </a>
 
-      <a href="dashboard.php?tab=profile" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'profile' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'rgba(255,255,255,0.05)' ?>;color:#fff;">
+      <a href="dashboard.php?tab=profile" class="btn-ceo-secondary" style="padding:8px 18px;border-radius:var(--radius-full);font-size:0.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;background:<?= $activeTab === 'profile' ? 'linear-gradient(135deg, #ffb8e7, #d68cb8)' : 'rgba(255,255,255,0.05)' ?>;color:<?= $activeTab === 'profile' ? '#000' : '#fff' ?>;">
         <i class="fa-solid fa-user-gear"></i> Tài Khoản
       </a>
     </div>
@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <?php else: ?>
           <div class="ceo-grid-3">
             <?php foreach ($favoriteThemes as $t): ?>
-              <?php $tColor = $t['primary_color'] ?: '#6366f1'; ?>
+              <?php $tColor = $t['primary_color'] ?: '#ffb8e7'; ?>
               <div class="website-card animate-fade-up">
                 <div class="website-card-banner" style="border-top: 4px solid <?= e($tColor) ?>;">
                   <div style="text-align:center;position:relative;z-index:2;padding:0 20px;">
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 <div style="padding:22px;">
                   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
                     <span class="badge-ceo badge-active" style="font-size:0.72rem;"><?= e($t['category_name']) ?></span>
-                    <span style="font-size:0.78rem;color:#38bdf8;font-family:var(--font-mono);"><i class="fa-solid fa-folder mr-1"></i> <?= e($t['folder_path']) ?></span>
+                    <span style="font-size:0.78rem;color:#89f5ff;font-family:var(--font-mono);"><i class="fa-solid fa-folder mr-1"></i> <?= e($t['folder_path']) ?></span>
                   </div>
 
                   <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.6;margin-bottom:20px;min-height:55px;">
@@ -214,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
       <section class="animate-fade-up">
         <?php if (empty($recentViews)): ?>
           <div class="glass-panel" style="padding:60px 20px;text-align:center;max-width:600px;margin:40px auto;">
-            <div style="width:70px;height:70px;border-radius:50%;background:rgba(56,189,248,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 18px auto;color:#38bdf8;font-size:2rem;">
+            <div style="width:70px;height:70px;border-radius:50%;background:rgba(137,245,255,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 18px auto;color:#89f5ff;font-size:2rem;">
               <i class="fa-solid fa-clock-rotate-left"></i>
             </div>
             <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Chưa Có Lịch Sử Xem Gần Đây</h3>
@@ -232,7 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
               <?php foreach ($recentViews as $item): ?>
                 <div class="glass-card" style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
                   <div style="display:flex;align-items:center;gap:14px;">
-                    <div style="width:42px;height:42px;border-radius:10px;background:rgba(56,189,248,0.15);display:flex;align-items:center;justify-content:center;color:#38bdf8;font-size:1.2rem;">
+                    <div style="width:42px;height:42px;border-radius:10px;background:rgba(137,245,255,0.15);display:flex;align-items:center;justify-content:center;color:#89f5ff;font-size:1.2rem;">
                       <i class="fa-solid fa-laptop-code"></i>
                     </div>
                     <div>

@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../includes/functions.php';
 // Kiểm tra quyền Admin
 if (!is_logged_in() || !is_admin()) {
     set_flash('danger', 'Bạn cần đăng nhập bằng tài khoản Quản trị viên để truy cập trang này.');
-    redirect('../login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+    redirect('login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
 }
 
 $currentUser = current_user($pdo);
@@ -24,6 +24,7 @@ $recentPendingOrders = $recentOrdersStmt->fetchAll();
 // Breadcrumb Title mapping
 $pageTitles = [
     'index.php' => 'Bảng Điều Khiển (Dashboard)',
+    'analytics.php' => 'Báo Cáo & Thống Kê Phân Tích',
     'products.php' => 'Quản Lý Sản Phẩm',
     'product_add.php' => 'Thêm Sản Phẩm Mới',
     'product_edit.php' => 'Chỉnh Sửa Sản Phẩm',
@@ -31,7 +32,8 @@ $pageTitles = [
     'orders.php' => 'Quản Lý Đơn Hàng',
     'order_detail.php' => 'Chi Tiết Đơn Hàng',
     'coupons.php' => 'Mã Giảm Giá & Khuyến Mãi',
-    'users.php' => 'Khách Hàng & Phân Quyền'
+    'users.php' => 'Khách Hàng & Phân Quyền',
+    'settings.php' => 'Cài Đặt Cửa Hàng & Hệ Thống'
 ];
 $currentPageName = isset($pageTitles[$activePage]) ? $pageTitles[$activePage] : (isset($adminTitle) ? $adminTitle : 'Quản Trị');
 ?>
@@ -99,6 +101,12 @@ $currentPageName = isset($pageTitles[$activePage]) ? $pageTitles[$activePage] : 
                         <span class="link-label">Bảng Điều Khiển</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="analytics.php" class="sidebar-link <?= ($activePage === 'analytics.php') ? 'active' : '' ?>">
+                        <i class="fa-solid fa-chart-line menu-icon"></i>
+                        <span class="link-label">Báo Cáo & Phân Tích</span>
+                    </a>
+                </li>
 
                 <!-- Group 2: QUẢN LÝ CỬA HÀNG -->
                 <li class="menu-section-header">CỬA HÀNG & BÁN HÀNG</li>
@@ -142,7 +150,13 @@ $currentPageName = isset($pageTitles[$activePage]) ? $pageTitles[$activePage] : 
                 </li>
 
                 <!-- Group 4: HỆ THỐNG & ĐIỀU HƯỚNG -->
-                <li class="menu-section-header">HỆ THỐNG</li>
+                <li class="menu-section-header">HỆ THỐNG & CÀI ĐẶT</li>
+                <li class="sidebar-item">
+                    <a href="settings.php" class="sidebar-link <?= ($activePage === 'settings.php') ? 'active' : '' ?>">
+                        <i class="fa-solid fa-sliders menu-icon"></i>
+                        <span class="link-label">Cài Đặt Hệ Thống</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a href="../index.php" target="_blank" class="sidebar-link storefront-link">
                         <i class="fa-solid fa-arrow-up-right-from-square menu-icon"></i>

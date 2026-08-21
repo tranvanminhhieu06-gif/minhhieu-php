@@ -24,13 +24,13 @@ $flash = getFlash();
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
     .admin-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-    .admin-sidebar { background: #090d16; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
+    .admin-sidebar { background: #0a0a0a; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
     .sidebar-menu { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .sidebar-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-md); font-weight: 600; font-size: 0.92rem; }
-    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(99, 102, 241, 0.15); color: #818cf8; border-left: 3px solid #6366f1; }
+    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(255, 184, 231, 0.15); color: #ffd4f0; border-left: 3px solid #ffb8e7; }
     .admin-main { padding: 30px 40px; overflow-y: auto; }
     .project-card {
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(16, 16, 16, 0.7);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
       padding: 24px;
@@ -103,7 +103,7 @@ $flash = getFlash();
         </div>
         <div>
           <div style="font-size:0.8rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Đường Dẫn Lưu Trữ Vật Lý</div>
-          <div style="font-size:0.95rem;font-weight:600;color:#38bdf8;margin-top:8px;font-family:var(--font-mono);">
+          <div style="font-size:0.95rem;font-weight:600;color:#89f5ff;margin-top:8px;font-family:var(--font-mono);">
             DoAnWebsite/projects/
           </div>
         </div>
@@ -115,7 +115,7 @@ $flash = getFlash();
           <div class="project-card animate-fade-up">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
-                <div style="width:44px;height:44px;background:rgba(99,102,241,0.18);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#818cf8;font-size:1.3rem;">
+                <div style="width:44px;height:44px;background:rgba(255,184,231,0.18);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ffd4f0;font-size:1.3rem;">
                   <i class="fa-solid <?= $p['has_index'] ? 'fa-folder-open' : 'fa-folder' ?>"></i>
                 </div>
 

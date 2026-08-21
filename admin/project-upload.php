@@ -22,16 +22,16 @@ $flash = getFlash();
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
     .admin-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-    .admin-sidebar { background: #090d16; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
+    .admin-sidebar { background: #0a0a0a; border-right: 1px solid var(--border-glass); padding: 24px 18px; display: flex; flex-direction: column; }
     .sidebar-menu { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .sidebar-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-md); font-weight: 600; font-size: 0.92rem; }
-    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(99, 102, 241, 0.15); color: #818cf8; border-left: 3px solid #6366f1; }
+    .sidebar-menu a:hover, .sidebar-menu a.active { background: rgba(255, 184, 231, 0.15); color: #ffd4f0; border-left: 3px solid #ffb8e7; }
     .admin-main { padding: 30px 40px; overflow-y: auto; }
     
     /* Drag and Drop Zone */
     .upload-dropzone {
-      border: 2px dashed rgba(99, 102, 241, 0.4);
-      background: rgba(15, 23, 42, 0.6);
+      border: 2px dashed rgba(255, 184, 231, 0.4);
+      background: rgba(16, 16, 16, 0.6);
       backdrop-filter: blur(16px);
       border-radius: var(--radius-xl);
       padding: 50px 30px;
@@ -43,9 +43,9 @@ $flash = getFlash();
       margin-bottom: 28px;
     }
     .upload-dropzone:hover, .upload-dropzone.dragover {
-      border-color: #38bdf8;
-      background: rgba(99, 102, 241, 0.12);
-      box-shadow: 0 0 35px rgba(56, 189, 248, 0.3);
+      border-color: #89f5ff;
+      background: rgba(255, 184, 231, 0.12);
+      box-shadow: 0 0 35px rgba(137, 245, 255, 0.3);
       transform: scale(1.01);
     }
     .upload-progress {
@@ -60,7 +60,7 @@ $flash = getFlash();
     .upload-progress-bar {
       width: 0%;
       height: 100%;
-      background: linear-gradient(90deg, #6366f1, #38bdf8);
+      background: linear-gradient(90deg, #ffb8e7, #89f5ff);
       transition: width 0.3s ease;
     }
   </style>
@@ -110,7 +110,7 @@ $flash = getFlash();
         <!-- Drag & Drop Zone -->
         <div id="dropzone" class="upload-dropzone">
           <input type="file" id="file-input" name="project_zip" accept=".zip" style="display:none;">
-          <div style="width:64px;height:64px;background:rgba(99,102,241,0.2);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;color:#818cf8;font-size:1.8rem;margin-bottom:16px;">
+          <div style="width:64px;height:64px;background:rgba(255,184,231,0.2);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;color:#ffd4f0;font-size:1.8rem;margin-bottom:16px;">
             <i class="fa-solid fa-cloud-arrow-up"></i>
           </div>
           <h3 id="dropzone-title" style="font-size:1.25rem;font-weight:700;margin-bottom:8px;">
@@ -131,7 +131,7 @@ $flash = getFlash();
 
         <!-- Metadata Form -->
         <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px;">
-          <i class="fa-solid fa-sliders" style="color:#6366f1;"></i> Thông Tin Hiển Thị Giao Diện
+          <i class="fa-solid fa-sliders" style="color:#ffb8e7;"></i> Thông Tin Hiển Thị Giao Diện
         </h3>
 
         <div class="ceo-grid-2">
@@ -158,7 +158,7 @@ $flash = getFlash();
 
           <div class="form-group">
             <label class="form-label">Màu Chủ Đạo:</label>
-            <input type="color" name="primary_color" value="#6366f1" class="glass-input" style="height:44px;padding:4px;">
+            <input type="color" name="primary_color" value="#ffb8e7" class="glass-input" style="height:44px;padding:4px;">
           </div>
 
           <div class="form-group">

@@ -93,7 +93,7 @@ $demoCredentials = [
       text-align: center;
     }
     .website-card {
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(16, 16, 16, 0.75);
       backdrop-filter: blur(20px);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-xl);
@@ -116,7 +116,7 @@ $demoCredentials = [
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
+      background: linear-gradient(135deg, rgba(28,28,28,0.9), rgba(16,16,16,0.95));
       border-bottom: 1px solid var(--border-glass);
     }
     .website-card-banner .banner-icon {
@@ -129,7 +129,7 @@ $demoCredentials = [
       transform: rotate(-10deg);
     }
     .project-folder-card {
-      background: rgba(15, 23, 42, 0.65);
+      background: rgba(16, 16, 16, 0.65);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
@@ -140,10 +140,10 @@ $demoCredentials = [
       justify-content: space-between;
     }
     .project-folder-card:hover {
-      border-color: rgba(56, 189, 248, 0.5);
-      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(137, 245, 255, 0.5);
+      background: rgba(16, 16, 16, 0.85);
       transform: translateY(-4px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(137, 245, 255, 0.15);
     }
     .tech-pill {
       display: inline-flex;
@@ -179,9 +179,9 @@ $demoCredentials = [
       gap: 8px;
     }
     .view-tab-btn.active {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: #ffffff;
-      box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+      background: linear-gradient(135deg, #ffb8e7, #d68cb8);
+      color: #000000;
+      box-shadow: 0 4px 20px rgba(255,184,231,0.4);
     }
     .view-tab-btn:not(.active) {
       background: rgba(255,255,255,0.05);
@@ -224,7 +224,7 @@ $demoCredentials = [
 
       <!-- Action Navigation -->
       <div style="display:flex;align-items:center;gap:12px;">
-        <a href="live-view.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.85rem;background:linear-gradient(135deg, #6366f1, #ec4899);box-shadow:0 0 20px rgba(99,102,241,0.4);" title="Trình xem live đa thiết bị tương tác">
+        <a href="live-view.php" class="btn-ceo-primary btn-ripple" style="padding:8px 18px;font-size:0.85rem;background:linear-gradient(135deg, #ffb8e7, #89f5ff);box-shadow:0 0 20px rgba(255,184,231,0.4);" title="Trình xem live đa thiết bị tương tác">
           <i class="fa-solid fa-play mr-1"></i> Xem Live Dự Án
         </a>
 
@@ -251,9 +251,9 @@ $demoCredentials = [
   <main class="ceo-container">
     <!-- 2. Hero Showcase Header -->
     <section class="showcase-header animate-fade-up">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);border-radius:9999px;margin-bottom:18px;">
-        <span class="animate-beacon" style="width:8px;height:8px;background:#38bdf8;border-radius:50%;display:inline-block;"></span>
-        <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.08em;color:#38bdf8;text-transform:uppercase;">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(137,245,255,0.12);border:1px solid rgba(137,245,255,0.3);border-radius:9999px;margin-bottom:18px;">
+        <span class="animate-beacon" style="width:8px;height:8px;background:#89f5ff;border-radius:50%;display:inline-block;"></span>
+        <span style="font-size:0.82rem;font-weight:700;letter-spacing:0.08em;color:#89f5ff;text-transform:uppercase;">
           KHÁM PHÁ CÁC DỰ ÁN TRONG THƯ MỤC PROJECTS/
         </span>
       </div>
@@ -281,7 +281,7 @@ $demoCredentials = [
       <div class="glass-panel" style="padding:16px 28px;max-width:980px;margin:0 auto 36px auto;display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;text-align:center;">
         <div>
           <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Thư Mục Trong projects/</div>
-          <div style="font-size:1.6rem;font-weight:800;color:#38bdf8;margin-top:2px;"><?= count($projects) ?> Dự Án</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#89f5ff;margin-top:2px;"><?= count($projects) ?> Dự Án</div>
         </div>
         <div>
           <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Website Đã Đăng Ký</div>
@@ -289,7 +289,7 @@ $demoCredentials = [
         </div>
         <div>
           <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Cơ Sở Dữ Liệu</div>
-          <div style="font-size:1.6rem;font-weight:800;color:#818cf8;margin-top:2px;">Tách Biệt Độc Lập</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#ffd4f0;margin-top:2px;">Tách Biệt Độc Lập</div>
         </div>
         <div>
           <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;">Trạng Thái Vận Hành</div>
@@ -320,7 +320,7 @@ $demoCredentials = [
             <div class="website-card ceo-card-tilt animate-fade-up">
               <!-- Card Header Banner -->
               <div>
-                <div class="website-card-banner" style="border-top: 4px solid <?= e($t['primary_color'] ?: '#6366f1') ?>;">
+                <div class="website-card-banner" style="border-top: 4px solid <?= e($t['primary_color'] ?: '#ffb8e7') ?>;">
                   <div style="text-align:center;position:relative;z-index:2;padding:0 20px;">
                     <span class="badge-ceo badge-gold" style="font-size:0.7rem;margin-bottom:6px;">
                       <i class="fa-solid fa-star mr-1"></i> ĐÁNH GIÁ <?= number_format($t['rating'], 1) ?>/5.0
@@ -340,7 +340,7 @@ $demoCredentials = [
                       <i class="fa-solid <?= $t['status'] === 'active' ? 'fa-circle-check' : 'fa-circle-play' ?> mr-1"></i>
                       <?= $t['status'] === 'active' ? 'Đang Vận Hành Chính' : 'Sẵn Sàng Trực Tuyến' ?>
                     </span>
-                    <span style="font-size:0.78rem;color:#38bdf8;font-weight:600;font-family:var(--font-mono);">
+                    <span style="font-size:0.78rem;color:#89f5ff;font-weight:600;font-family:var(--font-mono);">
                       <i class="fa-solid fa-folder mr-1"></i> <?= e($t['folder_path']) ?>
                     </span>
                   </div>
@@ -351,9 +351,9 @@ $demoCredentials = [
 
                   <!-- Tech Tags -->
                   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;">
-                    <span class="tech-pill"><i class="fa-brands fa-php" style="color:#818cf8;"></i> PHP 8.2</span>
+                    <span class="tech-pill"><i class="fa-brands fa-php" style="color:#ffd4f0;"></i> PHP 8.2</span>
                     <span class="tech-pill"><i class="fa-solid fa-database" style="color:#f59e0b;"></i> MySQL</span>
-                    <span class="tech-pill"><i class="fa-solid fa-font" style="color:#06b6d4;"></i> <?= e($t['font_family']) ?></span>
+                    <span class="tech-pill"><i class="fa-solid fa-font" style="color:#89f5ff;"></i> <?= e($t['font_family']) ?></span>
                     <span class="tech-pill"><i class="fa-solid fa-mobile-screen" style="color:#10b981;"></i> Responsive</span>
                   </div>
 
@@ -374,14 +374,14 @@ $demoCredentials = [
               <!-- Card Action Footer -->
               <div style="padding:0 22px 22px 22px;">
                 <!-- Main Live View Button -->
-                <a href="live-view.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-primary btn-ripple" style="width:100%;padding:11px;font-size:0.92rem;margin-bottom:10px;text-align:center;justify-content:center;background:linear-gradient(135deg, #6366f1, #8b5cf6);box-shadow:0 4px 15px rgba(99,102,241,0.35);">
+                <a href="live-view.php?theme_id=<?= $t['id'] ?>" class="btn-ceo-primary btn-ripple" style="width:100%;padding:11px;font-size:0.92rem;margin-bottom:10px;text-align:center;justify-content:center;background:linear-gradient(135deg, #ffb8e7, #d68cb8);box-shadow:0 4px 15px rgba(255,184,231,0.35);">
                   <i class="fa-solid fa-play mr-2"></i> Xem Live Đa Thiết Bị
                 </a>
 
                 <!-- Secondary Actions -->
                 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
                   <a href="<?= e($t['preview_url']) ?>" target="_blank" class="btn-ceo-secondary" style="padding:8px;font-size:0.8rem;text-align:center;" title="Mở trang web trực tiếp trong tab mới">
-                    <i class="fa-solid fa-arrow-up-right-from-square mr-1" style="color:#38bdf8;"></i> Mở Web
+                    <i class="fa-solid fa-arrow-up-right-from-square mr-1" style="color:#89f5ff;"></i> Mở Web
                   </a>
                   <button onclick="openQuickPreview('<?= e($t['preview_url']) ?>', '<?= e($t['name']) ?>')" class="btn-ceo-secondary" style="padding:8px;font-size:0.8rem;text-align:center;" title="Xem nhanh tại trang">
                     <i class="fa-solid fa-eye mr-1"></i> Xem Nhanh
@@ -409,7 +409,7 @@ $demoCredentials = [
               <div>
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
                   <div style="display:flex;align-items:center;gap:12px;">
-                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg, rgba(56,189,248,0.2), rgba(99,102,241,0.2));border:1px solid rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;color:#38bdf8;font-size:1.4rem;">
+                    <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg, rgba(137,245,255,0.2), rgba(255,184,231,0.2));border:1px solid rgba(137,245,255,0.3);display:flex;align-items:center;justify-content:center;color:#89f5ff;font-size:1.4rem;">
                       <i class="fa-solid fa-folder-open"></i>
                     </div>
                     <div>
@@ -487,7 +487,7 @@ $demoCredentials = [
 
     <!-- 5. Quick Upload Banner CTA -->
     <section style="margin-bottom:80px;">
-      <div class="glass-panel" style="padding:40px;background:linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.95));border:1px solid var(--border-glass-hover);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+      <div class="glass-panel" style="padding:40px;background:linear-gradient(135deg, rgba(28,28,28,0.8), rgba(16,16,16,0.95));border:1px solid var(--border-glass-hover);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
         <div style="max-width:650px;">
           <span class="badge-ceo badge-gold" style="margin-bottom:12px;">MỞ RỘNG HỆ SINH THÁI</span>
           <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:10px;">Bạn Muốn Tải Lên Thêm Dự Án Mới?</h2>
@@ -512,7 +512,7 @@ $demoCredentials = [
   <div id="quick-preview-modal" class="modal-overlay">
     <div class="modal-box quick-preview-modal-box">
       <!-- Modal Header -->
-      <div style="padding:14px 24px;background:#090d16;border-bottom:1px solid var(--border-glass);display:flex;align-items:center;justify-content:space-between;">
+      <div style="padding:14px 24px;background:#0a0a0a;border-bottom:1px solid var(--border-glass);display:flex;align-items:center;justify-content:space-between;">
         <div style="display:flex;align-items:center;gap:12px;">
           <span class="animate-beacon" style="width:10px;height:10px;background:#10b981;border-radius:50%;"></span>
           <strong id="modal-theme-title" style="font-size:1rem;color:var(--text-primary);">Xem Nhanh Website</strong>

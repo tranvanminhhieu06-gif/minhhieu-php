@@ -35,7 +35,7 @@ $flash = getFlash();
       min-height: 100vh;
     }
     .admin-sidebar {
-      background: #090d16;
+      background: #0a0a0a;
       border-right: 1px solid var(--border-glass);
       padding: 24px 18px;
       display: flex;
@@ -62,9 +62,9 @@ $flash = getFlash();
       transition: all var(--transition-fast);
     }
     .sidebar-menu a:hover, .sidebar-menu a.active {
-      background: rgba(99, 102, 241, 0.15);
-      color: #818cf8;
-      border-left: 3px solid #6366f1;
+      background: rgba(255, 184, 231, 0.15);
+      color: #ffd4f0;
+      border-left: 3px solid #ffb8e7;
     }
     .admin-main {
       padding: 30px 40px;
@@ -141,12 +141,12 @@ $flash = getFlash();
 
       <!-- User Profile Badge -->
       <div class="glass-card" style="padding:14px;display:flex;align-items:center;gap:12px;margin-top:auto;">
-        <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#ec4899);display:flex;align-items:center;justify-content:center;font-weight:700;">
+        <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ffb8e7,#89f5ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#000;">
           <?= substr($currentUser['full_name'], 0, 1) ?>
         </div>
         <div style="flex:1;overflow:hidden;">
           <div style="font-size:0.85rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><?= e($currentUser['full_name']) ?></div>
-          <div style="font-size:0.75rem;color:#818cf8;text-transform:uppercase;"><?= e($currentUser['role']) ?></div>
+          <div style="font-size:0.75rem;color:#ffd4f0;text-transform:uppercase;"><?= e($currentUser['role']) ?></div>
         </div>
         <a href="../logout.php" style="color:var(--text-muted);" title="Đăng xuất"><i class="fa-solid fa-power-off"></i></a>
       </div>
@@ -190,7 +190,7 @@ $flash = getFlash();
               <span style="font-size:0.82rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">
                 <?= e($m['metric_title']) ?>
               </span>
-              <div style="width:36px;height:36px;background:rgba(99,102,241,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#818cf8;">
+              <div style="width:36px;height:36px;background:rgba(255,184,231,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#ffd4f0;">
                 <i class="fa-solid <?= e($m['metric_icon']) ?>"></i>
               </div>
             </div>
@@ -288,7 +288,7 @@ $flash = getFlash();
           <div style="display:flex;flex-direction:column;gap:12px;">
             <?php foreach ($recentLogs as $log): ?>
               <div style="display:flex;align-items:flex-start;gap:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.85rem;">
-                <div style="width:8px;height:8px;border-radius:50%;background:#6366f1;margin-top:6px;"></div>
+                <div style="width:8px;height:8px;border-radius:50%;background:#ffb8e7;margin-top:6px;"></div>
                 <div style="flex:1;">
                   <div style="color:var(--text-primary);font-weight:500;"><?= e($log['description']) ?></div>
                   <div style="color:var(--text-muted);font-size:0.75rem;margin-top:2px;">
@@ -314,15 +314,15 @@ $flash = getFlash();
         datasets: [{
           label: 'Lượt Xem Giao Diện (Pageviews)',
           data: [12500, 14200, 15800, 18900, 21400, 24600, 28400],
-          borderColor: '#6366f1',
-          backgroundColor: 'rgba(99, 102, 241, 0.15)',
+          borderColor: '#ffb8e7',
+          backgroundColor: 'rgba(255, 184, 231, 0.15)',
           fill: true,
           tension: 0.4,
           borderWidth: 3
         }, {
           label: 'Lượng Khách Duy Nhất (Visitors)',
           data: [8900, 9800, 11200, 13400, 15200, 17800, 20500],
-          borderColor: '#ec4899',
+          borderColor: '#89f5ff',
           backgroundColor: 'transparent',
           tension: 0.4,
           borderWidth: 2,
@@ -333,11 +333,11 @@ $flash = getFlash();
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { labels: { color: '#94a3b8', font: { family: 'Outfit', size: 12 } } }
+          legend: { labels: { color: '#a3a3a3', font: { family: 'Outfit', size: 12 } } }
         },
         scales: {
-          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } },
-          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }
+          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#737373' } },
+          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#737373' } }
         }
       }
     });

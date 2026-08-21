@@ -90,12 +90,12 @@ try {
     echo "SUCCESS!\n";
 
     // ---------------------------------------------------------
-    // 4. Project 4: DatCyber (Smart Appliances) -> hieumini_appliances_db / datcyber_appliances_db
+    // 4. Project 4: HieuWeb04 (Smart Appliances) -> hieumini_appliances_db
     // ---------------------------------------------------------
-    echo "[6/6] Setting up `datcyber_appliances_db` (DatCyber - Smart Appliances)... ";
-    $pdo->exec("CREATE DATABASE IF NOT EXISTS `datcyber_appliances_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
-    $pdo->exec("USE `datcyber_appliances_db`;");
-    $web04Sql = file_get_contents(__DIR__ . '/../projects/DatCyber/database.sql');
+    echo "[6/6] Setting up `hieumini_appliances_db` (HieuWeb04 - Smart Appliances)... ";
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `hieumini_appliances_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+    $pdo->exec("USE `hieumini_appliances_db`;");
+    $web04Sql = file_get_contents(__DIR__ . '/../projects/HieuWeb04/database.sql');
     $pdo->exec($web04Sql);
     echo "SUCCESS!\n";
 

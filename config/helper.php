@@ -378,13 +378,36 @@ function scanProjectsDirectory(): array {
         $hasIndexHtml = file_exists($projectPath . '/index.html');
         $hasReadme = file_exists($projectPath . '/README.md');
 
-        // Calculate size & file count
+        // Calculate size & file count safely
         $fileCount = 0;
         $totalSize = 0;
-        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($projectPath, RecursiveDirectoryIterator::SKIP_DOTS));
-        foreach ($iterator as $file) {
-            $fileCount++;
-            $totalSize += $file->getSize();
+        try {
+            if (is_dir($projectPath) && is_readable($projectPath)) {
+                $dirIt = new RecursiveDirectoryIterator(
+                    $projectPath,
+                    FilesystemIterator::SKIP_DOTS | FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_FILEINFO
+                );
+                $iterator = new RecursiveIteratorIterator(
+                    $dirIt,
+                    RecursiveIteratorIterator::LEAVES_ONLY,
+                    RecursiveIteratorIterator::CATCH_GET_CHILD
+                );
+                foreach ($iterator as $file) {
+                    try {
+                        if ($file->isFile()) {
+                            $fileCount++;
+                            $size = @$file->getSize();
+                            if ($size !== false && $size > 0) {
+                                $totalSize += $size;
+                            }
+                        }
+                    } catch (Throwable $t) {
+                        // Skip inaccessible file or broken symlink stat
+                    }
+                }
+            }
+        } catch (Throwable $e) {
+            // Graceful fallback if directory traversal encounters an issue
         }
 
         $sizeFormatted = $totalSize > 1048576 

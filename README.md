@@ -55,7 +55,7 @@ graph TD
     C --> C1[HieuWeb01 - Thời Trang]
     C --> C2[HieuWeb02 - Nhà Sách]
     C --> C3[HieuWeb03 - Nội Thất]
-    C --> C4[DatCyber - Đồ Gia Dụng]
+    C --> C4[HieuWeb04 - Công Nghệ]
     C --> C5[HieuWeb05 - Gym & Fitness]
     C --> C6[HieuCyberPortfolio - Tech SaaS]
     C --> C7[Tải lên ZIP Tự Động Giải Nén]
@@ -83,7 +83,7 @@ Hệ thống tích hợp sẵn 6 bộ dự án website thương mại điện t�
 | **`HieuWeb01`** | **HieuMini Luxury Fashion Studio** | Thời Trang & May Mặc May Đo | • Hero Slider bộ sưu tập<br>• Flash Sale đếm ngược<br>• Bảng Size Guide chuẩn<br>• Giỏ hàng thanh toán VietQR MBBank<br>• Xuất hóa đơn điện tử | **Admin:** `admin@hieumini.vn`<br>**Khách:** `khachhang@gmail.com`<br>*(Pass: `admin123`)* |
 | **`HieuWeb02`** | **Hieu Bookstore Hub** | Nhà Sách & Thư Viện Tri Thức Số | • Đọc thử trích đoạn sách<br>• Đánh giá sao độc giả<br>• Bộ lọc thể loại đa tầng<br>• Mã giảm giá FREESHIP<br>• Tra cứu vận đơn | **Admin:** `admin@hieubooks.vn`<br>**Khách:** `docgia@gmail.com`<br>*(Pass: `admin123`)* |
 | **`HieuWeb03`** | **Hieu Living & Scandinavian Decor** | Nội Thất Bắc Âu & Không Gian Sống | • Showroom 3D góc rộng<br>• Bộ sưu tập phòng Living / Bed / Office<br>• Tư vấn thiết kế cá nhân hóa<br>• Báo giá vật liệu cao cấp | **Admin:** `admin@hieuliving.vn`<br>**Khách:** `khachhang@gmail.com`<br>*(Pass: `admin123`)* |
-| **`DatCyber`** | **DatCyber Smart Home Appliances** | Thiết Bị Gia Dụng Thông Minh & Tiện Ích Gia Đình | • Nồi chiên, robot hút bụi, máy ép chậm<br>• Flash Sale đếm ngược<br>• Giỏ hàng AJAX mượt mà<br>• Quản trị sản phẩm, đơn hàng | **Admin:** `admin@datcyber.vn`<br>**Khách:** `khachhang@gmail.com`<br>*(Pass: `123456`)* |
+| **`HieuWeb04`** | **Hieu CyberTech Innovation Matrix** | Showroom Thiết Bị Công Nghệ & AI | • So sánh thông số kỹ thuật<br>• Mua trả góp 0% lãi suất<br>• Tra cứu bảo hành điện tử<br>• Hộp quà công nghệ Flash Sale | **Admin:** `admin@hieutech.vn`<br>**Khách:** `khachhang@gmail.com`<br>*(Pass: `admin123`)* |
 | **`HieuWeb05`** | **Hieu Pro Gym & Athletic Matrix** | Thể Hình Đỉnh Cao & Dinh Dưỡng | • Máy tính chỉ số BMI khoa học<br>• Cửa hàng Whey Isolate & Creatine<br>• Đặt lịch HLV cá nhân (PT)<br>• Lịch tập luyện 7 ngày | **Admin:** `admin@hieugym.vn`<br>**Khách:** `hoi_vien@gmail.com`<br>*(Pass: `admin123`)* |
 | **`HieuCyberPortfolio`** | **Hieu Cyber Portfolio Pro** | Công Nghệ Cao & Hồ Sơ Năng Lực | • Trình chiếu dự án Cyberpunk<br>• Glassmorphism tối ưu tốc độ<br>• Tương thích 100% thiết bị<br>• Animation hạt particle | **Admin:** `ceo@hieu.vn`<br>**Khách:** `guest@hieu.vn`<br>*(Pass: `admin123`)* |
 
@@ -186,7 +186,7 @@ Hệ thống đã nạp sẵn các tài khoản mẫu với mật khẩu mặc �
 | **`HieuWeb01` (Thời Trang)** | `admin@hieumini.vn` | `khachhang@gmail.com` | `admin123` |
 | **`HieuWeb02` (Nhà Sách)** | `admin@hieubooks.vn` | `docgia@gmail.com` | `admin123` |
 | **`HieuWeb03` (Nội Thất)** | `admin@hieuliving.vn` | `khachhang@gmail.com` | `admin123` |
-| **`DatCyber` (Đồ Gia Dụng)** | `admin@datcyber.vn` | `khachhang@gmail.com` | `123456` |
+| **`HieuWeb04` (Công Nghệ)** | `admin@hieutech.vn` | `khachhang@gmail.com` | `admin123` |
 | **`HieuWeb05` (Gym & Dinh Dưỡng)** | `admin@hieugym.vn` | `hoi_vien@gmail.com` | `admin123` |
 | **`HieuCyberPortfolio`** | `ceo@hieu.vn` | `guest@hieu.vn` | `admin123` |
 
@@ -282,7 +282,7 @@ c:\Users\tranv\Desktop\DoAnWebsite\
 │   ├── HieuWeb01/                             # Giao diện Thời trang HieuMini Luxury Studio (PHP/MySQL)
 │   ├── HieuWeb02/                             # Giao diện Nhà sách Hieu Bookstore Hub (PHP/MySQL)
 │   ├── HieuWeb03/                             # Giao diện Nội thất Hieu Living & Scandinavian Decor (PHP/MySQL)
-│   ├── DatCyber/                              # Giao diện Đồ gia dụng thông minh DatCyber (PHP/MySQL)
+│   ├── HieuWeb04/                             # Giao diện Công nghệ Hieu CyberTech Innovation Matrix (PHP/MySQL)
 │   ├── HieuWeb05/                             # Giao diện Thể hình Hieu Pro Gym & Athletic Matrix (PHP/MySQL)
 │   ├── HieuCyberPortfolio/                    # Giao diện Hồ sơ công nghệ cao Hieu Cyber Portfolio Pro (HTML5/CSS3/JS)
 │   └── ...                                    # Các dự án mới được giải nén tự động từ tệp .ZIP

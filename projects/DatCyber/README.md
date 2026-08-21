@@ -86,7 +86,7 @@
 ## 📂 Cấu Trúc Thư Mục
 
 ```plaintext
-DatCyber/
+HieuWeb04/
 │
 ├── admin/                      # Phân hệ Quản trị viên
 │   ├── categories.php          # Quản lý danh mục (CRUD)
@@ -133,7 +133,7 @@ DatCyber/
 ### 2. Tải Mã Nguồn Vào Thư Mục Web
 - Đặt toàn bộ thư mục dự án vào thư mục gốc của Web Server:
   ```plaintext
-  C:\xampp\htdocs\DoAnWebsite\projects\DatCyber
+  C:\xampp\htdocs\HieuWeb04
   ```
 
 ### 3. Nhập Cơ Sở Dữ Liệu (Import Database)
@@ -151,7 +151,7 @@ DatCyber/
    - `contacts`: Hộp thư liên hệ & phản hồi của khách hàng
 
 ### 4. Cấu Hình Kết Nối CSDL (Nếu cần)
-Mặc định cấu hình trong [includes/db.php](file:///c:/xampp/htdocs/DoAnWebsite/projects/DatCyber/includes/db.php) là:
+Mặc định cấu hình trong [includes/db.php](file:///c:/xampp/htdocs/HieuWeb04/includes/db.php) là:
 ```php
 $host = '127.0.0.1';
 $dbname = 'datcyber_appliances_db';
@@ -161,9 +161,9 @@ $password = ''; // Mặc định XAMPP để trống
 *Nếu bạn đổi cổng MySQL hoặc mật khẩu root, vui lòng cập nhật lại file này.*
 
 ### 5. Truy Cập Ứng Dụng
-- **Trang Khách Hàng:** [http://localhost/projects/DatCyber/](http://localhost/projects/DatCyber/)
-- **Cổng Đăng Nhập Quản Trị:** [http://localhost/projects/DatCyber/admin/login.php](http://localhost/projects/DatCyber/admin/login.php)
-- **Bảng Điều Khiển Admin:** [http://localhost/projects/DatCyber/admin/](http://localhost/projects/DatCyber/admin/)
+- **Trang Khách Hàng:** [http://localhost/HieuWeb04/](http://localhost/HieuWeb04/)
+- **Cổng Đăng Nhập Quản Trị:** [http://localhost/HieuWeb04/admin/login.php](http://localhost/HieuWeb04/admin/login.php)
+- **Bảng Điều Khiển Admin:** [http://localhost/HieuWeb04/admin/](http://localhost/HieuWeb04/admin/)
 
 ---
 
@@ -178,7 +178,7 @@ $password = ''; // Mặc định XAMPP để trống
 
 ## 💳 Mã Giảm Giá Dùng Thử
 
-Khi tiến hành đặt hàng tại trang [checkout.php](file:///c:/xampp/htdocs/DoAnWebsite/projects/DatCyber/checkout.php), bạn có thể nhập thử các mã khuyến mãi sau:
+Khi tiến hành đặt hàng tại trang [checkout.php](file:///c:/xampp/htdocs/HieuWeb04/checkout.php), bạn có thể nhập thử các mã khuyến mãi sau:
 
 | Mã Coupon | Loại Giảm | Giá Trị Giảm | Điều Kiện Đơn Hàng |
 | :--- | :--- | :--- | :--- |

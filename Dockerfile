@@ -42,7 +42,7 @@ COPY . /var/www/html/
 
 # Create case-insensitive symlinks for all subprojects
 RUN cd /var/www/html/projects && \
-    for p in HieuWeb01 HieuWeb02 HieuWeb03 DatCyber HieuWeb05; do \
+    for p in HieuWeb01 HieuWeb02 HieuWeb03 HieuWeb04 HieuWeb05; do \
         ln -sf "$p" "$(echo "$p" | sed 's/Web/web/')" && \
         ln -sf "$p" "$(echo "$p" | tr '[:upper:]' '[:lower:]')"; \
     done

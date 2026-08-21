@@ -1,5 +1,5 @@
 <?php
-$projects = ['HieuWeb01', 'HieuWeb02', 'HieuWeb03', 'DatCyber', 'HieuWeb05'];
+$projects = ['HieuWeb01', 'HieuWeb02', 'HieuWeb03', 'HieuWeb04', 'HieuWeb05'];
 
 foreach ($projects as $proj) {
     echo "=== PROJECT: $proj ===\n";

@@ -109,6 +109,24 @@ $flash = getFlash();
         </div>
       </div>
 
+      <!-- Auto Discovery Status Banner -->
+      <div style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);color:#6ee7b7;padding:14px 20px;border-radius:var(--radius-md);margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(16,185,129,0.2);display:flex;align-items:center;justify-content:center;color:#34d399;font-size:1.1rem;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <div style="font-weight:700;color:#34d399;font-size:0.92rem;">Quy Trình Tự Động Nhận Diện Dự Án (Auto-Discovery Active)</div>
+            <div style="font-size:0.83rem;color:#a7f3d0;margin-top:2px;">
+              Mọi thư mục website mới được thêm vào <code>projects/</code> sẽ tự động được quét metadata, phân loại danh mục và hiển thị lên toàn bộ website.
+            </div>
+          </div>
+        </div>
+        <button onclick="location.reload()" class="btn-ceo-secondary" style="padding:6px 14px;font-size:0.82rem;">
+          <i class="fa-solid fa-rotate mr-1"></i> Quét Lại Ngay
+        </button>
+      </div>
+
       <!-- Project Cards Grid -->
       <div class="ceo-grid-3">
         <?php foreach ($projects as $p): ?>

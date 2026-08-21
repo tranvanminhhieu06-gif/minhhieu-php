@@ -265,6 +265,9 @@ function getThemeBySlug(string $slug): ?array {
 }
 
 function getAllThemes(?string $categorySlug = null, ?string $search = null): array {
+    // Tự động phát hiện và đồng bộ mọi thư mục dự án mới trong projects/
+    autoSyncProjectsWithDatabase();
+
     try {
         $db = getDb();
         $sql = "SELECT t.*, c.name AS category_name, c.slug AS category_slug, c.icon AS category_icon 
@@ -525,6 +528,213 @@ function autoRegisterProjectTheme(string $folderName, array $options = []): int 
     logSystemAction($_SESSION['user_id'] ?? 1, 'PROJECT_UPLOAD', "Tải lên và đăng ký thành công dự án: {$name} (projects/{$folderName})");
 
     return $newId;
+}
+
+/**
+ * ====================================================================
+ * QUY TRÌNH TỰ ĐỘNG PHÁT HIỆN & ĐỒNG BỘ DỰ ÁN TRONG projects/
+ * ====================================================================
+ * Tự động quét mọi thư mục con trong thư mục projects/.
+ * Nếu phát hiện thư mục mới (có file index.php hoặc index.html) chưa được
+ * đăng ký vào bảng `themes` trong CSDL, hệ thống sẽ:
+ * 1. Tự động đọc tệp README.md để trích xuất tên, mô tả, tagline
+ * 2. Tự động phân loại danh mục (Thời trang, Công nghệ, Sách, Nội thất, Gym, SaaS, v.v.)
+ * 3. Tự động tạo bản ghi theme hoàn chỉnh trong CSDL
+ * 4. Ngay lập tức hiển thị trên explore.php, live-view.php, index.php và admin
+ */
+function autoSyncProjectsWithDatabase(): array {
+    $newProjects = [];
+    $projectsDir = getProjectsDirectory();
+    if (!is_dir($projectsDir)) return [];
+
+    try {
+        $db = getDb();
+        $existingThemes = $db->query("SELECT id, name, code_name, folder_path FROM `themes`")->fetchAll();
+        $registeredFolders = [];
+        foreach ($existingThemes as $t) {
+            $norm = str_replace('\\', '/', $t['folder_path']);
+            $base = basename($norm);
+            $registeredFolders[$base] = true;
+            $registeredFolders[$norm] = true;
+            $registeredFolders[strtolower($base)] = true;
+        }
+
+        $items = scandir($projectsDir);
+        foreach ($items as $item) {
+            if ($item === '.' || $item === '..' || !is_dir($projectsDir . '/' . $item)) continue;
+            
+            // Bỏ qua nếu đã đăng ký
+            if (isset($registeredFolders[$item]) || isset($registeredFolders[strtolower($item)]) || isset($registeredFolders['projects/' . $item])) {
+                continue;
+            }
+
+            $projectPath = $projectsDir . '/' . $item;
+            $hasIndexPhp = file_exists($projectPath . '/index.php');
+            $hasIndexHtml = file_exists($projectPath . '/index.html');
+            if (!$hasIndexPhp && !$hasIndexHtml) {
+                continue; // Không phải thư mục web runnable
+            }
+
+            // Tự động phân tích Metadata từ thư mục & README.md
+            $meta = parseProjectDirectoryMeta($item, $projectPath);
+
+            // Gán Category thông minh
+            $categoryId = detectProjectCategory($item, $meta['title'], $meta['description']);
+
+            // Insert vào themes
+            $stmt = $db->prepare("INSERT INTO `themes` 
+                (`category_id`, `name`, `slug`, `code_name`, `tagline`, `description`, `thumbnail`, `preview_url`, `folder_path`, `version`, `author`, `status`, `is_featured`, `rating`, `downloads_count`, `views_count`, `primary_color`, `secondary_color`, `accent_color`, `bg_color`, `font_family`, `layout_type`)
+                VALUES
+                (:cat, :name, :slug, :code, :tag, :desc, :thumb, :preview, :folder, '1.0.0', 'HIEU CEO Studio', 'ready', 1, 5.00, 150, 680, :c1, :c2, :c3, :bg, :font, 'executive_glass')");
+
+            $stmt->execute([
+                ':cat' => $categoryId,
+                ':name' => $meta['title'],
+                ':slug' => $meta['slug'],
+                ':code' => $meta['code_name'],
+                ':tag' => $meta['tagline'],
+                ':desc' => $meta['description'],
+                ':thumb' => $meta['thumbnail'],
+                ':preview' => $hasIndexPhp ? "projects/{$item}/index.php" : "projects/{$item}/index.html",
+                ':folder' => $item,
+                ':c1' => $meta['colors']['primary'],
+                ':c2' => $meta['colors']['secondary'],
+                ':c3' => $meta['colors']['accent'],
+                ':bg' => $meta['colors']['bg'],
+                ':font' => $meta['font']
+            ]);
+
+            $newId = (int)$db->lastInsertId();
+
+            // Tạo Section mặc định
+            $db->prepare("INSERT INTO `theme_sections` (`theme_id`, `section_key`, `section_name`, `is_enabled`, `sort_order`) VALUES (:tid, 'hero_main', 'Hero Section & Presentation', 1, 1)")->execute([':tid' => $newId]);
+
+            logSystemAction(1, 'AUTO_DISCOVERY', "Tự động phát hiện và đăng ký dự án mới: {$meta['title']} (projects/{$item})");
+
+            $registeredFolders[$item] = true;
+            $newProjects[] = ['id' => $newId, 'name' => $meta['title'], 'folder' => $item];
+        }
+    } catch (Throwable $e) {
+        // Fallback gracefully
+    }
+
+    return $newProjects;
+}
+
+/**
+ * Trích xuất tiêu đề, mô tả và bảng màu tự động từ thư mục dự án và tệp README.md
+ */
+function parseProjectDirectoryMeta(string $folderName, string $projectPath): array {
+    $title = ucwords(str_replace(['_', '-'], ' ', $folderName));
+    $tagline = "Giao diện website công nghệ cao thuộc hệ sinh thái projects/{$folderName}";
+    $description = "Dự án website hoàn chỉnh được phát hiện và tích hợp tự động vào Trung tâm Theme Hub HIEU CEO.";
+    $thumbnail = 'assets/images/themes/custom-preview.png';
+
+    // 1. Kiểm tra ảnh đại diện dự án
+    $possibleThumbnails = [
+        "projects/{$folderName}/assets/images/og-cover.svg",
+        "projects/{$folderName}/assets/images/logo.svg",
+        "projects/{$folderName}/assets/images/thumbnail.png",
+        "projects/{$folderName}/assets/images/preview.png",
+        "projects/{$folderName}/screenshot.png"
+    ];
+    foreach ($possibleThumbnails as $pt) {
+        if (file_exists(dirname(__DIR__) . '/' . $pt)) {
+            $thumbnail = $pt;
+            break;
+        }
+    }
+
+    // 2. Đọc tệp README.md nếu có
+    $readmePath = $projectPath . '/README.md';
+    if (file_exists($readmePath)) {
+        $content = @file_get_contents($readmePath);
+        if ($content) {
+            $lines = explode("\n", $content);
+            $hasTitle = false;
+            $hasTagline = false;
+            foreach ($lines as $line) {
+                $trimmed = trim($line);
+                if (empty($trimmed)) continue;
+                // Tiêu đề
+                if (str_starts_with($trimmed, '# ') && !$hasTitle) {
+                    $extractedTitle = trim(substr($trimmed, 2), " \t\n\r\0\x0B#*=`");
+                    if (!empty($extractedTitle)) {
+                        $title = $extractedTitle;
+                        $hasTitle = true;
+                    }
+                }
+                // Tagline từ blockquote
+                if (str_starts_with($trimmed, '> ') && !$hasTagline) {
+                    $extractedTag = trim(substr($trimmed, 2), " \t\n\r\0\x0B*`");
+                    if (!empty($extractedTag) && strlen($extractedTag) > 8) {
+                        $tagline = mb_substr($extractedTag, 0, 150);
+                        $hasTagline = true;
+                    }
+                }
+            }
+        }
+    }
+
+    // 3. Phối màu theo tên dự án
+    $palettes = [
+        ['primary' => '#6366f1', 'secondary' => '#ec4899', 'accent' => '#06b6d4', 'bg' => '#0f172a'],
+        ['primary' => '#0284c7', 'secondary' => '#f59e0b', 'accent' => '#10b981', 'bg' => '#0b1329'],
+        ['primary' => '#8b5cf6', 'secondary' => '#3b82f6', 'accent' => '#06b6d4', 'bg' => '#090d16'],
+        ['primary' => '#10b981', 'secondary' => '#64748b', 'accent' => '#f59e0b', 'bg' => '#0f172a'],
+        ['primary' => '#7c3aed', 'secondary' => '#22d3ee', 'accent' => '#10b981', 'bg' => '#0b0b1a'],
+        ['primary' => '#f43f5e', 'secondary' => '#fbbf24', 'accent' => '#38bdf8', 'bg' => '#0b0f19']
+    ];
+    $paletteIdx = abs(crc32($folderName)) % count($palettes);
+    $selectedPalette = $palettes[$paletteIdx];
+
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title))) . '-' . substr(md5($folderName), 0, 4);
+    $codeName = strtoupper('HIEU_' . preg_replace('/[^A-Za-z0-9]/', '', $folderName));
+
+    return [
+        'title' => $title,
+        'tagline' => $tagline,
+        'description' => $description,
+        'slug' => $slug,
+        'code_name' => $codeName,
+        'thumbnail' => $thumbnail,
+        'colors' => $selectedPalette,
+        'font' => 'Outfit'
+    ];
+}
+
+/**
+ * Tự động nhận diện danh mục phù hợp theo tên và từ khóa
+ */
+function detectProjectCategory(string $folderName, string $title, string $description): int {
+    $text = strtolower($folderName . ' ' . $title . ' ' . $description);
+    
+    // 2: Công nghệ & Thiết bị AI
+    if (preg_match('/(tech|công nghệ|gadget|cyber|ai|device|matrix|appliance|điện thoại|laptop|máy tính)/i', $text)) {
+        return 2;
+    }
+    // 3: Tri thức & Sách
+    if (preg_match('/(book|sách|read|đọc|thư viện|publishing|học liệu|tác phẩm)/i', $text)) {
+        return 3;
+    }
+    // 4: Nội thất & Decor
+    if (preg_match('/(furniture|nội thất|decor|living|scandinavian|kiến trúc|sofa|bàn ghế)/i', $text)) {
+        return 4;
+    }
+    // 5: Thể hình & Gym
+    if (preg_match('/(gym|fitness|thể hình|thể thao|dinh dưỡng|whey|protein|workout|athlete)/i', $text)) {
+        return 5;
+    }
+    // 6: SaaS & Doanh nghiệp
+    if (preg_match('/(saas|doanh nghiệp|enterprise|cloud|dashboard|quản lý|obsidian|b2b)/i', $text)) {
+        return 6;
+    }
+    // 7: Bất động sản
+    if (preg_match('/(estate|bất động sản|villa|resort|căn hộ|penthouse|nghỉ dưỡng|du lịch)/i', $text)) {
+        return 7;
+    }
+    // 1: Mặc định Thời trang / Thương mại điện tử
+    return 1;
 }
 
 // ==================== FORMATTERS ====================
